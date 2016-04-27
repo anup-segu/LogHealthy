@@ -8,16 +8,19 @@ var React = require('react'),
     Link = require('react-router').Link,
     hashHistory = require('react-router').hashHistory;
 
-var PatientForm = require('./components/auth/auth_form.jsx');
+var AuthForm = require('./components/auth/auth_form.jsx'),
+    NavBar = require('./components/shared/nav_bar.jsx');
 
 
 var App = React.createClass({
   render: function () {
     return (
-      <div className="container-fluid">
-        <h1>Welcome to LogHealthy</h1>
-        <PatientForm />
-        {this.props.children}
+      <div>
+        <NavBar />
+        <div className="container-fluid">
+          <AuthForm />
+          {this.props.children}
+        </div>
       </div>
     );
   }
@@ -26,7 +29,6 @@ var App = React.createClass({
 // add your routes here
 var routes = (
   <Route path="/" component={App}>
-
   </Route>
 );
 
