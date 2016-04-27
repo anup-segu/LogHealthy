@@ -10,7 +10,8 @@ var React = require('react'),
     hashHistory = require('react-router').hashHistory;
 
 var AuthForm = require('./components/auth/auth_form.jsx'),
-    NavBar = require('./components/shared/nav_bar.jsx');
+    NavBar = require('./components/shared/nav_bar.jsx'),
+    SplashBody = require('./components/splash/splash_main.jsx');
 
 
 var App = React.createClass({
@@ -22,6 +23,7 @@ var App = React.createClass({
           <AuthForm />
           {this.props.children}
         </div>
+        <SplashBody />
       </div>
     );
   }

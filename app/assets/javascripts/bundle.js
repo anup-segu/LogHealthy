@@ -56,7 +56,8 @@
 	    hashHistory = __webpack_require__(159).hashHistory;
 	
 	var AuthForm = __webpack_require__(218),
-	    NavBar = __webpack_require__(252);
+	    NavBar = __webpack_require__(252),
+	    SplashBody = __webpack_require__(276);
 	
 	var App = React.createClass({
 	  displayName: 'App',
@@ -71,7 +72,8 @@
 	        { className: 'container-fluid' },
 	        React.createElement(AuthForm, null),
 	        this.props.children
-	      )
+	      ),
+	      React.createElement(SplashBody, null)
 	    );
 	  }
 	});
@@ -32966,7 +32968,7 @@
 	  render: function () {
 	    return React.createElement(
 	      'nav',
-	      { className: 'navbar navbar-default' },
+	      { className: 'navbar navbar-default navbar-custom' },
 	      React.createElement(
 	        'div',
 	        { className: 'container-fluid' },
@@ -35003,6 +35005,42 @@
 	    });
 	  }
 	};
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	
+	var SplashBody = React.createClass({
+	  displayName: "SplashBody",
+	
+	
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "container-fluid splash-body" },
+	      React.createElement("div", { className: "blockout" }),
+	      React.createElement(
+	        "div",
+	        { className: "container" },
+	        React.createElement(
+	          "h1",
+	          { className: "text-center headline" },
+	          "Content Here"
+	        ),
+	        React.createElement(
+	          "h4",
+	          { className: "text-center headline" },
+	          "Taglines Here"
+	        )
+	      )
+	    );
+	  }
+	
+	});
+	
+	module.exports = SplashBody;
 
 /***/ }
 /******/ ]);

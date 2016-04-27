@@ -113,7 +113,7 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-        <nav className="navbar navbar-default">
+        <nav className="navbar navbar-default navbar-custom">
           <div className="container-fluid">
             {this.logo}
             {this.current_user()}
