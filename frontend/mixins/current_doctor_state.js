@@ -11,7 +11,7 @@ var CurrentDoctorState = {
 	},
 	componentDidMount: function(){
 		DoctorStore.addListener(this.updateDoctor);
-		if (typeof DoctorStore.currentDoctor() === 'undefined') {
+		if (!(DoctorStore.currentDoctor())) {
 			DoctorActions.fetchCurrentDoctor();
 		}
 	},

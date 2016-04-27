@@ -32,8 +32,13 @@ class Api::SessionsController < ApplicationController
   end
 
   def show
+    @patient = current_patient
+    @doctor = current_doctor
+
     if !current_patient.nil?
       render "api/patients/show"
+    elsif !current_doctor.nil?
+      render "api/doctors/show"
     else
 			render "api/shared/error", status: 404
     end

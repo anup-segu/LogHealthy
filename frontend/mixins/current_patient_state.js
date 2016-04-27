@@ -11,7 +11,7 @@ var CurrentPatientState = {
 	},
 	componentDidMount: function(){
 		PatientStore.addListener(this.updatePatient);
-		if (typeof PatientStore.currentPatient() === 'undefined') {
+		if (!(PatientStore.currentPatient())) {
 			PatientActions.fetchCurrentPatient();
 		}
 	},

@@ -12,12 +12,15 @@ var AuthActions = require('../../actions/auth_actions.js');
 module.exports = React.createClass({
   getInitialState: function() {
     var username = "";
-    // if (PatientStore.currentPatient()) {
-    //   debugger;
-    //   username = PatientStore.currentPatient().first_name;
-    // } else if (DoctorStore.currentDoctor()) {
-    //   username = "Dr. " + DoctorStore.currentDoctor().last_name;
-    // }
+    PatientActions.fetchCurrentPatient();
+    DoctorActions.fetchCurrentDoctor();
+
+    if (PatientStore.currentPatient()) {
+      username = PatientStore.currentPatient().first_name;
+    } else if (DoctorStore.currentDoctor()) {
+      username = "Dr. " + DoctorStore.currentDoctor().last_name;
+    }
+
     return({ username: username });
   },
 
@@ -32,9 +35,9 @@ module.exports = React.createClass({
     var patient = PatientStore.currentPatient();
     var doctor = DoctorStore.currentDoctor();
 
-    if (patient) {
+    if (patient && patient.first_name) {
       this.setState({username: patient.first_name});
-    } else if (doctor) {
+    } else if (doctor && doctor.last_name) {
       this.setState({username: "Dr. " + doctor.last_name});
     } else {
       this.setState({username: null});
@@ -65,7 +68,7 @@ module.exports = React.createClass({
                 onClick={this.logout}>Logout</button>
             </div>
             <div className="nav navbar-nav navbar-right nav-button">
-              <div className="container">
+              <div className="container welcome-message">
                 Welcome, {this.state.username}
               </div>
             </div>
