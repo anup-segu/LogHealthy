@@ -3,6 +3,7 @@ var React = require('react');
 var AuthActions = require('../../actions/auth_actions.js');
 var PatientStore = require('../../stores/patient_store.js');
 var DoctorStore = require('../../stores/doctor_store.js');
+var SplashDetail = require('./splash_detail.jsx');
 
 var SplashBody = React.createClass({
   getInitialState: function() {
@@ -11,7 +12,7 @@ var SplashBody = React.createClass({
 
   componentDidMount: function() {
     this.patientListener = PatientStore.addListener(this._checkLogin);
-    this.doctorListener = PatientStore.addListener(this._checkLogin);
+    this.doctorListener = DoctorStore.addListener(this._checkLogin);
   },
 
   _checkLogin: function() {
@@ -51,6 +52,9 @@ var SplashBody = React.createClass({
             <div className="container-fluid">{this.getStartedButton()}</div>
             <div className="blockout blockout-small"></div>
             <div className="container-fluid">{this.getStartedLearn()}</div>
+          </div>
+          <div className="container-fluid">
+            <SplashDetail />
           </div>
         </div>
       );
