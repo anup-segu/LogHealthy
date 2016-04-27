@@ -10,7 +10,10 @@ module.exports = {
   resolve: {
     extensions: ["", ".js", ".jsx"]
   },
+<<<<<<< HEAD
   devtool: 'source-maps',
+=======
+>>>>>>> 250a21fa7bfd9b6691a5b75a8d3a03893bebbba9
   module: {
     loaders: [
       {
