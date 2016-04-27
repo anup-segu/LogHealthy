@@ -65,7 +65,9 @@ module.exports = React.createClass({
                 onClick={this.logout}>Logout</button>
             </div>
             <div className="nav navbar-nav navbar-right nav-button">
-              Welcome, {this.state.username}
+              <div className="container">
+                Welcome, {this.state.username}
+              </div>
             </div>
           </div>
         );

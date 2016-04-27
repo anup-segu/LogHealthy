@@ -267,7 +267,6 @@ var LogInForm = React.createClass({
         </form>
       );
     }
-
     return (
       form
     );
