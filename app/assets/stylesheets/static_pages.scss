@@ -4,6 +4,12 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+// general app styles
+.app-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 // sign up form format
 
 .splash-form {
@@ -37,7 +43,7 @@
 }
 
 .welcome-message {
-  padding-top: 5px;
+  padding-top: 7px;
   text-align: center;
 }
 

@@ -11,19 +11,25 @@ var React = require('react'),
 
 var AuthForm = require('./components/auth/auth_form.jsx'),
     NavBar = require('./components/shared/nav_bar.jsx'),
-    SplashBody = require('./components/splash/splash_main.jsx');
+    SplashBody = require('./components/splash/splash_main.jsx'),
+    PatientDashboard,
+    DoctorDashboard;
 
 
 var App = React.createClass({
+
   render: function () {
     return (
       <div>
         <NavBar />
-        <div className="container-fluid">
+        <div className="container-fluid app-body">
           <AuthForm />
+          <SplashBody />
           {this.props.children}
         </div>
-        <SplashBody />
+        <div>
+
+        </div>
       </div>
     );
   }
@@ -32,6 +38,8 @@ var App = React.createClass({
 // add your routes here
 var routes = (
   <Route path="/" component={App}>
+    <Route path="pdashboard" component={PatientDashboard}></Route>
+    <Route path="ddashboard" component={DoctorDashboard}></Route>
   </Route>
 );
 

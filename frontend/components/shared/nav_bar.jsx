@@ -35,9 +35,9 @@ module.exports = React.createClass({
     var patient = PatientStore.currentPatient();
     var doctor = DoctorStore.currentDoctor();
 
-    if (patient && patient.first_name) {
+    if (patient) {
       this.setState({username: patient.first_name});
-    } else if (doctor && doctor.last_name) {
+    } else if (doctor) {
       this.setState({username: "Dr. " + doctor.last_name});
     } else {
       this.setState({username: null});
