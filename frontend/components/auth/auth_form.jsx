@@ -48,7 +48,8 @@ var LogInForm = React.createClass({
   signUpForm: function() {
     this.setState($.extend({
       form: "signup",
-      patientErrors: null}, this.blankAttrs));
+      patientErrors: null,
+      doctorErrors: null }, this.blankAttrs));
   },
 
   button: function() {
