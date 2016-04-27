@@ -2,6 +2,7 @@
 
 var React = require('react'),
     ReactDOM = require('react-dom'),
+    Modal = require("react-modal"),
     Router = require('react-router').Router,
     Route = require('react-router').Route,
     IndexRoute = require('react-router').IndexRoute,
@@ -33,6 +34,7 @@ var routes = (
 );
 
 document.addEventListener("DOMContentLoaded", function(){
+  Modal.setAppElement(document.body);
   ReactDOM.render(
     <Router history={hashHistory} routes={routes} />,
     document.getElementById('root')

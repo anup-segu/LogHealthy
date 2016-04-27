@@ -43,10 +43,12 @@ var PatientActions = {
 	},
 
 	handleError: function(error) {
-		AppDispatcher.dispatch({
-			actionType: AuthConstants.ERROR,
-			errors: error.responseJSON.errors
-		});
+		if (error.responseJSON) {
+			AppDispatcher.dispatch({
+				actionType: AuthConstants.ERROR,
+				errors: error.responseJSON.errors
+			});
+		}
 	},
 
 	removeCurrentPatient: function(){

@@ -1,5 +1,7 @@
 module.exports = {
   LOGIN: "LOGIN",
   LOGOUT: "LOGOUT",
-  ERROR: "ERROR"
+  ERROR: "ERROR",
+  OPEN_FORM: "OPEN_FORM",
+  CLOSE_FORM: "CLOSE_FORM"
 };

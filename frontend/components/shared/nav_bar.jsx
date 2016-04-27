@@ -1,36 +1,44 @@
 var React = require('react');
 var hashHistory = require('react-router').hashHistory;
+var Modal = require("react-modal");
 
 var PatientStore = require('../../stores/patient_store.js');
 var DoctorStore = require('../../stores/doctor_store.js');
 var PatientActions = require('../../actions/patient_actions.js');
 var DoctorActions = require('../../actions/doctor_actions.js');
-
+var AuthForm = require('../auth/auth_form.jsx');
+var AuthActions = require('../../actions/auth_actions.js');
 
 module.exports = React.createClass({
   getInitialState: function() {
-    var username;
-    if (PatientStore.currentPatient()) {
-      username = PatientStore.currentPatient().first_name;
-    } else if (DoctorStore.currentDoctor()) {
-      username = "Dr. " + DoctorStore.currentDoctor().last_name;
-    }
-    return({username: username});
+    var username = "";
+    // if (PatientStore.currentPatient()) {
+    //   debugger;
+    //   username = PatientStore.currentPatient().first_name;
+    // } else if (DoctorStore.currentDoctor()) {
+    //   username = "Dr. " + DoctorStore.currentDoctor().last_name;
+    // }
+    return({ username: username });
   },
 
   componentDidMount: function() {
-    this.patientListener = PatientStore.addListener(this._receivePatient);
-    this.doctorListener = DoctorStore.addListener(this._receiveDoctor);
+    this.patientListener = PatientStore.addListener(this._receiveUser);
+    this.doctorListener = DoctorStore.addListener(this._receiveUser);
     PatientActions.fetchCurrentPatient();
     DoctorActions.fetchCurrentDoctor();
   },
 
-  _receivePatient: function() {
-    this.setState({username: PatientStore.currentPatient().first_name});
-  },
+  _receiveUser: function() {
+    var patient = PatientStore.currentPatient();
+    var doctor = DoctorStore.currentDoctor();
 
-  _receiveDoctor: function() {
-    this.setState({username: "Dr. " + DoctorStore.currentDoctor().last_name});
+    if (patient) {
+      this.setState({username: patient.first_name});
+    } else if (doctor) {
+      this.setState({username: "Dr. " + doctor.last_name});
+    } else {
+      this.setState({username: null});
+    }
   },
 
   redirect: function() {
@@ -52,7 +60,9 @@ module.exports = React.createClass({
         return (
           <div className="nav-button">
             <div className="nav navbar-nav navbar-right nav-button">
-              <button className="btn btn-default">Logout</button>
+              <button
+                className="btn btn-default"
+                onClick={this.logout}>Logout</button>
             </div>
             <div className="nav navbar-nav navbar-right nav-button">
               Welcome, {this.state.username}
@@ -62,21 +72,37 @@ module.exports = React.createClass({
       } else {
         return (
           <div className="nav navbar-nav navbar-right nav-button">
-            <button className="btn btn-default">Log In</button>
+            <button
+              className="btn btn-default"
+              onClick={this.openModal}>Sign In</button>
           </div>
         );
       }
   },
 
-  options: (
-    <div className="nav navbar-nav navbar-right nav-button">
-      <button className="btn btn-default">
-        <span
-          className="glyphicon glyphicon-menu-hamburger"
-          aria-hidden="true"></span>
-      </button>
-    </div>
-  ),
+  options: function(){
+    return (
+      <div className="nav navbar-nav navbar-right nav-button">
+
+      </div>
+    );
+  },
+
+  openModal: function(){
+    AuthActions.openForm();
+  },
+
+  closeModal: function(){
+    AuthActions.closeForm();
+  },
+
+  logout: function(){
+    if (PatientStore.currentPatient()) {
+      PatientActions.logout();
+    } else if (DoctorStore.currentDoctor()) {
+      DoctorActions.logout();
+    }
+  },
 
   render: function() {
     return (
@@ -84,11 +110,8 @@ module.exports = React.createClass({
           <div className="container-fluid">
             {this.logo}
             {this.current_user()}
-            {this.options}
           </div>
         </nav>
     );
   }
 });
-
-// ../../../app/assets/images/logo.png

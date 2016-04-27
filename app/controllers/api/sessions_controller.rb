@@ -27,8 +27,7 @@ class Api::SessionsController < ApplicationController
       logout!
       render "api/patients/show"
     else
-      @errors = ["No one logged in"]
-			render "api/shared/error", status: 404
+      render "api/shared/error", status: 404
     end
   end
 
@@ -36,7 +35,6 @@ class Api::SessionsController < ApplicationController
     if !current_patient.nil?
       render "api/patients/show"
     else
-      @errors = ["No patient logged in"]
 			render "api/shared/error", status: 404
     end
   end

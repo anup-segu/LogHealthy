@@ -1,9 +1,13 @@
 var React = require("react");
 var LinkedStateMixin = require('react-addons-linked-state-mixin');
+var hashHistory = require('react-router').hashHistory;
+var Modal = require("react-modal");
 
 var PatientActions = require("../../actions/patient_actions");
 var CurrentPatientState = require("../../mixins/current_patient_state");
 var DoctorActions = require("../../actions/doctor_actions");
+var AuthStore = require("../../stores/auth_form_store.js");
+var AuthActions = require("../../actions/auth_actions");
 
 var LogInForm = React.createClass({
   mixins: [LinkedStateMixin, CurrentPatientState],
@@ -18,7 +22,19 @@ var LogInForm = React.createClass({
   model: "patient",
 
   getInitialState: function() {
-    return { form: "signup", button: "Get Started"};
+    return { form: "signup", button: "Get Started", modalOpen: false };
+  },
+
+  componentDidMount: function() {
+    this.authListener = AuthStore.addListener(this._toggleState);
+  },
+
+  componentWillUnmount: function() {
+    this.authListener.remove();
+  },
+
+  _toggleState: function() {
+    this.setState({ modalOpen: AuthStore.modalState()});
   },
 
   signInForm: function() {
@@ -43,6 +59,8 @@ var LogInForm = React.createClass({
       first_name: this.state.first_name,
       last_name: this.state.last_name
     });
+
+    AuthActions.closeForm();
   },
 
   createDoctor: function(event) {
@@ -62,6 +80,7 @@ var LogInForm = React.createClass({
   logout: function(event){
 		event.preventDefault();
 		PatientActions.logout();
+    DoctorActions.logout();
     this.setState(this.blankAttrs);
   },
 
@@ -232,13 +251,24 @@ var LogInForm = React.createClass({
     );
   },
 
+  closeModal: function(){
+    this.setState({ modalOpen: false });
+  },
+
+  openModal: function(){
+    this.setState({ modalOpen: true });
+  },
+
   render: function() {
     return (
-      <div id="login-form" className="container splash-form">
-				{this.greeting()}
-				{this.errors()}
-				{this.form()}
-			</div>
+      <Modal
+        isOpen={this.state.modalOpen}
+        onRequestClose={this.closeModal}>
+        <div id="login-form" className="container splash-form">
+          {this.errors()}
+          {this.form()}
+        </div>
+      </Modal>
     );
   }
 
