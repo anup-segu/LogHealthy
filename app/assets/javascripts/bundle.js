@@ -35012,29 +35012,73 @@
 
 	var React = __webpack_require__(1);
 	
-	var SplashBody = React.createClass({
-	  displayName: "SplashBody",
+	var AuthActions = __webpack_require__(275);
 	
+	var SplashBody = React.createClass({
+	  displayName: 'SplashBody',
+	
+	  openCreateModal: function () {
+	    AuthActions.openCreateForm();
+	  },
+	
+	  getStartedButton: function () {
+	    return React.createElement(
+	      'button',
+	      {
+	        className: 'btn btn-default btn-lg start-landing splash-button',
+	        onClick: this.openCreateModal },
+	      'Get Started Now'
+	    );
+	  },
+	
+	  getStartedLearn: function () {
+	    return React.createElement(
+	      'button',
+	      {
+	        className: 'btn btn-default btn-lg start-learn splash-button' },
+	      'Learn More'
+	    );
+	  },
+	
+	  splashLanding: function () {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement('div', { className: 'blockout blockout-space' }),
+	      React.createElement(
+	        'div',
+	        { className: 'container' },
+	        React.createElement(
+	          'h1',
+	          { className: 'text-center headline' },
+	          'Content Here'
+	        ),
+	        React.createElement(
+	          'h4',
+	          { className: 'text-center headline' },
+	          'Taglines Here'
+	        ),
+	        React.createElement('div', { className: 'blockout blockout-small' }),
+	        React.createElement(
+	          'div',
+	          { className: 'container-fluid' },
+	          this.getStartedButton()
+	        ),
+	        React.createElement('div', { className: 'blockout blockout-small' }),
+	        React.createElement(
+	          'div',
+	          { className: 'container-fluid' },
+	          this.getStartedLearn()
+	        )
+	      )
+	    );
+	  },
 	
 	  render: function () {
 	    return React.createElement(
-	      "div",
-	      { className: "container-fluid splash-body" },
-	      React.createElement("div", { className: "blockout" }),
-	      React.createElement(
-	        "div",
-	        { className: "container" },
-	        React.createElement(
-	          "h1",
-	          { className: "text-center headline" },
-	          "Content Here"
-	        ),
-	        React.createElement(
-	          "h4",
-	          { className: "text-center headline" },
-	          "Taglines Here"
-	        )
-	      )
+	      'div',
+	      { className: 'container-fluid splash-body' },
+	      this.splashLanding()
 	    );
 	  }
 	

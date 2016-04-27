@@ -45,10 +45,35 @@
 }
 
 .headline {
-  color: white;
+  color: #ffffff;
 }
 
 .blockout {
   display: block;
+}
+
+.blockout-space {
   height: 80px;
+}
+
+.blockout-small {
+  height: 40px;
+}
+
+.splash-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ffffff;
+  width: 180px;
+}
+
+.start-landing {
+  background-color: #a177ff;
+  border-color: #a177ff;
+}
+
+.start-learn {
+  background-color: #3396FB;
+  border-color: #3396FB;
 }
