@@ -5,12 +5,12 @@ var AppDispatcher = require('../dispatcher/dispatcher.js');
 var _currentDoctor, _errors;
 var DoctorStore = new Store(AppDispatcher);
 
-DoctorStore.login = function (patient) {
-  _currentDoctor = patient;
+DoctorStore.login = function (doctor) {
+  _currentDoctor = doctor;
   _errors = null;
 };
 
-DoctorStore.logout = function (patient) {
+DoctorStore.logout = function (doctor) {
   _currentDoctor = null;
   _errors = null;
 };
@@ -34,7 +34,7 @@ DoctorStore.errors = function() {
 DoctorStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case AuthConstants.LOGIN:
-      DoctorStore.login(payload.patient);
+      DoctorStore.login(payload.doctor);
       break;
     case AuthConstants.LOGOUT:
       DoctorStore.logout();
