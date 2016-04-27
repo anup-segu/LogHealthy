@@ -68,7 +68,7 @@ var LogInForm = React.createClass({
       last_name: this.state.last_name
     });
 
-    AuthActions.closeForm();
+    // AuthActions.closeForm();
   },
 
   createDoctor: function(event) {
@@ -210,6 +210,10 @@ var LogInForm = React.createClass({
             <a
               href="#"
               onClick={this.signInForm}>Sign in to existing account</a>
+            <br/>
+            <a
+              href="#"
+              onClick={this.closeModal}>Go Back</a>
           </div>
         </form>
       );
@@ -248,6 +252,10 @@ var LogInForm = React.createClass({
               <a
                 href="#"
                 onClick={this.signUpForm}>Create a new account</a>
+              <br/>
+              <a
+                href="#"
+                onClick={this.closeModal}>Go Back</a>
             </div>
           </div>
         </form>

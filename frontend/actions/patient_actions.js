@@ -1,4 +1,5 @@
 var AuthConstants = require('../constants/auth_constants');
+var AuthActions = require("../actions/auth_actions");
 var PatientApiUtil = require('../util/patient_api_util');
 var PatientStore = require('../stores/patient_store');
 var AppDispatcher = require('../dispatcher/dispatcher');
@@ -40,6 +41,7 @@ var PatientActions = {
 			actionType: AuthConstants.LOGIN,
 			patient: patient
 		});
+		AuthActions.closeForm();
 	},
 
 	handleError: function(error) {
