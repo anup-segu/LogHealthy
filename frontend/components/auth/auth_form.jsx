@@ -38,11 +38,17 @@ var LogInForm = React.createClass({
   },
 
   signInForm: function() {
-    this.setState({ form: "login" });
+    this.setState($.extend({
+      form: "login",
+      patientErrors: null,
+      doctorErrors: null },
+      this.blankAttrs));
   },
 
   signUpForm: function() {
-    this.setState({ form: "signup" });
+    this.setState($.extend({
+      form: "signup",
+      patientErrors: null}, this.blankAttrs));
   },
 
   button: function() {
@@ -67,8 +73,6 @@ var LogInForm = React.createClass({
       first_name: this.state.first_name,
       last_name: this.state.last_name
     });
-
-    // AuthActions.closeForm();
   },
 
   createDoctor: function(event) {
@@ -249,6 +253,7 @@ var LogInForm = React.createClass({
           <div className="row">
             <div className="col-sm-4">
               <button className="btn btn-default">Sign In</button>
+              <br/>
               <a
                 href="#"
                 onClick={this.signUpForm}>Create a new account</a>
@@ -268,7 +273,7 @@ var LogInForm = React.createClass({
   },
 
   closeModal: function(){
-    this.setState({ modalOpen: false });
+    AuthActions.closeForm();
   },
 
   openModal: function(){
@@ -276,12 +281,17 @@ var LogInForm = React.createClass({
   },
 
   render: function() {
+    if (this.state.form === "signup") {
+      var title = "Create A New Account";
+    } else if (this.state.form === "login") {
+      title = "Sign In to An Existing Account";
+    }
     return (
       <Modal
         isOpen={this.state.modalOpen}
         onRequestClose={this.closeModal}>
         <div id="login-form" className="container splash-form">
-          {this.greeting()}
+          <h3>{title}</h3>
           {this.errors()}
           {this.form()}
         </div>

@@ -5,7 +5,15 @@ var AppDispatcher = require('../dispatcher/dispatcher.js');
 
 var _modelState = false;
 var _form = "signup";
+var _reset = "false";
 var AuthStore = new Store(AppDispatcher);
+
+var blankAttrs = {
+  email: "",
+  password: "",
+  first_name: "",
+  last_name: ""
+};
 
 AuthStore.openCreateModal = function() {
   _modelState = true;
@@ -21,8 +29,17 @@ AuthStore.closeModal = function() {
   _modelState = false;
 };
 
+AuthStore.formReset = function() {
+  _reset = true;
+};
+
 AuthStore.modalState = function() {
-  return { modalOpen: _modelState, form: _form };
+  var reset = _reset;
+  if (reset) {
+    return $.extend({ modalOpen: _modelState, form: _form}, blankAttrs);
+  }
+  _reset = false;
+  return { modalOpen: _modelState, form: _form};
 };
 
 AuthStore.__onDispatch = function (payload) {

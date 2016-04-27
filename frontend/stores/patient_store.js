@@ -19,6 +19,10 @@ PatientStore.setErrors = function (errors) {
   _errors = errors;
 };
 
+PatientStore.resetErrors = function() {
+  _errors = null;
+};
+
 PatientStore.currentPatient = function() {
   if (_currentPatient) {
     return $.extend({}, _currentPatient);
@@ -41,6 +45,9 @@ PatientStore.__onDispatch = function (payload) {
       break;
     case AuthConstants.ERROR:
       PatientStore.setErrors(payload.errors);
+      break;
+    case AuthConstants.CLOSE_FORM:
+      PatientStore.resetErrors();
       break;
   }
   PatientStore.__emitChange();
