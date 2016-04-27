@@ -22,27 +22,35 @@ var LogInForm = React.createClass({
   model: "patient",
 
   getInitialState: function() {
-    return { form: "signup", button: "Get Started", modalOpen: false };
+    return { form: "signup", modalOpen: false };
   },
 
   componentDidMount: function() {
-    this.authListener = AuthStore.addListener(this._toggleState);
+    this.authListener = AuthStore.addListener(this._toggleModal);
   },
 
   componentWillUnmount: function() {
     this.authListener.remove();
   },
 
-  _toggleState: function() {
-    this.setState({ modalOpen: AuthStore.modalState()});
+  _toggleModal: function() {
+    this.setState(AuthStore.modalState());
   },
 
   signInForm: function() {
-    this.setState({ form: "login", button: "Sign In" });
+    this.setState({ form: "login" });
   },
 
   signUpForm: function() {
-    this.setState({ form: "signup", button: "Get Started" });
+    this.setState({ form: "signup" });
+  },
+
+  button: function() {
+    if (this.state.form === "signup") {
+      return "Get Started";
+    } else if (this.state.form === "login") {
+      return "Sign In";
+    }
   },
 
   handleSubmit: function (event) {
@@ -236,7 +244,7 @@ var LogInForm = React.createClass({
 
           <div className="row">
             <div className="col-sm-4">
-              <button className="btn btn-default">{this.state.button}</button>
+              <button className="btn btn-default">Sign In</button>
               <a
                 href="#"
                 onClick={this.signUpForm}>Create a new account</a>
@@ -265,6 +273,7 @@ var LogInForm = React.createClass({
         isOpen={this.state.modalOpen}
         onRequestClose={this.closeModal}>
         <div id="login-form" className="container splash-form">
+          {this.greeting()}
           {this.errors()}
           {this.form()}
         </div>

@@ -74,7 +74,10 @@ module.exports = React.createClass({
           <div className="nav navbar-nav navbar-right nav-button">
             <button
               className="btn btn-default"
-              onClick={this.openModal}>Sign In</button>
+              onClick={this.openCreateModal}>Get Started for FREE</button>
+            <button
+              className="btn btn-default"
+              onClick={this.openSignInModal}>Sign In</button>
           </div>
         );
       }
@@ -88,8 +91,12 @@ module.exports = React.createClass({
     );
   },
 
-  openModal: function(){
-    AuthActions.openForm();
+  openSignInModal: function(){
+    AuthActions.openSignInForm();
+  },
+
+  openCreateModal: function(){
+    AuthActions.openCreateForm();
   },
 
   closeModal: function(){

@@ -2,9 +2,16 @@ var AppDispatcher = require('../dispatcher/dispatcher');
 var AuthConstants = require('../constants/auth_constants');
 
 module.exports = {
-  openForm: function() {
+  openSignInForm: function() {
     AppDispatcher.dispatch({
-      actionType: AuthConstants.OPEN_FORM,
+      actionType: AuthConstants.OPEN_SIGN_IN_FORM,
+      modalOpen: true
+    });
+  },
+
+  openCreateForm: function() {
+    AppDispatcher.dispatch({
+      actionType: AuthConstants.OPEN_CREATE_FORM,
       modalOpen: true
     });
   },
