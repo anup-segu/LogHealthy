@@ -11,9 +11,12 @@ module.exports = {
     extensions: ["", ".js", ".jsx"]
   },
 <<<<<<< HEAD
+<<<<<<< HEAD
   devtool: 'source-maps',
 =======
 >>>>>>> 250a21fa7bfd9b6691a5b75a8d3a03893bebbba9
+=======
+>>>>>>> fb22e4ae2b1cfcefd1da99ce92d6d004f6739009
   module: {
     loaders: [
       {

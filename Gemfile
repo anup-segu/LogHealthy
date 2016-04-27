@@ -5,12 +5,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
-<<<<<<< HEAD
 # Use Bootstrap and SCSS for stylesheets
 gem 'bootstrap-sass', '~> 3.3.6'
-=======
-# Use SCSS for stylesheets
->>>>>>> 250a21fa7bfd9b6691a5b75a8d3a03893bebbba9
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -27,11 +23,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-<<<<<<< HEAD
 gem 'bcrypt', '~> 3.1.7'
-=======
-# gem 'bcrypt', '~> 3.1.7'
->>>>>>> 250a21fa7bfd9b6691a5b75a8d3a03893bebbba9
 
 # Use Unicorn as the app server
 # gem 'unicorn'

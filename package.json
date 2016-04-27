@@ -15,10 +15,13 @@
     "react-addons-linked-state-mixin": "^0.14.2",
     "react-dom": "^0.14.2",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react-radio": "^2.1.1",
     "react-radio-group": "^2.2.0",
 =======
 >>>>>>> 250a21fa7bfd9b6691a5b75a8d3a03893bebbba9
+=======
+>>>>>>> fb22e4ae2b1cfcefd1da99ce92d6d004f6739009
     "react-router": "^2.0.0",
     "webpack": "^1.12.4"
   },
