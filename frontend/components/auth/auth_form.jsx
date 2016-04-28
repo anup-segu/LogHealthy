@@ -67,7 +67,6 @@ var LogInForm = React.createClass({
     } else if (this.model === "doctor") {
       actions = DoctorActions;
     }
-
     actions[this.state.form]({
       email: this.state.email,
       password: this.state.password,

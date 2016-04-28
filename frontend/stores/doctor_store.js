@@ -6,8 +6,10 @@ var _currentDoctor, _errors;
 var DoctorStore = new Store(AppDispatcher);
 
 DoctorStore.login = function (doctor) {
-  _currentDoctor = doctor;
-  _errors = null;
+  if (doctor && doctor.ttype === "doctor") {
+    _currentDoctor = doctor;
+    _errors = null;
+  }
 };
 
 DoctorStore.logout = function (doctor) {

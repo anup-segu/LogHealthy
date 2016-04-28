@@ -3,6 +3,7 @@ var AuthActions = require("../actions/auth_actions");
 var PatientApiUtil = require('../util/patient_api_util');
 var PatientStore = require('../stores/patient_store');
 var AppDispatcher = require('../dispatcher/dispatcher');
+var DoctorActions = require("../actions/doctor_actions");
 
 var PatientActions = {
 	fetchCurrentPatient: function(){
@@ -27,7 +28,10 @@ var PatientActions = {
 		PatientApiUtil.post({
 			url: "api/session",
 			patient: patient,
-			success: PatientActions.receiveCurrentPatient,
+			success: function(user){
+				PatientActions.receiveCurrentPatient(user);
+				DoctorActions.receiveCurrentDoctor(user);
+			},
 			error: PatientActions.handleError
 		});
 	},
