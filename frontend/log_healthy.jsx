@@ -12,11 +12,27 @@ var React = require('react'),
 var AuthForm = require('./components/auth/auth_form.jsx'),
     NavBar = require('./components/shared/nav_bar.jsx'),
     SplashBody = require('./components/splash/splash_main.jsx'),
+    DoctorStore = require('./stores/doctor_store.js'),
+    PatientStore = require('./stores/patient_store.js'),
     PatientDashboard = require('./components/patients/dashboard/dashboard.jsx'),
     DoctorDashboard;
 
 
 var App = React.createClass({
+  componentDidMount: function() {
+    this.patientListener = PatientStore.addListener(this._navigateDashboard);
+    this.doctorListener = DoctorStore.addListener(this._navigateDashboard);
+  },
+
+  _navigateDashboard: function() {
+    if (PatientStore.currentPatient()) {
+      hashHistory.push("/pdashboard");
+    } else if (DoctorStore.currentDoctor()) {
+      hashHistory.push("/ddashboard");
+    } else {
+      hashHistory.push("/");
+    }
+  },
 
   render: function () {
     return (

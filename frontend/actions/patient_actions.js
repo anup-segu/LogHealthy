@@ -1,3 +1,5 @@
+var hashHistory = require('react-router').hashHistory;
+
 var AuthConstants = require('../constants/auth_constants');
 var AuthActions = require("../actions/auth_actions");
 var PatientApiUtil = require('../util/patient_api_util');
