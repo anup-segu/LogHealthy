@@ -47,7 +47,6 @@ var Tabs = React.createClass({
 
   tabContent: function() {
     var content;
-
     switch(this.state.tabPane) {
       case "logs":
         content = (

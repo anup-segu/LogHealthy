@@ -37,6 +37,18 @@ class Patient < ActiveRecord::Base
     self.session_token
   end
 
+  def logs_hash
+    results = {}
+
+    self.logs.each do |log|
+      date = log.date.to_formatted_s(:long)
+      results[date] = {} if results[date].nil?
+      results[date][log.meal_type] = log
+    end
+
+    results
+  end
+
   private
   def new_session_token
     SecureRandom.urlsafe_base64(16)
