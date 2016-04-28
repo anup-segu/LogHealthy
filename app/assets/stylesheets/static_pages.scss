@@ -8,6 +8,19 @@
 .app-body {
   padding-left: 0;
   padding-right: 0;
+  height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+.body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
 }
 
 // sign up form format
@@ -94,36 +107,32 @@
 // Dashboard
 .content-view {
   padding: 0;
-}
-.dashboard-background {
-  background-color: #cbe6ec;
-  margin-left: 200px;
-  margin-right: 0;
-  margin-top: 0;
-  margin-bottom: 0;
-  width: auto;
-  position: relative;
-  overflow: auto;
   height: 100%;
-  min-height: 500px;
+  width: 100%;
+  position: fixed;
 }
 
 .sidebar {
   background-color: #2e3c54;
   margin-left: 0;
   position: fixed;
-  width: 200px;
+  width: 25%;
   height: 100%;
   min-height: 500px;
 }
 
-.tabs {
-  display: inline-block;
+.dashboard {
+  margin-right: 0;
+  height: 100%;
   width: 100%;
-  max-width: 500px;
-  margin: 15px;
+  background: #cbe6ec;
+  overflow: auto;
 }
 
-.test {
-  border: 1px solid red;
+.tab-view {
+  margin: 15px;
+  margin-left: 28%;
+  padding: 15px;
+  min-height: 500px;
+  background-color: #ffffff;
 }

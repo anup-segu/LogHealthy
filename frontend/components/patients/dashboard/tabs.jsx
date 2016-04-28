@@ -4,8 +4,8 @@ var Tabs = React.createClass({
 
   render: function() {
     return (
-      <div className="container dashboard-background">
-
+      <div className="tab-view test">
+        <p>Hi</p>
       </div>
     );
   }
