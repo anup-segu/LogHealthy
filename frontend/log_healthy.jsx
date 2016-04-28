@@ -12,7 +12,7 @@ var React = require('react'),
 var AuthForm = require('./components/auth/auth_form.jsx'),
     NavBar = require('./components/shared/nav_bar.jsx'),
     SplashBody = require('./components/splash/splash_main.jsx'),
-    PatientDashboard,
+    PatientDashboard = require('./components/patients/dashboard/dashboard.jsx'),
     DoctorDashboard;
 
 
