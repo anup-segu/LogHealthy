@@ -11,19 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160426212743) do
+ActiveRecord::Schema.define(version: 20160428185619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "doctors", force: :cascade do |t|
-    t.string   "email",           null: false
-    t.string   "first_name",      null: false
-    t.string   "last_name",       null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "email",                              null: false
+    t.string   "first_name",                         null: false
+    t.string   "last_name",                          null: false
+    t.string   "password_digest",                    null: false
+    t.string   "session_token",                      null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "ttype",           default: "doctor"
   end
 
   add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true, using: :btree
@@ -31,14 +32,30 @@ ActiveRecord::Schema.define(version: 20160426212743) do
   add_index "doctors", ["last_name"], name: "index_doctors_on_last_name", using: :btree
   add_index "doctors", ["session_token"], name: "index_doctors_on_session_token", unique: true, using: :btree
 
+  create_table "logs", force: :cascade do |t|
+    t.integer  "patient_id",                 null: false
+    t.float    "glucose",                    null: false
+    t.float    "carbs"
+    t.string   "meal_type",                  null: false
+    t.boolean  "meal_taken?", default: true
+    t.text     "comment"
+    t.date     "date",                       null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "logs", ["patient_id", "meal_type", "date"], name: "index_logs_on_patient_id_and_meal_type_and_date", unique: true, using: :btree
+  add_index "logs", ["patient_id"], name: "index_logs_on_patient_id", using: :btree
+
   create_table "patients", force: :cascade do |t|
-    t.string   "email",           null: false
-    t.string   "first_name",      null: false
-    t.string   "last_name",       null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "email",                               null: false
+    t.string   "first_name",                          null: false
+    t.string   "last_name",                           null: false
+    t.string   "password_digest",                     null: false
+    t.string   "session_token",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "ttype",           default: "patient"
   end
 
   add_index "patients", ["email"], name: "index_patients_on_email", unique: true, using: :btree

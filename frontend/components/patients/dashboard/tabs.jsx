@@ -1,5 +1,8 @@
 var React = require('react');
 
+var LogsIndex = require('./logs/logs_index.jsx');
+var PatientStore = require('../../../stores/patient_store.js');
+
 var Tabs = React.createClass({
   getInitialState: function() {
     return { tabPane: "logs" };
@@ -47,7 +50,11 @@ var Tabs = React.createClass({
 
     switch(this.state.tabPane) {
       case "logs":
-        content = <div>"logs"</div>;
+        content = (
+          <div className="container">
+            <LogsIndex logs={PatientStore.currentPatient().logs}/>
+          </div>
+        );
         this.logClass = "active";
         this.progressClass = "";
         this.conversationClass = "";

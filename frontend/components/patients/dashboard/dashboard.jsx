@@ -13,6 +13,10 @@ var Dashboard = React.createClass({
     this.patientListener = PatientStore.addListener(this._checkLogin);
   },
 
+  componentWillUnmount: function() {
+    this.patientListener.remove();
+  },
+
   _checkLogin: function() {
     var patient = PatientStore.currentPatient();
     if (patient) {

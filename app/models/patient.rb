@@ -14,6 +14,8 @@ class Patient < ActiveRecord::Base
   after_initialize :ensure_session_token
   before_validation :ensure_session_token_uniqueness
 
+  has_many :logs
+
   def self.find_by_credentials(email, password)
     patient = Patient.find_by(email: email)
     return nil unless patient
