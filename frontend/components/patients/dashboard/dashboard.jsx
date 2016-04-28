@@ -2,18 +2,39 @@ var React = require('react');
 
 var Sidebar = require('./sidebar.jsx');
 var Tabs = require('./tabs.jsx');
+var PatientStore = require('../../../stores/patient_store');
 
 var Dashboard = React.createClass({
+  getInitialState: function() {
+    return {render: false};
+  },
+
+  componentDidMount: function() {
+    this.patientListener = PatientStore.addListener(this._checkLogin);
+  },
+
+  _checkLogin: function() {
+    var patient = PatientStore.currentPatient();
+    if (patient) {
+      this.setState({ render: true });
+    } else {
+      this.setState({ render: false });
+    }
+  },
 
   render: function() {
-    return (
-      <div className="container-fluid content-view">
-        <Sidebar />
-        <div className="container dashboard">
-          <Tabs />
+    if (this.state.render) {
+      return (
+        <div className="container-fluid content-view">
+          <Sidebar />
+          <div className="container dashboard">
+            <Tabs />
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (<div></div>);
+    }
   }
 
 });
