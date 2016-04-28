@@ -50,7 +50,7 @@ var Tabs = React.createClass({
     switch(this.state.tabPane) {
       case "logs":
         content = (
-          <div className="container">
+          <div className="container logs-list-container">
             <LogsIndex logs={PatientStore.currentPatient().logs}/>
           </div>
         );
@@ -81,7 +81,7 @@ var Tabs = React.createClass({
 
   render: function() {
     return (
-      <div className="tab-view test">
+      <div className="tab-view">
         <h2>My Dashboard</h2>
         {this.tabLabels()}
         {this.tabContent()}

@@ -144,4 +144,22 @@ html {
 .tab-content {
   width: 100%;
   padding-top: 15px;
+  height: 100%;
+  max-height: 500px;
+  overflow: auto;
+}
+
+//Logs Index
+
+.logs-list {
+  padding-left: 0;
+  width: inherit;
+}
+
+.logs-list-container {
+  width: 100%;
+}
+
+.date-panel {
+  width: inherit;
 }

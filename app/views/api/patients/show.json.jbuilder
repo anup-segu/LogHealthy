@@ -3,11 +3,6 @@ if @patient
 
   json.logs @patient.logs_hash
 
-  # json.logs do
-  #   json.array!(@patient.logs) do |log|
-  #     json.partial!("api/logs/log", log: log)
-  #   end
-  # end
 else
   {}
 end

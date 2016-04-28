@@ -22,9 +22,13 @@ var LogsIndex = React.createClass({
       });
 
       return(
-        <div key={date} className="container">
-          <h4>{date}</h4>
-          {data}
+        <div key={date} className="panel panel-default date-panel">
+          <div className="panel-heading">
+            <h4>{date}</h4>
+          </div>
+          <div className="panel-body">
+            {data}
+          </div>
         </div>
       );
     });
@@ -34,7 +38,7 @@ var LogsIndex = React.createClass({
 
   render: function() {
     return (
-      <div className="container">
+      <div className="container logs-list">
         {this.logs()}
       </div>
     );
