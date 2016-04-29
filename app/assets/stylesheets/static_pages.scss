@@ -137,6 +137,7 @@ html {
   padding: 15px;
   min-height: 500px;
   background-color: #ffffff;
+  box-shadow: 1px 1px 2px #888888;
 }
 
 //Tabs
@@ -153,6 +154,7 @@ html {
 
 .logs-list {
   padding-left: 0;
+  padding-right: 0;
   width: inherit;
 }
 
@@ -162,4 +164,31 @@ html {
 
 .date-panel {
   width: inherit;
+  box-shadow: 1px 1px 2px #888888;
+}
+
+//Logs Detail
+
+.log-heading {
+  padding-left: 15px;
+  float: left;
+}
+
+.log-table-row:hover {
+  background-color: #cbe6ec;
+  font-weight: bold;
+}
+
+.panel-toggle {
+  float: right;
+  margin-right: 15px;
+}
+
+.panel-default > .log-heading-active {
+  background-color: #cbe6ec;
+  color: #2e3c54;
+}
+
+.panel-default > .log-body-inactive {
+  display: none;
 }

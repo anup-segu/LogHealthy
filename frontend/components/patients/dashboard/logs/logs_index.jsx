@@ -1,35 +1,13 @@
 var React = require('react');
+var LogDetail = require('./logs_detail.jsx');
 
 var LogsIndex = React.createClass({
   logs: function() {
-    var log_data = this.props.logs;
-    var elements = Object.keys(log_data).map(function (date){
+    var logData = this.props.logs;
 
-      var data = Object.keys(log_data[date]).map(function (meal_type){
-        return (
-          <div key={meal_type}>
-            {meal_type}
-            <ul key={log_data[date][meal_type]["id"]}>
-              <li key={"glucose" + log_data[date][meal_type]["id"]}>
-                Glucose: {log_data[date][meal_type]["glucose"]+" units"}
-              </li>
-              <li key={"carbs" + log_data[date][meal_type]["id"]}>
-                Carbs: {log_data[date][meal_type]["carbs"]+"g"}
-              </li>
-            </ul>
-          </div>
-        );
-      });
-
+    var elements = Object.keys(logData).map(function (date) {
       return(
-        <div key={date} className="panel panel-default date-panel">
-          <div className="panel-heading">
-            <h4>{date}</h4>
-          </div>
-          <div className="panel-body">
-            {data}
-          </div>
-        </div>
+        <LogDetail key={date} date={date} log={logData[date]} />
       );
     });
 
@@ -47,3 +25,15 @@ var LogsIndex = React.createClass({
 });
 
 module.exports = LogsIndex;
+
+// <div key={meal_type}>
+//   {meal_type}
+//   <ul key={log_data[date][meal_type]["id"]}>
+//     <li key={"glucose" + log_data[date][meal_type]["id"]}>
+//       Glucose: {log_data[date][meal_type]["glucose"]+" units"}
+//     </li>
+//     <li key={"carbs" + log_data[date][meal_type]["id"]}>
+//       Carbs: {log_data[date][meal_type]["carbs"]+"g"}
+//     </li>
+//   </ul>
+// </div>
