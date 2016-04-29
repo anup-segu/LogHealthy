@@ -40,21 +40,37 @@ html {
   max-width: 200px;
 }
 
+.btn-custom {
+  margin-left: 5px;
+}
+
+.demo-dropdown {
+  display: block;
+}
+
 .nav-block {
-  display: inline-block;
+  float: left;
+  height: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .nav-button {
-  display: inline-block;
   float: right;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 7px;
+  padding-bottom: 3px;
   margin-right: 10px;
   margin-left: 10px;
 }
 
+.nav-button {
+  margin-left: 5px;
+}
+
 .navbar-custom {
   margin-bottom: 0;
+  box-shadow: 1px 1px 2px #888888;
+  z-index: 2;
 }
 
 .welcome-message {
@@ -135,7 +151,7 @@ html {
   margin: 15px;
   margin-left: 28%;
   padding: 15px;
-  min-height: 500px;
+  height: 100%;
   background-color: #ffffff;
   box-shadow: 1px 1px 2px #888888;
 }

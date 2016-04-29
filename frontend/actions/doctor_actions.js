@@ -40,7 +40,7 @@ var DoctorActions = {
 		DoctorActions.login({doctorname: "guest", password: "password"});
 	},
 
-	receiveCurrentDoctor: function(doctor){
+	receiveCurrentDoctor: function(doctor) {
 		AppDispatcher.dispatch({
 			actionType: AuthConstants.LOGIN,
 			doctor: doctor
