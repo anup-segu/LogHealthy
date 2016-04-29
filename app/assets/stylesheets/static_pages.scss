@@ -29,9 +29,27 @@ html {
   max-width: 500px;
 }
 
+.splash-detail {
+  position: relative;
+  top: 60px;
+  height: 300px;
+}
+
 .patient-doctor-toggle {
   max-width: 500px;
   margin-bottom: 15px;
+}
+
+.about-icon {
+  width: 100%;
+  font-size: 40px;
+  padding-top: 10px;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.about-thumbnail {
+  box-shadow: 1px 1px 2px #888888;
 }
 
 // navbar formats
