@@ -42,7 +42,7 @@ html {
 
 .doctor-test {
   position: relative;
-  left: 990px;
+  left: 100%;
   width: 100%;
   height: 231px;
   padding-top: 4px;
@@ -117,11 +117,11 @@ html {
 
 @keyframes left {
     from {left: 0px;}
-    to {left: -1000px}
+    to {left: -102.5%;}
 }
 
 @keyframes right {
-    from {right: 1000px;}
+    from {right: 102.5%;}
     to {right: 0px}
 }
 
