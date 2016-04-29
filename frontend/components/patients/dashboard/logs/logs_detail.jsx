@@ -11,6 +11,13 @@ var LogDetail = React.createClass({
     return( {showDetail: false} );
   },
 
+  componentDidMount: function() {
+    if (this.props.index === 0) {
+      return( {showDetail: true} );
+    }
+    return( {showDetail: false} );
+  },
+
   panelBodyClass: function(){
     if (this.state.showDetail) {
       return "panel-body";
@@ -45,7 +52,7 @@ var LogDetail = React.createClass({
           key={meal}
           trigger="click"
           rootClose placement="bottom"
-          placement="top"
+          placement="left"
           overlay={
             <Popover title="Comments">
                 <p>{this.props.log[meal_type]["comment"]}</p>

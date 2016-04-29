@@ -17,6 +17,14 @@ var style = {
   }
 };
 
+var blankAttrs= {
+  glucose: "",
+  carbs: "",
+  meal_type: "breakfast",
+  meal_taken: "yes",
+  comment: ""
+};
+
 
 var LogForm = React.createClass({
   getInitialState: function() {
@@ -24,7 +32,12 @@ var LogForm = React.createClass({
   },
 
   componentDidMount: function() {
+    this.setState(blankAttrs);
     this.logListener = LogStore.addListener(this._toggleForm);
+  },
+
+  componentWillUnmount: function() {
+    this.logListener.remove();
   },
 
   _toggleForm: function() {
@@ -39,17 +52,77 @@ var LogForm = React.createClass({
 
   handleMealSelect: function (event) {
     event.preventDefault();
-    alert(event.target.textContent.toLowerCase());
+    this.setState({meal_type: event.target.textContent.toLowerCase()});
   },
 
   handleMealTaken: function (event) {
     event.preventDefault();
-    alert(event.target.textContent.toLowerCase());
+    if (event.target.textContent.toLowerCase() === "yes") {
+      this.setState({meal_taken: "yes"});
+    } else {
+      this.setState({meal_taken: "no", carbs: ""});
+    }
   },
 
   handleSubmit: function (event) {
     event.preventDefault();
     alert("submitted");
+  },
+
+  breakfastMealTypeClass: function() {
+    if (this.state.meal_type === "breakfast") {
+      return "btn btn-primary meal-btn";
+    } else {
+      return "btn btn-default meal-btn";
+    }
+  },
+
+  lunchMealTypeClass: function() {
+    if (this.state.meal_type === "lunch") {
+      return "btn btn-primary meal-btn";
+    } else {
+      return "btn btn-default meal-btn";
+    }
+  },
+
+  dinnerMealTypeClass: function() {
+    if (this.state.meal_type === "dinner") {
+      return "btn btn-primary meal-btn";
+    } else {
+      return "btn btn-default meal-btn";
+    }
+  },
+
+  mealTakenClass: function() {
+    if (this.state.meal_taken === "yes") {
+      return "btn btn-primary meal-taken-btn";
+    } else {
+      return "btn btn-default meal-taken-btn";
+    }
+  },
+
+  mealNotTakenClass: function() {
+    if (this.state.meal_taken === "no") {
+      return "btn btn-primary meal-taken-btn";
+    } else {
+      return "btn btn-default meal-taken-btn";
+    }
+  },
+
+  carbsMessage: function() {
+    if (this.state.meal_taken === "yes") {
+      return "Enter your expected carb intake for this meal.";
+    } else {
+      return "No need to count carbs for this log.";
+    }
+  },
+
+  carbsDisable: function() {
+    if (this.state.meal_taken === "yes") {
+      return "";
+    } else {
+      return "disabled";
+    }
   },
 
   form: function() {
@@ -85,11 +158,11 @@ var LogForm = React.createClass({
                 type="input"
                 className="form-control"
                 id="carbs_field"
-                placeholder="Ex. 20" />
+                placeholder="Ex. 20" disabled={this.carbsDisable()}/>
             </OverlayTrigger>
             <span className="input-group-addon"> grams</span>
           </div>
-          <p className="help-block">Enter your expected carb intake for this meal.</p>
+          <p className="help-block">{this.carbsMessage()}</p>
         </div>
 
         <div className="form-group">
@@ -98,13 +171,13 @@ var LogForm = React.createClass({
             <div
               className="btn-group log-btn-group">
               <button
-                className="btn btn-default meal-btn"
+                className={this.breakfastMealTypeClass()}
                 onClick={this.handleMealSelect}>Breakfast</button>
               <button
-                className="btn btn-default meal-btn"
+                className={this.lunchMealTypeClass()}
                 onClick={this.handleMealSelect}>Lunch</button>
               <button
-                className="btn btn-default meal-btn"
+                className={this.dinnerMealTypeClass()}
                 onClick={this.handleMealSelect}>Dinner</button>
             </div>
           </div>
@@ -115,10 +188,10 @@ var LogForm = React.createClass({
           <div className="input-group log-btn-group">
             <div className="btn-group log-btn-group">
               <button
-                className="btn btn-default meal-taken-btn"
+                className={this.mealTakenClass()}
                 onClick={this.handleMealTaken}>Yes</button>
               <button
-                className="btn btn-default meal-taken-btn"
+                className={this.mealNotTakenClass()}
                 onClick={this.handleMealTaken}>No</button>
             </div>
           </div>
