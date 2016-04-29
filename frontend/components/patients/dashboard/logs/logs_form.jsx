@@ -37,12 +37,26 @@ var LogForm = React.createClass({
     }
   },
 
+  handleMealSelect: function (event) {
+    event.preventDefault();
+    alert(event.target.textContent.toLowerCase());
+  },
+
+  handleMealTaken: function (event) {
+    event.preventDefault();
+    alert(event.target.textContent.toLowerCase());
+  },
+
+  handleSubmit: function (event) {
+    event.preventDefault();
+    alert("submitted");
+  },
 
   form: function() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div className="form-group">
-          <label for="glucose_field">Glucose</label>
+          <label htmlFor="glucose_field">Glucose</label>
           <div className="input-group">
             <input
               type="input"
@@ -55,7 +69,7 @@ var LogForm = React.createClass({
         </div>
 
         <div className="form-group">
-          <label for="carbs_field">Carbs</label>
+          <label htmlFor="carbs_field">Carbs</label>
           <div className="input-group">
             <OverlayTrigger
               trigger="click"
@@ -65,7 +79,7 @@ var LogForm = React.createClass({
                 <Popover title="Need help counting carbs?">
                 Visit <a
                   href="https://www.calorieking.com"
-                  target="_blank">calorieking.com</a> for some helpful info.</Popover>
+                  target="_blank">calorieking.com</a> htmlFor some helpful info.</Popover>
               }>
               <input
                 type="input"
@@ -75,13 +89,48 @@ var LogForm = React.createClass({
             </OverlayTrigger>
             <span className="input-group-addon"> grams</span>
           </div>
-
-          <div className="form-group">
-            
-          </div>
           <p className="help-block">Enter your expected carb intake for this meal.</p>
         </div>
 
+        <div className="form-group">
+          <label>What meal would this be for?</label>
+          <div className="input-group log-btn-group">
+            <div
+              className="btn-group log-btn-group">
+              <button
+                className="btn btn-default meal-btn"
+                onClick={this.handleMealSelect}>Breakfast</button>
+              <button
+                className="btn btn-default meal-btn"
+                onClick={this.handleMealSelect}>Lunch</button>
+              <button
+                className="btn btn-default meal-btn"
+                onClick={this.handleMealSelect}>Dinner</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>Did you take a meal?</label>
+          <div className="input-group log-btn-group">
+            <div className="btn-group log-btn-group">
+              <button
+                className="btn btn-default meal-taken-btn"
+                onClick={this.handleMealTaken}>Yes</button>
+              <button
+                className="btn btn-default meal-taken-btn"
+                onClick={this.handleMealTaken}>No</button>
+            </div>
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>Comments (optional)</label>
+          <textarea className="form-control"></textarea>
+          <p className="help-block">Feel free to detail your meal or any notable symptoms.</p>
+        </div>
+
+        <button className="btn btn-primary">Record Log</button>
 
       </form>
     );
