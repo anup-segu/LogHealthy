@@ -1,5 +1,7 @@
 var React = require('react');
 var Collapse = require('react-bootstrap/lib/Collapse');
+var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
+var Popover = require('react-bootstrap/lib/Popover');
 
 var LogDetail = React.createClass({
   getInitialState: function() {
@@ -39,11 +41,21 @@ var LogDetail = React.createClass({
       meal = meal[0].toUpperCase() + meal.slice(1);
 
       return (
-        <tr className="log-table-row" key={meal}>
-          <td>{meal}</td>
-          <td>{this.props.log[meal_type]["glucose"]+" units"}</td>
-          <td>{this.props.log[meal_type]["carbs"]+" g"}</td>
-        </tr>
+        <OverlayTrigger
+          key={meal}
+          trigger="click"
+          rootClose placement="bottom"
+          placement="top"
+          overlay={
+            <Popover title="Comments">
+                <p>{this.props.log[meal_type]["comment"]}</p>
+            </Popover>}>
+          <tr className="log-table-row" key={meal}>
+            <td>{meal}</td>
+            <td>{this.props.log[meal_type]["glucose"]+" units"}</td>
+            <td>{this.props.log[meal_type]["carbs"]+" g"}</td>
+          </tr>
+        </OverlayTrigger>
       );
     }.bind(this));
 
