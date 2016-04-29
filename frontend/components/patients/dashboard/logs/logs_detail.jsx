@@ -2,6 +2,9 @@ var React = require('react');
 
 var LogDetail = React.createClass({
   getInitialState: function() {
+    if (this.props.index === 0) {
+      return( {showDetail: true} );
+    }
     return( {showDetail: false} );
   },
 

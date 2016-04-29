@@ -6,8 +6,14 @@ var LogsIndex = React.createClass({
     var logData = this.props.logs;
 
     var elements = Object.keys(logData).map(function (date) {
+      var index = Object.keys(logData).indexOf(date);
+
       return(
-        <LogDetail key={date} date={date} log={logData[date]} />
+        <LogDetail
+          key={date}
+          date={date}
+          log={logData[date]}
+          index = {index} />
       );
     });
 
