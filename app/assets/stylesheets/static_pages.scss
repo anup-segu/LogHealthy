@@ -117,12 +117,12 @@ html {
 
 @keyframes left {
     from {left: 0px;}
-    to {left: -102.5%;}
+    to {left: -103%;}
 }
 
 @keyframes right {
-    from {right: 102.5%;}
-    to {right: 0px}
+    from {right: 100%;}
+    to {right: 0}
 }
 
 // navbar formats
@@ -230,6 +230,14 @@ html {
   min-height: 500px;
 }
 
+.sidebar-content {
+  width: 25%;
+  margin: 10px;
+  margin-left: 25px;
+  position: relative;
+  top: 25px;
+}
+
 .dashboard {
   margin-right: 0;
   height: 100%;
@@ -298,4 +306,11 @@ html {
 
 .panel-default > .log-body-inactive {
   display: none;
+}
+
+// log-form
+
+.log-form-modal {
+  width: 50%;
+  max-width: 350px;
 }
