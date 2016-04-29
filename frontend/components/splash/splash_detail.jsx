@@ -1,6 +1,34 @@
 var React = require('react');
 
 var SplashDetail = React.createClass({
+  getInitialState: function() {
+    return {
+      patientClass: "btn btn-primary active",
+      doctorClass: "btn btn-default"
+    };
+  },
+
+  patientAnimation: function() {
+    if (this.state.doctorClass === "btn btn-default") {
+      return "container-fluid product-move-left";
+    } else {
+      return "container-fluid";
+    }
+  },
+
+  toggleAbout: function() {
+    if (this.state.patientClass === "btn btn-primary active") {
+      this.setState({
+        patientClass: "btn btn-default",
+        doctorClass: "btn btn-primary active"
+      });
+    } else {
+      this.setState({
+        patientClass: "btn btn-primary active",
+        doctorClass: "btn btn-default"
+      });
+    }
+  },
 
   patientAbout: function() {
     return(
@@ -45,8 +73,22 @@ var SplashDetail = React.createClass({
   render: function() {
     return (
       <div className="splash-detail">
-        <div className="container-fluid">
+        <div className={this.patientAnimation()}>
           {this.patientAbout()}
+        </div>
+        <div className="container text-center">
+          <div className="btn-group" role="group" aria-label="...">
+            <button
+              className={this.state.patientClass}
+              onClick={this.toggleAbout}>
+              For Patients
+            </button>
+            <button
+              className={this.state.doctorClass}
+              onClick={this.toggleAbout}>
+              For Doctors
+            </button>
+          </div>
         </div>
       </div>
     );

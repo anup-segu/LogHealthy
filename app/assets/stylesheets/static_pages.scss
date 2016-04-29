@@ -35,6 +35,10 @@ html {
   height: 300px;
 }
 
+.product-move-left {
+  animation: slide-left 1s forwards;
+}
+
 .patient-doctor-toggle {
   max-width: 500px;
   margin-bottom: 15px;
@@ -50,6 +54,11 @@ html {
 
 .about-thumbnail {
   box-shadow: 1px 1px 2px #888888;
+}
+
+@keyframes slide-left {
+    from {left: 0px;}
+    to {left: -1000px}
 }
 
 // navbar formats
