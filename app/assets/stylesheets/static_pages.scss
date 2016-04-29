@@ -33,10 +33,68 @@ html {
   position: relative;
   top: 60px;
   height: 300px;
+  overflow-x: hidden;
+}
+
+.splash-patient {
+  position: relative;
+}
+
+.doctor-test {
+  position: relative;
+  left: 990px;
+  width: 100%;
+  height: 231px;
+  padding-top: 4px;
+  padding-left: auto;
+  padding-right: auto;
+  margin: 20px;
+  margin-top: 0px;
+}
+
+.doctor-sub-test-1 {
+  float: left;
+  position: absolute;
+  top: 0px;
+  height: 224px;
+  margin-right: 0;
+  padding: 0 5px 0 5px;
+  width: 31%;
+}
+
+.doctor-sub-test-2 {
+  float: left;
+  position: absolute;
+  margin-left: auto;
+  top: 0px;
+  height: 224px;
+  left: 33%;
+  padding: 0 5px 0 5px;
+  width: 31%;
+}
+
+.doctor-sub-test-3 {
+  float: left;
+  position: absolute;
+  margin-left: auto;
+  margin-right: 0;
+  top: 0px;
+  height: 224px;
+  left: 66%;
+  padding: 0 5px 0 5px;
+  width: 31%;
 }
 
 .product-move-left {
-  animation: slide-left 1s forwards;
+  animation-name: left;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.product-move-right {
+  animation-name: right;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .patient-doctor-toggle {
@@ -54,11 +112,17 @@ html {
 
 .about-thumbnail {
   box-shadow: 1px 1px 2px #888888;
+  height: 231px;
 }
 
-@keyframes slide-left {
+@keyframes left {
     from {left: 0px;}
     to {left: -1000px}
+}
+
+@keyframes right {
+    from {right: 1000px;}
+    to {right: 0px}
 }
 
 // navbar formats
