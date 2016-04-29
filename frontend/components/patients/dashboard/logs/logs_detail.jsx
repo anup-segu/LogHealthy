@@ -1,4 +1,5 @@
 var React = require('react');
+var Collapse = require('react-bootstrap/lib/Collapse');
 
 var LogDetail = React.createClass({
   getInitialState: function() {
@@ -74,18 +75,24 @@ var LogDetail = React.createClass({
             </button>
           </div>
         </div>
-        <div key="body" className={this.panelBodyClass()}>
-          <table className="table log-table">
-            <thead>
-              <tr key="header">
-                <th key="mealType">Before Meal</th>
-                <th key="glucose">Glucose</th>
-                <th key="carbs">Carbs Eaten</th>
-              </tr>
-            </thead>
-            {this.data()}
-          </table>
-        </div>
+        <Collapse in={this.state.showDetail}>
+          <div>
+
+            <div key="body" className={this.panelBodyClass()}>
+              <table className="table log-table">
+                <thead>
+                  <tr key="header">
+                    <th key="mealType">Before Meal</th>
+                    <th key="glucose">Glucose</th>
+                    <th key="carbs">Carbs Eaten</th>
+                  </tr>
+                </thead>
+                {this.data()}
+              </table>
+            </div>
+
+          </div>
+        </Collapse>
       </div>
     );
   }
