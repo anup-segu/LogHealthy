@@ -26,12 +26,12 @@ class Api::SessionsController < ApplicationController
     puts session[:session_token]
     puts session["session_token"]
 
-    if current_patient || current_doctor
+    # if current_patient || current_doctor
       logout!
       render "api/patients/show"
-    else
-      render "api/shared/error", status: 404
-    end
+    # else
+    #   render "api/shared/error", status: 404
+    # end
   end
 
   def show
