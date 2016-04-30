@@ -9,12 +9,12 @@ class ApplicationController < ActionController::Base
 
   def current_patient
     @current_patient ||=
-      Patient.find_by(session_token: session[:session_token])
+      Patient.find_by(session_token: session["session_token"])
   end
 
   def current_doctor
     @current_doctor ||=
-      Doctor.find_by(session_token: session[:session_token])
+      Doctor.find_by(session_token: session["session_token"])
   end
 
   def logout!

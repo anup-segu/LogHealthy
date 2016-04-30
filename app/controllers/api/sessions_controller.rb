@@ -23,8 +23,9 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
-    session[:foo] = "bar"
-    
+    puts session[:session_token]
+    puts session["session_token"]
+
     if current_patient || current_doctor
       logout!
       render "api/patients/show"
