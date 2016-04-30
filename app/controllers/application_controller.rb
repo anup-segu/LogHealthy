@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
   end
 
   def logout!
-    session[:session_token] = nil
     current_patient.reset_session_token! if current_patient
     current_doctor.reset_session_token! if current_doctor
     @current_patient = nil
     @current_doctor = nil
+    session[:session_token] = nil
   end
 end
