@@ -40,7 +40,7 @@ class Patient < ActiveRecord::Base
   def logs_hash
     results = {}
 
-    self.logs.each do |log|
+    self.logs.order("date DESC").each do |log|
       date = log.date.to_formatted_s(:long)
       results[date] = {} if results[date].nil?
       results[date][log.meal_type] = log

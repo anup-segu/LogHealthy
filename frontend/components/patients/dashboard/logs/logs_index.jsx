@@ -16,7 +16,6 @@ var LogsIndex = React.createClass({
           index = {index} />
       );
     });
-
     return elements;
   },
 
@@ -31,15 +30,3 @@ var LogsIndex = React.createClass({
 });
 
 module.exports = LogsIndex;
-
-// <div key={meal_type}>
-//   {meal_type}
-//   <ul key={log_data[date][meal_type]["id"]}>
-//     <li key={"glucose" + log_data[date][meal_type]["id"]}>
-//       Glucose: {log_data[date][meal_type]["glucose"]+" units"}
-//     </li>
-//     <li key={"carbs" + log_data[date][meal_type]["id"]}>
-//       Carbs: {log_data[date][meal_type]["carbs"]+"g"}
-//     </li>
-//   </ul>
-// </div>

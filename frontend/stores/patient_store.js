@@ -1,5 +1,6 @@
 var Store = require('flux/utils').Store;
 var AuthConstants = require('../constants/auth_constants.js');
+var LogConstants = require('../constants/log_constants.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
 var _currentPatient, _errors;
@@ -14,6 +15,11 @@ PatientStore.login = function (patient) {
 
 PatientStore.logout = function (patient) {
   _currentPatient = null;
+  _errors = null;
+};
+
+PatientStore.updatePatient = function (patient) {
+  _currentPatient = patient;
   _errors = null;
 };
 
@@ -50,6 +56,9 @@ PatientStore.__onDispatch = function (payload) {
       break;
     case AuthConstants.CLOSE_FORM:
       PatientStore.resetErrors();
+      break;
+    case LogConstants.PATIENT_UPDATED:
+      PatientStore.updatePatient(payload.patient);
       break;
   }
   PatientStore.__emitChange();

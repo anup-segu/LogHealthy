@@ -11,7 +11,7 @@ var style = {
     backgroundColor: 'rgba(0, 0, 0, 0.6)'
   },
   content: {
-    width: '50%',
+    width: '55%',
     marginTop: '5%',
     marginLeft: "25%",
     maxHeight: '600px'
@@ -42,7 +42,10 @@ var LogForm = React.createClass({
   },
 
   _toggleForm: function() {
-    this.setState({ modalOpen: LogStore.modalState()});
+    this.setState({
+      modalOpen: LogStore.modalState(),
+      errors: LogStore.errors()
+    });
   },
 
   cancelLog: function() {
@@ -52,8 +55,24 @@ var LogForm = React.createClass({
 
   closeModal: function() {
     if (this.state.modalOpen) {
-      this.setState({ modalOpen: false });
+      this.setState({ modalOpen: false, errors: null });
     }
+  },
+
+  errors: function() {
+    var self = this;
+    if (this.state.errors) {
+      return (
+        <ul>
+          {
+            Object.keys(this.state.errors).map(function(key, i){
+              return (<li key={i}>{self.state.errors[key]}</li>);
+            })
+          }
+        </ul>
+      );
+    }
+    return;
   },
 
   handleMealSelect: function (event) {
@@ -226,6 +245,7 @@ var LogForm = React.createClass({
                 type="input"
                 className="form-control"
                 id="carbs_field"
+                onChange={this.handleCarbs}
                 placeholder="Ex. 20" disabled={this.carbsDisable()}/>
             </OverlayTrigger>
             <span className="input-group-addon"> grams</span>
@@ -255,6 +275,7 @@ var LogForm = React.createClass({
           onRequestClose={this.closeModal}
           style={style}>
           <h3>Create A New Log</h3>
+          {this.errors()}
           {this.form()}
         </Modal>
     );

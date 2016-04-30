@@ -16,7 +16,9 @@ var Sidebar = React.createClass({
   },
 
   componentWillUnmount: function() {
-    this.resize.remove();
+    if (this.resize) {
+      this.resize.remove();
+    }
   },
 
   _updateButtonText: function() {

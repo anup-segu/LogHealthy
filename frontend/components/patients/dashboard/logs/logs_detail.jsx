@@ -42,28 +42,40 @@ var LogDetail = React.createClass({
     }
   },
 
-  data: function() {
-    var elements = Object.keys(this.props.log).map(function (meal_type) {
-      var meal = meal_type;
-      meal = meal[0].toUpperCase() + meal.slice(1);
+  parseCarbs: function (carbData) {
+    if (carbData) {
+      return carbData+" g";
+    } else {
+      return "--";
+    }
+  },
 
-      return (
-        <OverlayTrigger
-          key={meal}
-          trigger="click"
-          rootClose placement="bottom"
-          placement="left"
-          overlay={
-            <Popover title="Comments">
-                <p>{this.props.log[meal_type]["comment"]}</p>
-            </Popover>}>
-          <tr className="log-table-row" key={meal}>
-            <td>{meal}</td>
-            <td>{this.props.log[meal_type]["glucose"]+" units"}</td>
-            <td>{this.props.log[meal_type]["carbs"]+" g"}</td>
-          </tr>
-        </OverlayTrigger>
-      );
+  data: function() {
+    var elements = ["breakfast", "lunch", "dinner"].map(function (meal_type) {
+      if (this.props.log[meal_type]) {
+        var meal = meal_type;
+        meal = meal[0].toUpperCase() + meal.slice(1);
+
+        return (
+          <OverlayTrigger
+            key={meal}
+            trigger="click"
+            rootClose placement="bottom"
+            placement="left"
+            overlay={
+              <Popover title="Comments">
+                  <p>{this.props.log[meal_type]["comment"]}</p>
+              </Popover>}>
+            <tr className="log-table-row" key={meal}>
+              <td>{meal}</td>
+              <td>{this.props.log[meal_type]["glucose"]+" units"}</td>
+              <td>{this.parseCarbs(this.props.log[meal_type]["carbs"])}</td>
+            </tr>
+          </OverlayTrigger>
+        );
+      } else {
+        return;
+      }
     }.bind(this));
 
     return (

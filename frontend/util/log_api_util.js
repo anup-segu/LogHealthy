@@ -9,6 +9,12 @@ module.exports = {
     });
   },
 
+  closeForm: function() {
+    AppDispatcher.dispatch({
+      actionType: LogConstants.CLOSE_LOG_FORM
+    });
+  },
+
   post: function (options) {
     $.ajax({
 			url: options.url,

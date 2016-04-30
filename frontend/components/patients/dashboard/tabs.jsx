@@ -1,11 +1,26 @@
 var React = require('react');
 
 var LogsIndex = require('./logs/logs_index.jsx');
+var LogActions = require('../../../actions/log_actions.js');
 var PatientStore = require('../../../stores/patient_store.js');
 
 var Tabs = React.createClass({
   getInitialState: function() {
-    return { tabPane: "logs" };
+    return { tabPane: "logs", logData: PatientStore.currentPatient().logs };
+  },
+
+  componentDidMount: function() {
+    this.patientListener = PatientStore.addListener(this._updateLogData);
+  },
+
+  _updateLogData: function() {
+    if (PatientStore.currentPatient()){
+      this.setState({ logData: PatientStore.currentPatient().logs});
+    }
+  },
+
+  getLogData: function() {
+    return this.state.logData;
   },
 
   toggleLogs: function() {
@@ -51,7 +66,7 @@ var Tabs = React.createClass({
       case "logs":
         content = (
           <div className="container logs-list-container">
-            <LogsIndex logs={PatientStore.currentPatient().logs}/>
+            <LogsIndex logs={this.getLogData()}/>
           </div>
         );
         this.logClass = "active";

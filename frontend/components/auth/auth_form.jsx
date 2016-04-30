@@ -95,25 +95,25 @@ var LogInForm = React.createClass({
     DoctorActions.logout();
     this.setState(this.blankAttrs);
   },
-
-  greeting: function() {
-    if (!this.state.currentPatient && !this.state.currentDoctor) {
-      return;
-    } else if (this.state.currentDoctor) {
-      return (
-        <div>
-  				<h2>Welcome, Dr. {this.state.currentDoctor.last_name}</h2>
-  				<input type="submit" value="logout" onClick={this.logout}/>
-  			</div>
-      );
-    }
-    return (
-      <div>
-				<h2>Welcome, {this.state.currentPatient.first_name}</h2>
-				<input type="submit" value="logout" onClick={this.logout}/>
-			</div>
-    );
-  },
+  //
+  // greeting: function() {
+  //   if (!this.state.currentPatient && !this.state.currentDoctor) {
+  //     return;
+  //   } else if (this.state.currentDoctor) {
+  //     return (
+  //       <div>
+  // 				<h2>Welcome, Dr. {this.state.currentDoctor.last_name}</h2>
+  // 				<input type="submit" value="logout" onClick={this.logout}/>
+  // 			</div>
+  //     );
+  //   }
+  //   return (
+  //     <div>
+	// 			<h2>Welcome, {this.state.currentPatient.first_name}</h2>
+	// 			<input type="submit" value="logout" onClick={this.logout}/>
+	// 		</div>
+  //   );
+  // },
 
   errors: function() {
     var self = this;

@@ -7,23 +7,30 @@ var LogActions = {
     LogApiUtil.openForm();
   },
 
+  closeForm: function() {
+    LogApiUtil.closeForm();
+  },
+
   post: function (log) {
     LogApiUtil.post({
       url: "api/logs",
 			log: log,
-			success: LogActions.receiveNewLog,
+			success: LogActions.logPosted,
 			error: LogActions.handleError
     });
   },
 
-  receiveNewLog: function (log) {
-    console.log(log);
+  logPosted: function (patient) {
+    LogActions.closeForm();
+    AppDispatcher.dispatch({
+      actionType: LogConstants.PATIENT_UPDATED,
+      patient: patient
+    });
   },
 
   handleError: function (error) {
-    debugger;
     AppDispatcher.dispatch({
-      actionType: LogConstants.ERROR,
+      actionType: LogConstants.LOG_ERROR,
       errors: error.responseJSON.errors
     });
   }
