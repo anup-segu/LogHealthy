@@ -23,6 +23,8 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
+    session[:foo] = "bar"
+    
     if current_patient || current_doctor
       logout!
       render "api/patients/show"
