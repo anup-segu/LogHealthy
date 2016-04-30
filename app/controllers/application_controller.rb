@@ -4,17 +4,17 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def login!(account)
-    session["session_token"] = account.reset_session_token!
+    session[:session_token] = account.reset_session_token!
   end
 
   def current_patient
     @current_patient ||=
-      Patient.find_by(session_token: session["session_token"])
+      Patient.find_by(session_token: session[:session_token])
   end
 
   def current_doctor
     @current_doctor ||=
-      Doctor.find_by(session_token: session["session_token"])
+      Doctor.find_by(session_token: session[:session_token])
   end
 
   def logout!
@@ -22,6 +22,6 @@ class ApplicationController < ActionController::Base
     current_doctor.reset_session_token! if current_doctor
     @current_patient = nil
     @current_doctor = nil
-    session["session_token"] = nil
+    session[:session_token] = nil
   end
 end
