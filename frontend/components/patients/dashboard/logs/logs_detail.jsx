@@ -3,6 +3,9 @@ var Collapse = require('react-bootstrap/lib/Collapse');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 var Popover = require('react-bootstrap/lib/Popover');
 
+var LogEditForm = require('./logs_edit_form.jsx');
+var LogActions = require('../../../../actions/log_actions.js');
+
 var LogDetail = React.createClass({
   getInitialState: function() {
     if (this.props.index === 0) {
@@ -50,6 +53,21 @@ var LogDetail = React.createClass({
     }
   },
 
+  editbreakfastLog: function(event) {
+    event.preventDefault();
+    LogActions.openEditForm(this.props.log["breakfast"]);
+  },
+
+  editlunchLog: function(event) {
+    event.preventDefault();
+    LogActions.openEditForm(this.props.log["lunch"]);
+  },
+
+  editdinnerLog: function(event) {
+    event.preventDefault();
+    LogActions.openEditForm(this.props.log["dinner"]);
+  },
+
   data: function() {
     var elements = ["breakfast", "lunch", "dinner"].map(function (meal_type) {
       if (this.props.log[meal_type]) {
@@ -60,7 +78,7 @@ var LogDetail = React.createClass({
           <OverlayTrigger
             key={meal}
             trigger="click"
-            rootClose placement="bottom"
+            rootClose
             placement="left"
             overlay={
               <Popover title="Comments">
@@ -70,6 +88,25 @@ var LogDetail = React.createClass({
               <td>{meal}</td>
               <td>{this.props.log[meal_type]["glucose"]+" units"}</td>
               <td>{this.parseCarbs(this.props.log[meal_type]["carbs"])}</td>
+              <td>
+                <button
+                  className="btn btn-default btn-sm"
+                  onClick={this["edit"+meal_type+"Log"]}>
+                  <span
+                    className="glyphicon glyphicon-pencil"
+                    aria-hidden="true"></span>
+                  <LogEditForm
+                    key={this.props.log[meal_type].id}
+                    log={this.props.log[meal_type]} />
+                </button>
+              </td>
+              <td>
+                <button className="btn btn-danger btn-sm">
+                  <span
+                    className="glyphicon glyphicon-trash"
+                    aria-hidden="true"></span>
+                </button>
+              </td>
             </tr>
           </OverlayTrigger>
         );
@@ -115,7 +152,9 @@ var LogDetail = React.createClass({
                   <tr key="header">
                     <th key="mealType">Before Meal</th>
                     <th key="glucose">Glucose</th>
-                    <th key="carbs">Carbs Eaten</th>
+                    <th key="carbs">Carbs</th>
+                    <th key="edit">Edit</th>
+                    <th key="delete">Delete</th>
                   </tr>
                 </thead>
                 {this.data()}

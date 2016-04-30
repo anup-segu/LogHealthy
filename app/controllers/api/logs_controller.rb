@@ -13,9 +13,28 @@ class Api::LogsController < ApplicationController
     end
   end
 
+  def update
+    @log = Log.find(params[:log][:id])
+
+    if @log.update_attributes(log_params)
+      @patient = current_patient
+      render "api/patients/show"
+    else
+      @errors = @log.errors.full_messages
+      render "api/shared/error", status: 422
+    end
+  end
+
+  def destroy
+    @log = Log.find(params[:log][:id])
+    @log.destroy
+    @patient = current_patient
+    render "api/patients/show"
+  end
+
   private
   def log_params
     params.require(:log)
-      .permit(:glucose, :meal_type, :meal_taken?, :carbs, :comment)
+      .permit(:glucose, :meal_type, :meal_taken?, :carbs, :comment, :id)
   end
 end

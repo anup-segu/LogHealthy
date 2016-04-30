@@ -18,22 +18,26 @@ var style = {
   }
 };
 
-var blankAttrs= {
-  glucose: "",
-  carbs: "",
-  meal_type: "breakfast",
-  meal_taken: "yes",
-  comment: ""
-};
-
-
-var LogForm = React.createClass({
+var LogEditForm = React.createClass({
   getInitialState: function() {
-    return { modalOpen: false };
+    if (this.props.log["meal_taken?"]) {
+      var meal_taken = "yes";
+    } else {
+      var meal_taken = "no";
+    }
+
+    return {
+      modalOpen: false,
+      errors: null,
+      glucose: this.props.log.glucose,
+      meal_type: this.props.log.meal_type,
+      meal_taken: meal_taken,
+      carbs: this.props.log.carbs,
+      comment: this.props.log.comment
+    };
   },
 
   componentDidMount: function() {
-    this.setState(blankAttrs);
     this.logListener = LogStore.addListener(this._toggleForm);
   },
 
@@ -43,14 +47,13 @@ var LogForm = React.createClass({
 
   _toggleForm: function() {
     this.setState({
-      modalOpen: LogStore.modalState(),
-      errors: LogStore.errors()
+      modalOpen: LogStore.modalEditState(this.props.log.id),
+      errors: LogStore.editErrors()
     });
   },
 
   cancelLog: function() {
-    this.setState(blankAttrs);
-    this.closeModal();
+    LogActions.closeEditForm();
   },
 
   closeModal: function() {
@@ -113,6 +116,7 @@ var LogForm = React.createClass({
       parsedMealTaken = false;
     }
     var log = {
+      id: this.props.log.id,
       glucose: this.state.glucose,
       carbs: this.state.carbs,
       meal_type: this.state.meal_type,
@@ -120,7 +124,7 @@ var LogForm = React.createClass({
       comment: this.state.comment
     };
 
-    LogActions.post(log);
+    LogActions.patch(log);
   },
 
   breakfastMealTypeClass: function() {
@@ -189,6 +193,7 @@ var LogForm = React.createClass({
               type="input"
               className="form-control"
               id="glucose_field"
+              defaultValue={this.props.log.glucose}
               onChange={this.handleGlucose}
               placeholder="Ex. 150" />
             <span className="input-group-addon"> mg/dL (units)</span>
@@ -245,6 +250,7 @@ var LogForm = React.createClass({
                 type="input"
                 className="form-control"
                 id="carbs_field"
+                defaultValue={this.props.log.carbs}
                 onChange={this.handleCarbs}
                 placeholder="Ex. 20" disabled={this.carbsDisable()}/>
             </OverlayTrigger>
@@ -257,11 +263,12 @@ var LogForm = React.createClass({
           <label>Comments (optional)</label>
           <textarea
             className="form-control"
+            defaultValue={this.props.log.comment}
             onChange={this.handleComment}></textarea>
           <p className="help-block">Feel free to detail your meal or any notable symptoms.</p>
         </div>
 
-        <button className="btn btn-primary">Record Log</button>
+        <button className="btn btn-primary">Update Log</button>
         <br/>
         <a onClick={this.cancelLog}>Go Back To Logs</a>
       </form>
@@ -270,17 +277,17 @@ var LogForm = React.createClass({
 
   render: function() {
     return (
-        <Modal
-          isOpen={this.state.modalOpen}
-          onRequestClose={this.closeModal}
-          style={style}>
-          <h3>Create A New Log</h3>
-          {this.errors()}
-          {this.form()}
-        </Modal>
+      <Modal
+        isOpen={this.state.modalOpen}
+        onRequestClose={this.cancelLog}
+        style={style}>
+        <h3>Edit This Log</h3>
+        {this.errors()}
+        {this.form()}
+      </Modal>
     );
   }
 
 });
 
-module.exports = LogForm;
+module.exports = LogEditForm;

@@ -15,6 +15,19 @@ module.exports = {
     });
   },
 
+  openEditForm: function (log) {
+    AppDispatcher.dispatch({
+      actionType: LogConstants.OPEN_EDIT_FORM,
+      log: log
+    });
+  },
+
+  closeEditForm: function() {
+    AppDispatcher.dispatch({
+      actionType: LogConstants.CLOSE_EDIT_FORM
+    });
+  },
+
   post: function (options) {
     $.ajax({
 			url: options.url,
@@ -23,5 +36,15 @@ module.exports = {
 			success: options.success,
 			error: options.error
 		});
+  },
+
+  patch: function (options) {
+    $.ajax({
+      url: options.url,
+      type: "patch",
+      data: {log: options.log},
+      success: options.success,
+      error: options.error
+    });
   },
 };

@@ -11,12 +11,29 @@ var LogActions = {
     LogApiUtil.closeForm();
   },
 
+  openEditForm: function (log) {
+    LogApiUtil.openEditForm(log);
+  },
+
+  closeEditForm: function() {
+    LogApiUtil.closeEditForm();
+  },
+
   post: function (log) {
     LogApiUtil.post({
       url: "api/logs",
 			log: log,
 			success: LogActions.logPosted,
 			error: LogActions.handleError
+    });
+  },
+
+  patch: function (log) {
+    LogApiUtil.patch({
+      url: "api/logs/" + log.id,
+      log: log,
+      success: LogActions.logPosted,
+      error: LogActions.handleEditError
     });
   },
 
@@ -31,6 +48,13 @@ var LogActions = {
   handleError: function (error) {
     AppDispatcher.dispatch({
       actionType: LogConstants.LOG_ERROR,
+      errors: error.responseJSON.errors
+    });
+  },
+
+  handleEditError: function (error) {
+    AppDispatcher.dispatch({
+      actionType: LogConstants.LOG_EDIT_ERROR,
       errors: error.responseJSON.errors
     });
   }
