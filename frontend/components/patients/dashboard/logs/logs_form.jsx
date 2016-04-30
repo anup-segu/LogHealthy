@@ -4,6 +4,7 @@ var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 var Popover = require('react-bootstrap/lib/Popover');
 
 var LogStore = require('../../../../stores/log_store.js');
+var LogActions = require('../../../../actions/log_actions.js');
 
 var style = {
   overlay: {
@@ -44,6 +45,11 @@ var LogForm = React.createClass({
     this.setState({ modalOpen: LogStore.modalState()});
   },
 
+  cancelLog: function() {
+    this.setState(blankAttrs);
+    this.closeModal();
+  },
+
   closeModal: function() {
     if (this.state.modalOpen) {
       this.setState({ modalOpen: false });
@@ -64,9 +70,39 @@ var LogForm = React.createClass({
     }
   },
 
+  handleGlucose: function (event) {
+    event.preventDefault();
+    this.setState({glucose: event.target.value});
+  },
+
+  handleCarbs: function (event) {
+    event.preventDefault();
+    this.setState({carbs: event.target.value});
+  },
+
+  handleComment: function (event) {
+    event.preventDefault();
+    this.setState({comment: event.target.value});
+  },
+
   handleSubmit: function (event) {
     event.preventDefault();
-    alert("submitted");
+    var parsedMealTaken;
+    if (this.state.meal_taken === "yes") {
+      parsedMealTaken = true;
+    } else {
+      parsedMealTaken = false;
+    }
+    var log = {
+      glucose: this.state.glucose,
+      carbs: this.state.carbs,
+      meal_type: this.state.meal_type,
+      "meal_taken?": parsedMealTaken,
+      comment: this.state.comment
+    };
+
+    debugger;
+    LogActions.post(log);
   },
 
   breakfastMealTypeClass: function() {
@@ -135,34 +171,11 @@ var LogForm = React.createClass({
               type="input"
               className="form-control"
               id="glucose_field"
+              onChange={this.handleGlucose}
               placeholder="Ex. 150" />
             <span className="input-group-addon"> mg/dL (units)</span>
           </div>
           <p className="help-block">Enter your current reading before a meal as just a number.</p>
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="carbs_field">Carbs</label>
-          <div className="input-group">
-            <OverlayTrigger
-              trigger="click"
-              rootClose
-              placement="right"
-              overlay={
-                <Popover title="Need help counting carbs?">
-                Visit <a
-                  href="https://www.calorieking.com"
-                  target="_blank">calorieking.com</a> htmlFor some helpful info.</Popover>
-              }>
-              <input
-                type="input"
-                className="form-control"
-                id="carbs_field"
-                placeholder="Ex. 20" disabled={this.carbsDisable()}/>
-            </OverlayTrigger>
-            <span className="input-group-addon"> grams</span>
-          </div>
-          <p className="help-block">{this.carbsMessage()}</p>
         </div>
 
         <div className="form-group">
@@ -198,13 +211,40 @@ var LogForm = React.createClass({
         </div>
 
         <div className="form-group">
+          <label htmlFor="carbs_field">Carbs</label>
+          <div className="input-group">
+            <OverlayTrigger
+              trigger="click"
+              rootClose
+              placement="right"
+              overlay={
+                <Popover title="Need help counting carbs?">
+                Visit <a
+                  href="https://www.calorieking.com"
+                  target="_blank">calorieking.com</a> htmlFor some helpful info.</Popover>
+              }>
+              <input
+                type="input"
+                className="form-control"
+                id="carbs_field"
+                placeholder="Ex. 20" disabled={this.carbsDisable()}/>
+            </OverlayTrigger>
+            <span className="input-group-addon"> grams</span>
+          </div>
+          <p className="help-block">{this.carbsMessage()}</p>
+        </div>
+
+        <div className="form-group">
           <label>Comments (optional)</label>
-          <textarea className="form-control"></textarea>
+          <textarea
+            className="form-control"
+            onChange={this.handleComment}></textarea>
           <p className="help-block">Feel free to detail your meal or any notable symptoms.</p>
         </div>
 
         <button className="btn btn-primary">Record Log</button>
-
+        <br/>
+        <a onClick={this.cancelLog}>Go Back To Logs</a>
       </form>
     );
   },

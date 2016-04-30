@@ -6,6 +6,51 @@ var LogActions = require('../../../actions/log_actions.js');
 
 var Sidebar = React.createClass({
 
+  getInitialState: function() {
+    return ({buttonText: true});
+  },
+
+  componentDidMount: function() {
+    this.setState({buttonText: true});
+    this.resize = window.addEventListener("resize", this._updateButtonText);
+  },
+
+  componentWillUnmount: function() {
+    this.resize.remove();
+  },
+
+  _updateButtonText: function() {
+    if ($(window).width() < 790) {
+      this.setState({ buttonText: false });
+    } else {
+      this.setState({ buttonText: true });
+    }
+  },
+
+  buttonText: function() {
+    if (this.state.buttonText) {
+      return (
+        <span>
+          <span
+            className="glyphicon glyphicon-edit"
+            aria-hidden="true"></span> Create a new log
+        </span>
+      );
+    } else {
+      return <span
+        className="glyphicon glyphicon-edit"
+        aria-hidden="true"></span>;
+    }
+  },
+
+  buttonClass: function() {
+    if (this.state.buttonText) {
+      return "btn btn-success";
+    } else {
+      return "btn btn-lg btn-success";
+    }
+  },
+
   openForm: function() {
     LogActions.openForm();
   },
@@ -17,9 +62,9 @@ var Sidebar = React.createClass({
           <ul className="list-unstyled">
             <li>
               <button
-                className="btn btn-success"
+                className={this.buttonClass()}
                 onClick={this.openForm}>
-                Create A New Log
+                {this.buttonText()}
               </button>
             </li>
           </ul>

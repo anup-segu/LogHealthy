@@ -271,11 +271,11 @@ var LogInForm = React.createClass({
     );
   },
 
-  closeModal: function(){
+  closeModal: function() {
     AuthActions.closeForm();
   },
 
-  openModal: function(){
+  openModal: function() {
     this.setState({ modalOpen: true });
   },
 
