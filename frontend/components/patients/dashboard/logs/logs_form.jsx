@@ -101,7 +101,6 @@ var LogForm = React.createClass({
       comment: this.state.comment
     };
 
-    debugger;
     LogActions.post(log);
   },
 

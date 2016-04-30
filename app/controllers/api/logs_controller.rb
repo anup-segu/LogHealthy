@@ -6,7 +6,7 @@ class Api::LogsController < ApplicationController
 
     if @log.save
       @patient = current_patient
-      render "api/patient/show"
+      render "api/patients/show"
     else
       @errors = @log.errors.full_messages
       render "api/shared/error", status: 422
@@ -16,6 +16,6 @@ class Api::LogsController < ApplicationController
   private
   def log_params
     params.require(:log)
-      .permit(:glucose, :meal_type, :meal_taken?, :comment)
+      .permit(:glucose, :meal_type, :meal_taken?, :carbs, :comment)
   end
 end

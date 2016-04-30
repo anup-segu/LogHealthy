@@ -7,5 +7,15 @@ module.exports = {
     AppDispatcher.dispatch({
       actionType: LogConstants.OPEN_LOG_FORM
     });
-  }
+  },
+
+  post: function (options) {
+    $.ajax({
+			url: options.url,
+			type: "post",
+			data: {log: options.log},
+			success: options.success,
+			error: options.error
+		});
+  },
 };
