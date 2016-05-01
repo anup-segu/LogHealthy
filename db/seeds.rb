@@ -20,6 +20,11 @@ doctor = Doctor.create(
   last_name: "Demo"
 )
 
+patient_doctor = PatientDoctor.create(
+  patient_id: 1,
+  doctor_id: 1
+)
+
 log_dates = (1..15).to_a.map do |num|
   num.days.ago
 end

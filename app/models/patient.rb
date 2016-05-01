@@ -16,6 +16,12 @@ class Patient < ActiveRecord::Base
 
   has_many :logs
 
+  has_one :patient_doctor
+
+  has_one :doctor,
+    through: :patient_doctor,
+    source: :doctor
+
   def self.find_by_credentials(email, password)
     patient = Patient.find_by(email: email)
     return nil unless patient
