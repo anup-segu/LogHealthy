@@ -1,5 +1,6 @@
 var React = require('react');
 var d3 = require('d3');
+var resizeMixin = require('../../../../mixins/resize.js');
 
 var Dots = require('./dots.jsx');
 var Axis = require('./axis.jsx');
@@ -12,6 +13,8 @@ var LineChart=React.createClass({
         height:React.PropTypes.number,
         chartId:React.PropTypes.string
     },
+
+    mixins: [resizeMixin],
 
     getDefaultProps: function() {
         return {
@@ -152,7 +155,7 @@ var LineChart=React.createClass({
         var verticalGrid = this.yGrid(y, w);
 
         return (
-          <div>
+          <div className="chart-container">
             <svg
               id={this.props.chartId}
               width={this.state.width}

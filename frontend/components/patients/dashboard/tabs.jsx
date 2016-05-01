@@ -76,7 +76,7 @@ var Tabs = React.createClass({
         break;
       case "progress":
         content = (
-          <div>
+          <div className="chart-container">
               <h4>Glucose</h4>
               <GlucoseChart glucose={this.state.logData} />
           </div>
