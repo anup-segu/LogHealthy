@@ -4,11 +4,18 @@ var PropTypes = React.PropTypes;
 var LineChart = require('./line_chart.jsx');
 
 var GlucoseChart = React.createClass({
+  getInitialState: function() {
+    return { glucose: this.props.glucose };
+  },
+
+  componentWillReceiveProps: function (newprops) {
+    this.setState({ glucose: newprops.glucose });
+  },
 
   render: function() {
     return (
       <div className="chart-container">
-        <LineChart glucose={this.props.glucose}/>
+        <LineChart glucose={this.state.glucose}/>
       </div>
     );
   }

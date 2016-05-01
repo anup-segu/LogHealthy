@@ -22,12 +22,7 @@ var resizeMixin = {
   updateSize: function() {
     var node = ReactDOM.findDOMNode(this);
     var parentWidth = $(node).width();
-
-    // if (parentWidth < this.props.width) {
-      this.setState({width: parentWidth*.95});
-    // } else {
-    //   this.setState({width: this.props.width});
-    // }
+    this.setState({width: parentWidth*.95});
   }
 };
 

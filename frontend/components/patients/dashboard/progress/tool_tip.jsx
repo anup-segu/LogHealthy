@@ -12,7 +12,7 @@ var ToolTip = React.createClass({
     var transform="";
     var x=0;
     var y=0;
-    var width=150,height=70;
+    var width=100,height=50;
     var transformText='translate('+width/2+','+(height/2-5)+')';
     var transformArrow="";
 
@@ -58,7 +58,7 @@ var ToolTip = React.createClass({
             <tspan
               is x="0"
               text-anchor="middle"
-              font-size="15px"
+              font-size="13px"
               fill="#ffffff">
               {this.props.tooltip.data.key}
             </tspan>
@@ -66,7 +66,7 @@ var ToolTip = React.createClass({
               is x="0"
               text-anchor="middle"
               dy="25"
-              font-size="20px"
+              font-size="15px"
               fill="#a9f3ff">
               {this.props.tooltip.data.value+" units"}
             </tspan>

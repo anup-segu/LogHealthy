@@ -20,10 +20,6 @@ var Tabs = React.createClass({
     }
   },
 
-  getLogData: function() {
-    return this.state.logData;
-  },
-
   toggleLogs: function() {
     this.setState({ tabPane: "logs" });
   },
@@ -67,7 +63,7 @@ var Tabs = React.createClass({
       case "logs":
         content = (
           <div className="container logs-list-container">
-            <LogsIndex logs={this.getLogData()}/>
+            <LogsIndex logs={this.state.logData}/>
           </div>
         );
         this.logClass = "active";

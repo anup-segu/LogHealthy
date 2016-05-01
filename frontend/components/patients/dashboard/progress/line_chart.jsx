@@ -27,7 +27,7 @@ var LineChart=React.createClass({
     getInitialState: function() {
       return {
         tooltip:{ display: false, data: { key:'', value:'' } },
-        width: this.props.width
+        width: this.props.width,
       };
     },
 
@@ -98,10 +98,8 @@ var LineChart=React.createClass({
     },
 
     parseGlucoseData: function(mealType) {
-      // var self = this;
       if (this.props.glucose) {
         return Object.keys(this.props.glucose).map(function (date) {
-
           return {
             date: new Date(date),
             count: this.props.glucose[date][mealType].glucose
@@ -131,24 +129,37 @@ var LineChart=React.createClass({
                   function(d){
                     return d.count-10;
                 }),
+
                 d3.max(glucoseData,
                   function(d){
                     return d.count+10;
-              })]
+                })
+              ]
             )
             .range([h, 0]);
 
         var line = d3.svg.line()
             .x(function (d) {
                 return x(d.date);
-            })
+              })
             .y(function (d) {
                 return y(d.count);
-            }).interpolate('cardinal');
+              })
+            .interpolate('cardinal');
 
         var transform='translate(' + margin.left + ',' + margin.top + ')';
 
-        var horizontalAxis = this.xAxis(glucoseData, x);
+        // Only include 5 data points for the x axis regardless of data length
+        var horizontalAxisData = [];
+        var increment = Math.floor(glucoseData.length/5);
+
+        glucoseData.forEach( function (el, i) {
+          if (i % increment === 0) {
+            horizontalAxisData.push(el);
+          }
+        });
+
+        var horizontalAxis = this.xAxis(horizontalAxisData, x);
 
         var verticalAxis = this.yAxis(y);
 

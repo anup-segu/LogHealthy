@@ -333,40 +333,41 @@ html {
 }
 
 .line {
-    fill: none;
-    stroke: #7dc7f4;
-    stroke-width: 5px;
+  fill: none;
+  stroke: #7dc7f4;
+  stroke-width: 5px;
 }
 
 .shadow {
-    -webkit-filter: drop-shadow( 0px 2px 2px rgba(0,0,0,.3) );
-    filter: drop-shadow( 0px 2px 2px rgba(0,0,0,.3) );
+  -webkit-filter: drop-shadow( 0px 2px 2px rgba(0,0,0,.3) );
+  filter: drop-shadow( 0px 2px 2px rgba(0,0,0,.3) );
 }
 
 .pad {
-    padding:20px;
+  padding:20px;
 }
 
 .bottom-right-svg{
-    text-align: center;
+  text-align: center;
 }
 
 .y-grid .tick{
-    stroke: #4b5f87;
-    opacity: 1;
+  stroke: #4b5f87;
+  opacity: 1;
 }
 
-.axis{
-    fill:#bbc7d9;
-    opacity: 1;
+.axis {
+  fill: #565656;
+  opacity: 1;
 }
 
 .axis path, .axis line {
-    // fill: none;
-    // stroke: none;
+  // fill: none;
+  // stroke: none;
+  stroke-width: 1px;
 }
 
 .axis text {
-    font-size: 13px;
-    color: black;
+  font-size: 13px;
+  color: black;
 }
