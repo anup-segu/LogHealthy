@@ -37,8 +37,22 @@ var LogActions = {
     });
   },
 
+  delete: function (id) {
+    LogApiUtil.delete({
+      url: "api/logs/" + id,
+      success: LogActions.logRemoved
+    });
+  },
+
   logPosted: function (patient) {
     LogActions.closeForm();
+    AppDispatcher.dispatch({
+      actionType: LogConstants.PATIENT_UPDATED,
+      patient: patient
+    });
+  },
+
+  logRemoved: function (patient) {
     AppDispatcher.dispatch({
       actionType: LogConstants.PATIENT_UPDATED,
       patient: patient

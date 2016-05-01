@@ -53,19 +53,34 @@ var LogDetail = React.createClass({
     }
   },
 
-  editbreakfastLog: function(event) {
+  editbreakfastLog: function (event) {
     event.preventDefault();
     LogActions.openEditForm(this.props.log["breakfast"]);
   },
 
-  editlunchLog: function(event) {
+  editlunchLog: function (event) {
     event.preventDefault();
     LogActions.openEditForm(this.props.log["lunch"]);
   },
 
-  editdinnerLog: function(event) {
+  editdinnerLog: function (event) {
     event.preventDefault();
     LogActions.openEditForm(this.props.log["dinner"]);
+  },
+
+  deletebreakfastLog: function (event) {
+    event.preventDefault();
+    LogActions.delete(this.props.log["breakfast"].id);
+  },
+
+  deletelunchLog: function (event) {
+    event.preventDefault();
+    LogActions.delete(this.props.log["lunch"].id);
+  },
+
+  deletedinnerLog: function (event) {
+    event.preventDefault();
+    LogActions.delete(this.props.log["dinner"].id);
   },
 
   data: function() {
@@ -101,7 +116,9 @@ var LogDetail = React.createClass({
                 </button>
               </td>
               <td>
-                <button className="btn btn-danger btn-sm">
+                <button
+                  className="btn btn-danger btn-sm"
+                  onClick={this["delete"+meal_type+"Log"]}>
                   <span
                     className="glyphicon glyphicon-trash"
                     aria-hidden="true"></span>

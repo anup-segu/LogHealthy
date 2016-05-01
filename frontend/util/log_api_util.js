@@ -47,4 +47,12 @@ module.exports = {
       error: options.error
     });
   },
+
+  delete: function (options) {
+    $.ajax({
+      url: options.url,
+      type: "delete",
+      success: options.success
+    });
+  },
 };
