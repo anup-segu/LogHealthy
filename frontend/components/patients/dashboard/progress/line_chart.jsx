@@ -1,6 +1,8 @@
 var React = require('react');
 var d3 = require('d3');
 var resizeMixin = require('../../../../mixins/resize.js');
+var DropdownButton = require('react-bootstrap/lib/DropdownButton');
+var MenuItem = require('react-bootstrap/lib/MenuItem');
 
 var Dots = require('./dots.jsx');
 var Axis = require('./axis.jsx');
@@ -28,6 +30,7 @@ var LineChart=React.createClass({
       return {
         tooltip:{ display: false, data: { key:'', value:'' } },
         width: this.props.width,
+        mealType: "breakfast",
       };
     },
 
@@ -97,20 +100,81 @@ var LineChart=React.createClass({
         .tickFormat("");
     },
 
-    parseGlucoseData: function(mealType) {
+    parseGlucoseData: function() {
       if (this.props.glucose) {
-        return Object.keys(this.props.glucose).map(function (date) {
-          return {
-            date: new Date(date),
-            count: this.props.glucose[date][mealType].glucose
-          };
+        var dataPoints =  Object.keys(this.props.glucose).map(function (date) {
+          if (this.props.glucose[date][this.state.mealType]) {
+            return {
+              date: new Date(date),
+              count: this.props.glucose[date][this.state.mealType].glucose
+            };
+          }
+          return;
         }.bind(this));
+
+        var parsedData= [];
+
+        dataPoints.forEach( function (dataPoint) {
+          if (dataPoint) {
+            parsedData.push(dataPoint);
+          }
+        });
+
+        return parsedData;
       }
       return;
     },
 
+    toggleBreakfast: function() {
+      if (this.state.mealType !== "breakfast") {
+        this.setState({ mealType: "breakfast" });
+      }
+    },
+
+    toggleLunch: function() {
+      if (this.state.mealType !== "lunch") {
+        this.setState({ mealType: "lunch" });
+      }
+    },
+
+    toggleDinner: function() {
+      if (this.state.mealType !== "dinner") {
+        this.setState({ mealType: "dinner" });
+      }
+    },
+
+    mealTypeToggleElements: function() {
+      var title =
+        "Before " +
+        this.state.mealType[0].toUpperCase() +
+        this.state.mealType.slice(1);
+
+      return (
+        <DropdownButton
+          bsStyle="default"
+          className="meal-toggle-btn"
+          title={title}>
+          <MenuItem
+            eventKey="1"
+            onClick={this.toggleBreakfast}
+            active={this.state.mealType === "breakfast"}>
+            Breakfast</MenuItem>
+          <MenuItem
+            eventKey="2"
+            onClick={this.toggleLunch}
+            active={this.state.mealType === "lunch"}>
+            Lunch</MenuItem>
+          <MenuItem
+            eventKey="3"
+            onClick={this.toggleDinner}
+            active={this.state.mealType === "dinner"}>
+            Dinner</MenuItem>
+        </DropdownButton>
+      );
+    },
+
     render: function() {
-        var glucoseData = this.parseGlucoseData("breakfast");
+        var glucoseData = this.parseGlucoseData();
 
         var margin = {top: 5, right: 50, bottom: 20, left: 50},
             w = this.state.width - (margin.left + margin.right),
@@ -167,6 +231,13 @@ var LineChart=React.createClass({
 
         return (
           <div className="chart-container">
+            <div className="navbar navbar-default">
+              <h4 className="nav navbar-nav navbar-left chart-title">
+                Glucose Levels </h4>
+              <div className="nav navbar-nav navbar-right">
+                {this.mealTypeToggleElements()}
+              </div>
+            </div>
             <svg
               id={this.props.chartId}
               width={this.state.width}
