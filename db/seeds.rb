@@ -20,8 +20,12 @@ doctor = Doctor.create(
   last_name: "Demo"
 )
 
+log_dates = (1..15).to_a.map do |num|
+  num.days.ago
+end
+
 ["breakfast", "lunch", "dinner"].each do |meal_type|
-  [1.days.ago, 2.days.ago, 3.days.ago, 4.days.ago].each do |date|
+  log_dates.each do |date|
     Log.create(
       patient_id: 1,
       glucose: (120..200).to_a.sample,

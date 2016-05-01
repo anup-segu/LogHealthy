@@ -80,7 +80,7 @@ var LineChart=React.createClass({
          .scale(x)
          .orient('bottom')
          .tickValues(data.map(function (d, i) {
-             if(i>0) {
+             if (i>0) {
                return d.date;
              }
          }).splice(1))
