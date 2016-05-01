@@ -9,13 +9,11 @@ var GlucoseChart = React.createClass({
     return (
       <div className="container">
         <div className="row">
-          <div className="col-xs-12" >
-            <div className=""
-              id="top-line-chart">
-              <div>
-                <div className="">
-                  <LineChart glucose={this.props.glucose}/>
-                </div>
+          <div className=""
+            id="top-line-chart">
+            <div>
+              <div className="">
+                <LineChart glucose={this.props.glucose}/>
               </div>
             </div>
           </div>

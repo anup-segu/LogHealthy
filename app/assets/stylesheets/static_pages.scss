@@ -346,3 +346,23 @@ html {
 .bottom-right-svg{
     text-align: center;
 }
+
+.y-grid .tick{
+    stroke: #4b5f87;
+    opacity: 1;
+}
+
+.axis{
+    fill:#bbc7d9;
+    opacity: 1;
+}
+
+.axis path, .axis line {
+    // fill: none;
+    // stroke: none;
+}
+
+.axis text {
+    font-size: 13px;
+    color: black;
+}

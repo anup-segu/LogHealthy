@@ -2,6 +2,9 @@ var React = require('react');
 var d3 = require('d3');
 
 var Dots = require('./dots.jsx');
+var Axis = require('./axis.jsx');
+var Grid = require('./grid.jsx');
+var ToolTip = require('./tool_tip.jsx');
 
 var LineChart=React.createClass({
     propTypes: {
@@ -19,9 +22,76 @@ var LineChart=React.createClass({
     },
 
     getInitialState: function() {
-        return {
-            width:this.props.width
-        };
+      return {
+        tooltip:{ display: false, data: { key:'', value:'' } },
+        width: this.props.width
+      };
+    },
+
+    showToolTip:function(e){
+    e.target.setAttribute('fill', '#FFFFFF');
+
+    this.setState(
+      { tooltip:
+        { display:true,
+
+          data: {
+            key:e.target.getAttribute('data-key'),
+            value:e.target.getAttribute('data-value')
+          },
+
+          pos: {
+            x:e.target.getAttribute('cx'),
+            y:e.target.getAttribute('cy')
+          }
+
+        }
+      });
+    },
+
+    hideToolTip: function (event) {
+      event.target.setAttribute('fill', '#7dc7f4');
+      this.setState(
+        { tooltip:
+          { display: false,
+            data: {
+              key:'',
+              value:''
+            }
+          }
+      });
+    },
+
+    yAxis: function (y) {
+      return (
+        d3.svg.axis()
+          .scale(y)
+          .orient('left')
+          .ticks(5)
+      );
+    },
+
+    xAxis: function (data, x) {
+      return (
+        d3.svg.axis()
+         .scale(x)
+         .orient('bottom')
+         .tickValues(data.map(function (d, i) {
+             if(i>0) {
+               return d.date;
+             }
+         }).splice(1))
+         .ticks(4)
+      );
+    },
+
+    yGrid: function (y, w) {
+      d3.svg.axis()
+        .scale(y)
+        .orient('left')
+        .ticks(5)
+        .tickSize(-w, 0, 0)
+        .tickFormat("");
     },
 
     parseGlucoseData: function(mealType) {
@@ -75,6 +145,12 @@ var LineChart=React.createClass({
 
         var transform='translate(' + margin.left + ',' + margin.top + ')';
 
+        var horizontalAxis = this.xAxis(glucoseData, x);
+
+        var verticalAxis = this.yAxis(y);
+
+        var verticalGrid = this.yGrid(y, w);
+
         return (
           <div>
             <svg
@@ -82,16 +158,21 @@ var LineChart=React.createClass({
               width={this.state.width}
               height={this.props.height}>
               <g transform={transform}>
-                  <path
-                    className="line shadow"
-                    d={line(glucoseData)}
-                    strokeLinecap="round"/>
-                  <Dots
-                    data={glucoseData}
-                    x={x}
-                    y={y}
-                    showToolTip={this.showToolTip}
-                    hideToolTip={this.hideToolTip}/>
+                <Grid h={h} grid={verticalGrid} gridType="y"/>
+                <Axis h={h} axis={verticalAxis} axisType="y" />
+                <Axis h={h} axis={horizontalAxis} axisType="x"/>
+                <path
+                  className="line shadow"
+                  d={line(glucoseData)}
+                  strokeLinecap="round"/>
+                <Dots
+                  data={glucoseData}
+                  x={x}
+                  y={y}
+                  showToolTip={this.showToolTip}
+                  hideToolTip={this.hideToolTip}/>
+
+                 <ToolTip tooltip={this.state.tooltip}/>
               </g>
             </svg>
           </div>

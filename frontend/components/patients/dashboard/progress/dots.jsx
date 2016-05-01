@@ -26,7 +26,11 @@ var Dots = React.createClass({
             fill="#7dc7f4"
             stroke="#3f5175"
             strokeWidth="5px"
-            key={i}></circle>
+            key={i}
+            onMouseOver={_self.props.showToolTip}
+            onMouseOut={_self.props.hideToolTip}
+            data-key={d3.time.format("%b %e")(d.date)}
+            data-value={d.count}></circle>
         );
       });
 
