@@ -15,7 +15,7 @@ var AuthForm = require('./components/auth/auth_form.jsx'),
     DoctorStore = require('./stores/doctor_store.js'),
     PatientStore = require('./stores/patient_store.js'),
     PatientDashboard = require('./components/patients/dashboard/dashboard.jsx'),
-    DoctorDashboard;
+    DoctorDashboard = require('./components/doctors/dashboard/dashboard.jsx');
 
 
 var App = React.createClass({
