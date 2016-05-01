@@ -3,6 +3,7 @@ var React = require('react');
 var LogsIndex = require('./logs/logs_index.jsx');
 var LogActions = require('../../../actions/log_actions.js');
 var PatientStore = require('../../../stores/patient_store.js');
+var GlucoseChart = require('./progress/glucose_chart.jsx');
 
 var Tabs = React.createClass({
   getInitialState: function() {
@@ -74,7 +75,12 @@ var Tabs = React.createClass({
         this.conversationClass = "";
         break;
       case "progress":
-        content = <div>"progress"</div>;
+        content = (
+          <div>
+              <h4>Glucose</h4>
+              <GlucoseChart glucose={this.state.logData} />
+          </div>
+        );
         this.logClass = "";
         this.progressClass = "active";
         this.conversationClass = "";
