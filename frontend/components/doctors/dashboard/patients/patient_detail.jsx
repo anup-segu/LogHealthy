@@ -2,8 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 
 var LogDetail = require('./logs_detail.jsx');
-
-// var DoctorActions = require('../../../../actions/doctor_actions.js');
+var GlucoseChart = require('../../../patients/dashboard/progress/glucose_chart.jsx');
 
 var PatientDetail = React.createClass({
   getInitialState: function() {
@@ -66,27 +65,52 @@ var PatientDetail = React.createClass({
   },
 
   logsContent: function() {
-    var logData = this.state.patient.logs;
+    if (Object.keys(this.state.patient.logs).length > 0) {
 
-    var elements = Object.keys(logData).map(function (date) {
-      var index = Object.keys(logData).indexOf(date);
+      var logData = this.state.patient.logs;
 
-      return(
-        <LogDetail
-          key={date}
-          date={date}
-          log={logData[date]}
-          index = {index} />
-      );
-    });
+      var elements = Object.keys(logData).map(function (date) {
+        var index = Object.keys(logData).indexOf(date);
 
-    return (
-      <div className="container width-fix">
-        <div className="container logs-list">
-          {elements}
+        return(
+          <LogDetail
+            key={date}
+            date={date}
+            log={logData[date]}
+            index = {index} />
+        );
+      });
+
+      return (
+        <div className="container width-fix">
+          <div className="container logs-list">
+            {elements}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="well well-lg width-fix">
+          There doesn't seem to be anything here..
+        </div>
+      );
+    }
+  },
+
+  progressContent: function() {
+    if (Object.keys(this.state.patient.logs).length > 0) {
+      return (
+        <div className="chart-container">
+          <GlucoseChart glucose={this.state.patient.logs} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="well well-lg width-fix">
+          There doesn't seem to be anything here..
+        </div>
+      );
+    }
   },
 
   patientContent: function() {
@@ -96,9 +120,7 @@ var PatientDetail = React.createClass({
       );
     } else if (this.state.tab === "progress") {
       return (
-        <div className="container width-fix">
-          Hello Progress
-        </div>
+        this.progressContent()
       );
     }
   },

@@ -3,9 +3,6 @@ var Collapse = require('react-bootstrap/lib/Collapse');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 var Popover = require('react-bootstrap/lib/Popover');
 
-// var LogEditForm = require('./logs_edit_form.jsx');
-// var LogActions = require('../../../../actions/log_actions.js');
-
 var LogDetail = React.createClass({
   getInitialState: function() {
     if (this.props.index === 0) {
@@ -52,36 +49,6 @@ var LogDetail = React.createClass({
       return "--";
     }
   },
-
-  // editbreakfastLog: function (event) {
-  //   event.preventDefault();
-  //   LogActions.openEditForm(this.props.log["breakfast"]);
-  // },
-  //
-  // editlunchLog: function (event) {
-  //   event.preventDefault();
-  //   LogActions.openEditForm(this.props.log["lunch"]);
-  // },
-  //
-  // editdinnerLog: function (event) {
-  //   event.preventDefault();
-  //   LogActions.openEditForm(this.props.log["dinner"]);
-  // },
-
-  // deletebreakfastLog: function (event) {
-  //   event.preventDefault();
-  //   LogActions.delete(this.props.log["breakfast"].id);
-  // },
-  //
-  // deletelunchLog: function (event) {
-  //   event.preventDefault();
-  //   LogActions.delete(this.props.log["lunch"].id);
-  // },
-  //
-  // deletedinnerLog: function (event) {
-  //   event.preventDefault();
-  //   LogActions.delete(this.props.log["dinner"].id);
-  // },
 
   data: function() {
     var elements = ["breakfast", "lunch", "dinner"].map(function (meal_type) {
