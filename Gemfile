@@ -27,6 +27,9 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'rails_12factor', group: :production
 
+# Use to seed database
+gem 'faker'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

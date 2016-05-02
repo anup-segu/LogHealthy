@@ -25,6 +25,17 @@ patient_doctor = PatientDoctor.create(
   doctor_id: 1
 )
 
+10.times do |num|
+  Patient.create(
+    email: Faker::Internet.email,
+    password: "password",
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+  )
+
+  PatientDoctor.create(patient_id: num + 2, doctor_id: 1)
+end
+
 log_dates = (1..15).to_a.map do |num|
   num.days.ago
 end
