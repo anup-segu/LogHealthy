@@ -56,7 +56,8 @@ var ConversationThread = React.createClass({
             className="conversation-thread">
             <ConversationDetail
               conversation={conversation}
-              type="outbound" />
+              type="outbound"
+              response={false} />
           </li>
         );
       });

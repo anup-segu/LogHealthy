@@ -1,11 +1,12 @@
 var React = require('react');
-var PropTypes = React.PropTypes;
+var Collapse = require('react-bootstrap/lib/Collapse');
 
 var ConversationDetail = React.createClass({
   getInitialState: function() {
     return {
       conversation: this.props.conversation,
       type: this.props.type,
+      response: this.props.response,
       detail: false
     };
   },
@@ -72,6 +73,20 @@ var ConversationDetail = React.createClass({
   },
 
   header: function() {
+    if (this.props.response) {
+      return (
+        <div className="row conversation-header">
+          <h5 className="conversation-subject">
+            Re: {this.state.conversation.subject}
+          </h5>
+          <button
+            className="btn btn-default btn-sm conversation-show-btn"
+            onClick={this.toggleDetail}>
+            {this.buttonContent()}
+          </button>
+        </div>
+      );
+    }
     return (
       <div className="row conversation-header">
         <h4 className="conversation-subject">
@@ -93,7 +108,8 @@ var ConversationDetail = React.createClass({
           <li className="conversation-thread">
             <ConversationDetail
               conversation={response}
-              type={this.oppositeType()}/>
+              type={this.oppositeType()}
+              response={true}/>
           </li>
         );
       }.bind(this));
@@ -106,25 +122,20 @@ var ConversationDetail = React.createClass({
   },
 
   detail: function() {
-    if (this.state.detail) {
-      return (
+    return (
+      <Collapse in={this.state.detail}>
         <div className="width-fix">
           <p>{this.state.conversation.body}</p>
           {this.responses()}
         </div>
-      );
-    } else {
-      return (
-        <div className="width-fix">
-        </div>
-      );
-    }
+      </Collapse>
+    );
   },
 
   render: function() {
     return (
       <div className="thumbnail">
-        <div className="caption">
+        <div className="caption conversation-box">
           {this.header()}
           {this.location()}
           {this.time()}
