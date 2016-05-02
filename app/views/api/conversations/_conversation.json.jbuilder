@@ -1,5 +1,6 @@
 json.extract!(
   conversation,
+  :id,
   :author_id,
   :author_type,
   :recipient_id,

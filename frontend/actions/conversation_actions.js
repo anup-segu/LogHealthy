@@ -12,6 +12,19 @@ var ConversationActions = {
         });
       }
     });
+  },
+
+  createConversation: function (conversation) {
+    ConversationApiUtil.createConversation({
+      url: 'api/conversations',
+      conversation: conversation,
+      success: function (conversations) {
+        AppDispatcher.dispatch({
+          actionType: ConversationConstants.THREADS_RECEIVED,
+          conversations: conversations
+        });
+      }
+    });
   }
 };
 

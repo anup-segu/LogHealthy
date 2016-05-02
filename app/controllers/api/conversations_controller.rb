@@ -21,8 +21,10 @@ class Api::ConversationsController < ApplicationController
     end
 
     if @conversation.save
-      @parent_conversation = @conversation.parent_conversation
-      render "api/conversations/show"
+      # @parent_conversation = @conversation.parent_conversation
+      @inbox = current_user.received_threads
+      @outbox = current_user.authored_threads
+      render "api/conversations/index"
     else
       @errors = @conversation.errors.full_messages
       render "api/shared/error", status: 422

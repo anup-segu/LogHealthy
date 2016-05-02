@@ -447,6 +447,7 @@ html {
 
 .conversation-show-btn {
   float: right;
+  margin-right: 5px;
 }
 
 .thread-container {
@@ -462,4 +463,8 @@ html {
   display: inline-block;
   float: left;
   padding-right: 10px;
+}
+
+.reply-form {
+  margin-bottom: 15px;
 }

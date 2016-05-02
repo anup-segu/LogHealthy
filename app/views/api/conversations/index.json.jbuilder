@@ -10,7 +10,7 @@ end
 json.outbox do
   json.array!(@outbox) do |conversation|
     json.partial!(
-      'api/conversations/convseration',
+      'api/conversations/conversation',
       conversation: conversation
     )
   end

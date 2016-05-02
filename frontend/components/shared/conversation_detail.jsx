@@ -1,18 +1,21 @@
 var React = require('react');
 var Collapse = require('react-bootstrap/lib/Collapse');
 
+var ConversationForm = require('./conversation_form.jsx');
+
 var ConversationDetail = React.createClass({
   getInitialState: function() {
     return {
       conversation: this.props.conversation,
       type: this.props.type,
       response: this.props.response,
-      detail: false
+      detail: false,
+      form: false
     };
   },
 
   componentWillReceiveProps: function (newProps) {
-    this.setState({ conversation: newProps.conversation });
+    this.setState({ conversation: newProps.conversation, form: false });
   },
 
   oppositeType: function() {
@@ -50,9 +53,18 @@ var ConversationDetail = React.createClass({
 
   toggleDetail: function() {
     if (this.state.detail) {
-      this.setState({ detail: false });
+      this.setState({ detail: false, form: false });
     } else {
       this.setState({ detail: true });
+    }
+  },
+
+  toggleReply: function() {
+    if (this.state.form) {
+      this.refs.replyFormElement.clearForm();
+      this.setState({ form: false });
+    } else {
+      this.setState({ form: true, detail: true });
     }
   },
 
@@ -72,30 +84,49 @@ var ConversationDetail = React.createClass({
     }
   },
 
-  header: function() {
-    if (this.props.response) {
+  buttonReplyContent: function() {
+    if (this.state.form) {
       return (
-        <div className="row conversation-header">
-          <h5 className="conversation-subject">
-            Re: {this.state.conversation.subject}
-          </h5>
-          <button
-            className="btn btn-default btn-sm conversation-show-btn"
-            onClick={this.toggleDetail}>
-            {this.buttonContent()}
-          </button>
-        </div>
+        <span className="glyphicon glyphicon-remove-circle"
+          aria-hidden="true">
+        </span>
+      );
+    } else {
+      return (
+        <span className="glyphicon glyphicon-share-alt"
+          aria-hidden="true">
+        </span>
       );
     }
-    return (
-      <div className="row conversation-header">
+  },
+
+  header: function() {
+    if (this.props.response) {
+      var subjectLine = (
+        <h5 className="conversation-subject">
+          Re: {this.state.conversation.subject}
+        </h5>
+      );
+    } else {
+      subjectLine = (
         <h4 className="conversation-subject">
           {this.state.conversation.subject}
         </h4>
+      );
+    }
+
+    return (
+      <div className="row conversation-header">
+        {subjectLine}
         <button
           className="btn btn-default btn-sm conversation-show-btn"
           onClick={this.toggleDetail}>
           {this.buttonContent()}
+        </button>
+        <button
+          className="btn btn-default btn-sm conversation-show-btn"
+          onClick={this.toggleReply}>
+          {this.buttonReplyContent()}
         </button>
       </div>
     );
@@ -126,7 +157,20 @@ var ConversationDetail = React.createClass({
       <Collapse in={this.state.detail}>
         <div className="width-fix">
           <p>{this.state.conversation.body}</p>
+          {this.replyForm()}
           {this.responses()}
+        </div>
+      </Collapse>
+    );
+  },
+
+  replyForm: function() {
+    return (
+      <Collapse in={this.state.form}>
+        <div className="width-fix">
+          <ConversationForm
+            ref="replyFormElement"
+            parent={this.state.conversation} />
         </div>
       </Collapse>
     );
