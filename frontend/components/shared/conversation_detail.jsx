@@ -1,7 +1,7 @@
 var React = require('react');
 var Collapse = require('react-bootstrap/lib/Collapse');
 
-var ConversationForm = require('./conversation_form.jsx');
+var ReplyForm = require('./reply_form.jsx');
 
 var ConversationDetail = React.createClass({
   getInitialState: function() {
@@ -136,8 +136,9 @@ var ConversationDetail = React.createClass({
     var responseConversations =
       this.state.conversation.responses.map(function (response) {
         return (
-          <li className="conversation-thread">
+          <li key={response.id} className="conversation-thread">
             <ConversationDetail
+              key={response.id}
               conversation={response}
               type={this.oppositeType()}
               response={true}/>
@@ -168,7 +169,7 @@ var ConversationDetail = React.createClass({
     return (
       <Collapse in={this.state.form}>
         <div className="width-fix">
-          <ConversationForm
+          <ReplyForm
             ref="replyFormElement"
             parent={this.state.conversation} />
         </div>
