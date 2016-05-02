@@ -48,6 +48,10 @@ class Doctor < ActiveRecord::Base
     self.save
     self.session_token
   end
+  
+  def name
+    self.first_name + " " + self.last_name
+  end
 
   def authored_threads
     self.authored_conversations.where(parent_id: nil)

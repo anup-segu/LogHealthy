@@ -431,6 +431,19 @@ html {
   padding-left: 0;
 }
 
+.conversation-header {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.conversation-subject {
+  display: inline-block;
+}
+
+.conversation-show-btn {
+  float: right;
+}
+
 .thread-container {
   width: 100%;
   padding: inherit;

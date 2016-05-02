@@ -2,7 +2,7 @@ var React = require('react');
 
 var ConversationStore = require('../../../../stores/conversation_store.js');
 var ConversationActions = require('../../../../actions/conversation_actions.js');
-var ConversationDetail = require('./conversation_detail.jsx');
+var ConversationDetail = require('../../../shared/conversation_detail.jsx');
 
 var ConversationThread = React.createClass({
   getInitialState: function() {

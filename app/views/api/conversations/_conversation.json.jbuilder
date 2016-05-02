@@ -10,6 +10,9 @@ json.extract!(
   :created_at
 )
 
+json.author conversation.author.name
+json.recipient conversation.recipient.name
+
 json.responses do
   json.array!(conversation.responses) do |response|
     json.partial!(
