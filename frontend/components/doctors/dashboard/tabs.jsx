@@ -1,20 +1,24 @@
 var React = require('react');
 
 var DoctorStore = require('../../../stores/doctor_store.js');
+var PatientSearch = require('./patients/patient_search.jsx');
 
 var Tabs = React.createClass({
 
   getInitialState: function() {
-    return { tabPane: "patients", logData: DoctorStore.currentDoctor().logs };
+    return {
+      tabPane: "patients",
+      patients: DoctorStore.currentDoctor().patients
+    };
   },
 
   componentDidMount: function() {
-    this.doctorListener = DoctorStore.addListener(this._updateLogData);
+    this.doctorListener = DoctorStore.addListener(this._updatePatients);
   },
 
   _updateLogData: function() {
     if (DoctorStore.currentDoctor()){
-      this.setState({ logData: DoctorStore.currentDoctor().logs });
+      this.setState({ pateints: DoctorStore.currentDoctor().patients });
     }
   },
 
@@ -62,8 +66,8 @@ var Tabs = React.createClass({
     switch(this.state.tabPane) {
       case "patients":
         content = (
-          <div className="container">
-            Patients
+          <div className="container search-section">
+            <PatientSearch patients={this.state.patients} />
           </div>
         );
         break;
