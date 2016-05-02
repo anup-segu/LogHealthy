@@ -25,6 +25,35 @@ patient_doctor = PatientDoctor.create(
   doctor_id: 1
 )
 
+conversation = Conversation.create(
+  author_id: 1,
+  author_type: "Patient",
+  recipient_id: 1,
+  recipient_type: "Doctor",
+  subject: Faker::Lorem.sentence,
+  body: Faker::Lorem.paragraph
+)
+
+response = Conversation.create(
+  author_id: 1,
+  author_type: "Doctor",
+  recipient_id: 1,
+  recipient_type: "Patient",
+  parent_id: 1,
+  subject: Faker::Lorem.sentence,
+  body: Faker::Lorem.paragraph
+)
+
+response2 = Conversation.create(
+  author_id: 1,
+  author_type: "Patient",
+  recipient_id: 1,
+  recipient_type: "Doctor",
+  parent_id: 2,
+  subject: Faker::Lorem.sentence,
+  body: Faker::Lorem.paragraph
+)
+
 10.times do |num|
   Patient.create(
     email: Faker::Internet.email,

@@ -11,6 +11,9 @@ json.extract!(
 
 json.responses do
   json.array!(conversation.responses) do |response|
-    json.partial!('api/conversations/conversation', conversation: response)
+    json.partial!(
+      'api/conversations/conversation',
+      conversation: response
+    )
   end
 end
