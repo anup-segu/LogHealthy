@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resource :doctor, only: [:create]
     resource :session, only: [:create, :destroy, :show]
     resources :logs, only: [:create, :destroy, :update]
+    resources :conversations, only: [:create, :index]
   end
 end

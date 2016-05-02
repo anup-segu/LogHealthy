@@ -15,4 +15,9 @@ class Conversation < ActiveRecord::Base
     primary_key: :id,
     foreign_key: :parent_id,
     class_name: :Conversation
+
+  def parent_conversation
+    return self if self.parent_id.nil?
+    Conversation.find(self.parent_id).parent_conversation
+  end
 end
