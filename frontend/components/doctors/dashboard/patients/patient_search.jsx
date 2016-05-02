@@ -23,8 +23,13 @@ var PatientSearch = React.createClass({
   },
 
   viewPatient: function (eventKey) {
+    this.clearForm();
     this.setState({ searchStr: "" });
     DoctorActions.viewPatient(eventKey);
+  },
+
+  clearForm: function() {
+    this.refs.searchBar.value = "";
   },
 
   matches: function() {
@@ -70,6 +75,7 @@ var PatientSearch = React.createClass({
       <div className="input-group patient-search-bar">
         <input
           type="text"
+          ref="searchBar"
           className="form-control"
           defaultValue={this.state.searchStr}
           onChange={this.updateSearch}
