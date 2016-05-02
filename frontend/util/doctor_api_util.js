@@ -28,4 +28,12 @@ module.exports = {
 			error: error
 		});
 	},
+
+	viewPatient: function (options) {
+		$.ajax({
+			url: options.url,
+			method: 'get',
+			success: options.success
+		});
+	},
 };

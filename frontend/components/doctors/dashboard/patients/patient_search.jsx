@@ -3,6 +3,7 @@ var Clearfix = require('react-bootstrap/lib/Clearfix');
 var MenuItem = require('react-bootstrap/lib/MenuItem');
 
 var DoctorStore = require('../../../../stores/doctor_store.js');
+var DoctorActions = require('../../../../actions/doctor_actions.js');
 
 var PatientSearch = React.createClass({
   getInitialState: function() {
@@ -21,13 +22,19 @@ var PatientSearch = React.createClass({
     this.setState({ searchStr: event.target.value });
   },
 
+  viewPatient: function (eventKey) {
+    this.setState({ searchStr: "" });
+    DoctorActions.viewPatient(eventKey);
+  },
+
   matches: function() {
     if (this.state.searchStr.length > 0) {
       var matchedPatients = [];
 
       this.state.patients.forEach( function (patient) {
         var patientName = patient.first_name + " " + patient.last_name;
-        if (patientName.indexOf(this.state.searchStr) > -1) {
+        patientName = patientName.toLowerCase();
+        if (patientName.indexOf(this.state.searchStr.toLowerCase()) > -1) {
           matchedPatients.push(patient);
         }
       }.bind(this));
@@ -40,9 +47,13 @@ var PatientSearch = React.createClass({
 
       matchedPatients = matchedPatients.map( function(patient) {
         return (
-          <MenuItem>{patient.first_name + " " + patient.last_name}</MenuItem>
+          <MenuItem
+            key={patient.id}
+            onSelect={this.viewPatient}
+            eventKey={patient.id}>
+            {patient.first_name + " " + patient.last_name}</MenuItem>
         );
-      });
+      }.bind(this));
 
       return (
         <ul className="dropdown-menu patient-hits">
@@ -61,7 +72,7 @@ var PatientSearch = React.createClass({
           type="text"
           className="form-control"
           onChange={this.updateSearch}
-          placeholder="Search patients by name... ex. Sally Smith"
+          placeholder="Search your patients by name... ex. Patient Demo"
           aria-describedby="basic-addon2" />
         <span
           className="input-group-addon"

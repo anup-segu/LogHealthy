@@ -2,6 +2,7 @@ var AuthConstants = require('../constants/auth_constants');
 var AuthActions = require("../actions/auth_actions");
 var DoctorApiUtil = require('../util/doctor_api_util');
 var DoctorStore = require('../stores/doctor_store');
+var DoctorConstants = require('../constants/doctor_constants');
 var AppDispatcher = require('../dispatcher/dispatcher');
 var PatientActions = require('../actions/patient_actions');
 
@@ -68,6 +69,22 @@ var DoctorActions = {
 			DoctorActions.removeCurrentDoctor,
 			DoctorActions.handleError
 		);
+	},
+
+	viewPatient: function (id) {
+		DoctorApiUtil.viewPatient({
+			url: "api/patients/" + id,
+			success: function (patient) {
+				DoctorActions.servePatient(patient);
+			}
+		});
+	},
+
+	servePatient: function (patient) {
+		AppDispatcher.dispatch({
+			actionType: DoctorConstants.VIEW_PATIENT,
+			patient: patient
+		});
 	}
 };
 

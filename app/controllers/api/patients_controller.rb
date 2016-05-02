@@ -11,6 +11,16 @@ class Api::PatientsController < ApplicationController
     end
   end
 
+  def show
+    @patient = Patient.find(params[:id])
+
+    if @patient
+      render "api/patients/show"
+    else
+      render "api/shared/error", status: 422
+    end
+  end
+
   private
   def patient_params
     params
