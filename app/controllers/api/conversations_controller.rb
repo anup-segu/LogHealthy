@@ -1,4 +1,14 @@
 class Api::ConversationsController < ApplicationController
+  def index
+    if (current_user.nil?)
+      @errors = ["No user logged in"]
+      render "api/shared/error", status: 422
+    end
+    @inbox = current_user.received_threads
+    @outbox = current_user.authored_threads
+    render "api/conversations/index"
+  end
+
   def create
     @conversation = Conversation.new(conversation_params)
 

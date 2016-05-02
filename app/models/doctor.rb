@@ -23,7 +23,7 @@ class Doctor < ActiveRecord::Base
   has_many :authored_conversations,
     as: :author,
     class_name: :Conversation
-    
+
   has_many :recipient_conversations,
     as: :recipient,
     class_name: :Conversation
@@ -47,6 +47,14 @@ class Doctor < ActiveRecord::Base
     self.session_token = new_session_token
     self.save
     self.session_token
+  end
+
+  def authored_threads
+    self.authored_conversations.where(parent_id: nil)
+  end
+
+  def received_threads
+    self.recipient_conversations.where(parent_id: nil)
   end
 
   private

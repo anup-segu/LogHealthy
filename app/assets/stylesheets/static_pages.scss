@@ -414,3 +414,34 @@ html {
 .patient-detail-tab:hover {
   cursor: pointer;
 }
+
+//conversations
+
+.conversation-section {
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.conversation-thread {
+  list-style: none;
+}
+
+.conversation-list {
+  padding-left: 0;
+}
+
+.thread-container {
+  width: 100%;
+  padding: inherit;
+}
+
+.time-tag {
+  display: inline-block;
+}
+
+.location-tag {
+  display: inline-block;
+  float: left;
+  padding-right: 10px;
+}

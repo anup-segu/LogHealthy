@@ -6,7 +6,8 @@ json.extract!(
   :recipient_type,
   :parent_id,
   :subject,
-  :body
+  :body,
+  :created_at
 )
 
 json.responses do

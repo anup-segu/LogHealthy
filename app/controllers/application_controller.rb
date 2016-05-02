@@ -17,6 +17,12 @@ class ApplicationController < ActionController::Base
       Doctor.find_by(session_token: session[:session_token])
   end
 
+  def current_user
+    return current_patient if current_patient
+    return current_doctor if current_doctor
+    nil
+  end
+
   def logout!
     current_patient.reset_session_token! if current_patient
     current_doctor.reset_session_token! if current_doctor

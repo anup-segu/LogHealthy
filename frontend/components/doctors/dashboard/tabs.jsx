@@ -3,6 +3,7 @@ var React = require('react');
 var DoctorStore = require('../../../stores/doctor_store.js');
 var PatientSearch = require('./patients/patient_search.jsx');
 var PatientDetail = require('./patients/patient_detail.jsx');
+var ConversationThread = require('./conversations/conversation_thread.jsx');
 
 var Tabs = React.createClass({
 
@@ -74,6 +75,12 @@ var Tabs = React.createClass({
     }
   },
 
+  conversationDetail: function() {
+    return (
+      <ConversationThread />
+    );
+  },
+
   tabContent: function() {
     var content;
     switch(this.state.tabPane) {
@@ -86,7 +93,11 @@ var Tabs = React.createClass({
         );
         break;
       case "conversations":
-        content = <div>"conversations"</div>;
+        content = (
+          <div className="container conversation-section">
+            {this.conversationDetail()}
+          </div>
+        );
         break;
     }
 

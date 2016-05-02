@@ -63,6 +63,14 @@ class Patient < ActiveRecord::Base
     results
   end
 
+  def authored_threads
+    self.authored_conversations.where(parent_id: nil)
+  end
+
+  def received_threads
+    self.recipient_conversations.where(parent_id: nil)
+  end
+
   private
   def new_session_token
     SecureRandom.urlsafe_base64(16)
