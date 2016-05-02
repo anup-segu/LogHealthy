@@ -23,6 +23,10 @@ html {
   height: 100%;
 }
 
+.width-fix {
+  width: 100%;
+}
+
 // sign up form format
 
 .splash-form {
@@ -392,9 +396,21 @@ html {
 .patient-hits {
   display: block;
   width: 100%;
-  // max-width: 500px;
 }
 
 .patient-search-bar {
   // max-width: 500px;
+}
+
+//doctor patient detail
+
+.patient-detail-container {
+  width: 100%;
+  margin-top: 15px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.patient-detail-tab:hover {
+  cursor: pointer;
 }

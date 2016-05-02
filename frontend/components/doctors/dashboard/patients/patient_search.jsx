@@ -71,6 +71,7 @@ var PatientSearch = React.createClass({
         <input
           type="text"
           className="form-control"
+          defaultValue={this.state.searchStr}
           onChange={this.updateSearch}
           placeholder="Search your patients by name... ex. Patient Demo"
           aria-describedby="basic-addon2" />
