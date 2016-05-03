@@ -10,22 +10,28 @@ ConversationStore.updateConversations = function (conversations) {
   _inbox = conversations.inbox;
   _outbox = conversations.outbox;
   _errors = null;
-  _status = true;
+  _status = null;
 };
 
-ConversationStore.updateStatus = function() {
+ConversationStore.updateStatus = function (status) {
+  _status = status;
+};
+
+ConversationStore.updateErrors = function (errors) {
+  _errors = errors;
+};
+
+ConversationStore.status = function() {
   var status = _status;
   _status = null;
   return status;
 };
 
-ConversationStore.updateErrors = function(errors) {
-  _errors = errors;
-};
-
 ConversationStore.errors = function() {
   if (_errors) {
-    return [].slice.call(_errors);
+    var errors = _errors;
+    _errors = null;
+    return [].slice.call(errors);
   }
   return;
 };
@@ -42,9 +48,11 @@ ConversationStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case ConversationConstants.THREADS_RECEIVED:
       ConversationStore.updateConversations(payload.conversations);
+      ConversationStore.updateStatus(true);
       break;
     case ConversationConstants.CONVERSATION_ERROR:
       ConversationStore.updateErrors(payload.errors);
+      ConversationStore.updateStatus(false);
       break;
   }
   ConversationStore.__emitChange();

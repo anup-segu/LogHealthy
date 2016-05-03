@@ -24,10 +24,27 @@ var ConversationForm = React.createClass({
   },
 
   _updateStatus: function() {
-    this.setState({
-      submitted: ConversationStore.updateStatus(),
-      errors: ConversationStore.errors()
-    });
+    var status = ConversationStore.status();
+
+    if (status) {
+      this.setState({
+        submitted: status,
+        errors: ConversationStore.errors(),
+        recipient_id: null,
+        recipient_type: "Patient",
+        subject: "",
+        body: "",
+        searchStr: "",
+      });
+      this.refs.searchBar.value = "";
+      this.refs.subjectField.value = "";
+      this.refs.bodyField.value = "";
+    } else {
+      this.setState({
+        submitted: status,
+        errors: ConversationStore.errors()
+      });
+    }
   },
 
   _resetForm: function() {
@@ -111,7 +128,7 @@ var ConversationForm = React.createClass({
   handleSubmit: function (event) {
     event.preventDefault();
     ConversationActions.createConversation({
-      subject: this.state.subject,
+      subject: this.state.subject ? this.state.subject : "(No Subject)",
       recipient_id: this.state.recipient_id,
       recipient_type: this.state.recipient_type,
       body: this.state.body
@@ -120,7 +137,6 @@ var ConversationForm = React.createClass({
 
   message: function() {
     if (this.state.submitted) {
-      this._resetForm();
       return (
         <div className="alert alert-success width-fix" role="alert">
           Message was sent!

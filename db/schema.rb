@@ -11,21 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502063640) do
+ActiveRecord::Schema.define(version: 20160503161029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "conversations", force: :cascade do |t|
-    t.integer  "author_id",      null: false
-    t.string   "author_type",    null: false
-    t.integer  "recipient_id",   null: false
-    t.string   "recipient_type", null: false
+    t.integer  "author_id",                               null: false
+    t.string   "author_type",                             null: false
+    t.integer  "recipient_id",                            null: false
+    t.string   "recipient_type",                          null: false
     t.integer  "parent_id"
-    t.string   "subject"
-    t.text     "body",           null: false
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "subject",        default: "(No Subject)"
+    t.text     "body",                                    null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_index "conversations", ["author_id"], name: "index_conversations_on_author_id", using: :btree
