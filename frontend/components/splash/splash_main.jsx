@@ -32,7 +32,7 @@ var SplashBody = React.createClass({
   getStartedButton: function() {
     return <button
       className="btn btn-default btn-lg start-landing splash-button"
-      onClick={this.openCreateModal}>Get Started Now</button>;
+      onClick={this.openCreateModal}>Get Started for Free</button>;
   },
 
   getStartedLearn: function() {
@@ -45,15 +45,14 @@ var SplashBody = React.createClass({
       return (
         <div className="container-fluid splash-body">
           <div className="blockout blockout-space"></div>
-          <div className="container">
-            <h1 className="text-center headline">Content Here</h1>
-            <h4 className="text-center headline">Taglines Here</h4>
-            <div className="blockout blockout-small"></div>
-            <div className="container-fluid">{this.getStartedButton()}</div>
-            <div className="blockout blockout-small"></div>
-            <div className="container-fluid">{this.getStartedLearn()}</div>
+          <div className="container splash-copy">
+            <h1 className="text-center headline">Move Health Forward.</h1>
+            <h4 className="text-center headline">LogHealthy is the easiest way for diabetic patients to</h4>
+            <h4 className="text-center headline">track their glucose-and keep their doctor updated.</h4>
+
+            <div className="container-fluid splash-btn-container">{this.getStartedButton()}</div>
           </div>
-          <div className="container-fluid">
+          <div className="container-fluid detail-content">
             <SplashDetail />
           </div>
         </div>

@@ -55,17 +55,17 @@ var SplashDetail = React.createClass({
 
   patientButtonClass: function() {
     if (this.state.patientProduct && this.state.productContent === "carousel") {
-      return "btn btn-primary active";
+      return "btn btn-patient-active";
     } else {
-      return "btn btn-default";
+      return "btn btn-patient";
     }
   },
 
   doctorButtonClass: function() {
     if (this.state.doctorProduct && this.state.productContent === "carousel") {
-      return "btn btn-primary active";
+      return "btn btn-doctor-active";
     } else {
-      return "btn btn-default";
+      return "btn btn-doctor";
     }
   },
 
@@ -263,7 +263,7 @@ var SplashDetail = React.createClass({
     if (this.state.productContent === "carousel") {
       return (
         <div className="container text-center">
-          <div className="btn-group" role="group" aria-label="...">
+          <div className="btn-group">
             <button
               className={this.patientButtonClass()}
               onClick={this.moveToPatient}>

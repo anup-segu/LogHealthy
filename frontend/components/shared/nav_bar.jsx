@@ -80,11 +80,6 @@ module.exports = React.createClass({
 
   logo: (
     <div className="navbar-left nav-block">
-      <a href="#" onClick={this.redirect}>
-        <img
-          src="http://i.imgur.com/yVQrigv.png?1"
-          className="logo" />
-      </a>
     </div>
   ),
 

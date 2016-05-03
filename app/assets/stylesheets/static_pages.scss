@@ -11,6 +11,7 @@ $btn-color-primary: #6026D2;
 @import "https://fonts.googleapis.com/css?family=Montserrat|Khula:400,600";
 @import "nav_bar/nav_bar.scss";
 @import "splash/splash_detail.scss";
+@import "splash/splash_main.scss";
 
 
 // general app styles
@@ -44,45 +45,6 @@ html {
 
 // splash page formats
 
-.splash-body {
-  background-color: #fc636b;
-  height: 400px;
-  margin-top: 0;
-}
-
-.headline {
-  color: #ffffff;
-}
-
-.blockout {
-  display: block;
-}
-
-.blockout-space {
-  height: 80px;
-}
-
-.blockout-small {
-  height: 40px;
-}
-
-.splash-button {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  color: #ffffff;
-  width: 180px;
-}
-
-.start-landing {
-  background-color: #a177ff;
-  border-color: #a177ff;
-}
-
-.start-learn {
-  background-color: #3396FB;
-  border-color: #3396FB;
-}
 
 // Dashboard Layout
 .content-view {

@@ -1,0 +1,65 @@
+$font-bold: Montserrat, sans-serif;
+$font-primary: Khula, sans-serif;
+
+$color-1: #6026D2;
+$color-2: #18D8B7;
+$color-3: #fc636b;
+
+$color-transition: #fb783f;
+
+$Logo-main: "http://i.imgur.com/naTFrh2.png";
+$Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
+
+.splash-body {
+  background: $color-3; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient($color-3, $color-transition); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($color-3, $color-transition); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($color-3, $color-transition); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($color-3, $color-transition); /* Standard syntax */
+
+  height: 400px;
+  margin-top: 55px;
+}
+
+.splash-copy {
+  margin-top: 45px;
+}
+
+.headline {
+  color: #ffffff;
+}
+
+h1.headline {
+  font-family: $font-bold;
+  padding-bottom: 25px;
+}
+
+h4.headline {
+  font-family: $font-primary;
+}
+
+.splash-button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color: #ffffff;
+  width: 180px;
+}
+
+.splash-btn-container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.start-landing {
+  background-color: $color-1;
+  border-color: $color-1;
+  font-family: $font-bold;
+  width: 230px;
+}
+
+.start-landing:hover, .start-landing:focus {
+  background-color: $color-2;
+  border-color: $color-2;
+  color: #ffffff;
+}

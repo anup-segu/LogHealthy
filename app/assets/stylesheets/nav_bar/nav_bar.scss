@@ -4,6 +4,9 @@ $font-primary: Khula, sans-serif;
 $btn-color-primary: #6026D2;
 $btn-color-highlight: #18D8B7;
 
+$Logo-main: "http://i.imgur.com/naTFrh2.png";
+$Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
+
 .app-render > .navbar-custom {
   background: rgba(255, 255, 255, 0.9);
 }
@@ -48,9 +51,18 @@ $btn-color-highlight: #18D8B7;
 
 .nav-block {
   float: left;
-  height: 100%;
+  width: 200px;
+  height: 45px;
   margin-top: 5px;
   margin-bottom: 5px;
+  background-image: url("http://i.imgur.com/naTFrh2.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.nav-block:hover {
+  background-image: url("http://i.imgur.com/PxvTRoJ.png");
+  cursor: pointer;
 }
 
 .nav-button {

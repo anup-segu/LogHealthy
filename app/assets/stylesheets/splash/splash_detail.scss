@@ -5,6 +5,9 @@ $color-1: #6026D2;
 $color-2: #18D8B7;
 $color-3: #fc636b;
 
+.detail-content {
+  margin-top: 20px;
+}
 
 .splash-detail {
   position: relative;
@@ -110,6 +113,64 @@ $color-3: #fc636b;
 
 .detail-3 {
   color: $color-3;
+}
+
+.btn-patient {
+  border: 2px solid $color-1;
+  color: $color-1;
+  background-color: #ffffff;
+  font-family: $font-bold;
+}
+
+.btn-patient-active {
+  border: 2px solid $color-1;
+  color: #ffffff;
+  background-color: $color-1;
+  font-family: $font-bold;
+}
+
+.btn-patient-active:focus {
+  border: 2px solid $color-1;
+  color: #ffffff;
+  background-color: $color-1;
+  font-family: $font-bold;
+}
+
+.btn-patient-active:hover {
+  color: #ffffff;
+}
+
+.btn-patient:hover {
+  color: $color-1;
+}
+
+.btn-doctor {
+  border: 2px solid $color-2;
+  color: $color-2;
+  background-color: #ffffff;
+  font-family: $font-bold;
+}
+
+.btn-doctor-active {
+  border: 2px solid $color-2;
+  color: #ffffff;
+  background-color: $color-2;
+  font-family: $font-bold;
+}
+
+.btn-doctor-active:focus {
+  border: 2px solid $color-2;
+  color: #ffffff;
+  background-color: $color-2;
+  font-family: $font-bold;
+}
+
+.btn-doctor-active:hover {
+  color: #ffffff;
+}
+
+.btn-doctor:hover {
+  color: $color-2;
 }
 
 @keyframes left {
