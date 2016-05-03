@@ -1,8 +1,17 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+$font-bold: Montserrat, sans-serif;
+$font-primary: Khula, sans-serif;
+
+$btn-color-primary: #6026D2;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "https://fonts.googleapis.com/css?family=Montserrat|Khula:400,600";
+@import "nav_bar/nav_bar.scss";
+
+
 
 // general app styles
 .app-body {
@@ -129,52 +138,6 @@ html {
     to {right: 0}
 }
 
-// navbar formats
-
-.logo {
-  max-width: 200px;
-}
-
-.btn-custom {
-  margin-left: 5px;
-}
-
-.demo-dropdown {
-  display: block;
-}
-
-.nav-block {
-  float: left;
-  height: 100%;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-
-.nav-button {
-  float: right;
-  padding-top: 7px;
-  padding-bottom: 3px;
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-.nav-button {
-  margin-left: 5px;
-}
-
-.navbar-custom {
-  margin-bottom: 0;
-  box-shadow: 1px 1px 2px #888888;
-  z-index: 2;
-}
-
-.welcome-message {
-  padding-top: 7px;
-  text-align: right;
-  display: inline-block;
-  max-width: 250px;
-}
-
 // splash page formats
 
 .splash-body {
@@ -227,6 +190,7 @@ html {
 
 .sidebar {
   background-color: #2e3c54;
+  margin-top: 62px;
   margin-left: 0;
   position: fixed;
   width: 25%;
@@ -243,6 +207,7 @@ html {
 }
 
 .dashboard {
+  padding-top: 75px;
   margin-right: 0;
   height: 100%;
   width: 100%;

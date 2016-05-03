@@ -95,7 +95,11 @@ module.exports = React.createClass({
             <div className="nav navbar-nav navbar-right nav-button">
               <button
                 className="btn btn-primary btn-custom"
-                onClick={this.logout}>Logout</button>
+                onClick={this.logout}>
+                <span
+                  className="glyphicon glyphicon-lock"
+                  aria-hidden="true"></span> Logout
+              </button>
             </div>
             <div className="nav navbar-nav navbar-right nav-button">
               <div className="container welcome-message">
@@ -108,9 +112,10 @@ module.exports = React.createClass({
         return (
           <div className="nav navbar-nav navbar-right nav-button">
             <div className="btn-group">
-              <button type="button" className="btn btn-default">Demo</button>
               <button type="button"
-                className="btn btn-default dropdown-toggle"
+                className="btn btn-default btn-login">Demo</button>
+              <button type="button"
+                className="btn btn-default dropdown-toggle btn-login"
                 onClick = { this.dropdownToggle }>
                 <span className="caret"></span>
               </button>
@@ -129,8 +134,12 @@ module.exports = React.createClass({
               className="btn btn-success btn-custom"
               onClick={this.openCreateModal}>Get Started for FREE</button>
             <button
-              className="btn btn-primary btn-custom"
-              onClick={this.openSignInModal}>Sign In</button>
+              className="btn btn-primary btn-custom btn-login"
+              onClick={this.openSignInModal}>
+              <span
+                className="glyphicon glyphicon-lock"
+                aria-hidden="true"></span> Sign In
+            </button>
           </div>
         );
       }
@@ -167,7 +176,7 @@ module.exports = React.createClass({
   render: function() {
     return (
         <nav className="navbar navbar-default navbar-custom">
-          <div className="container-fluid">
+          <div className="container-fluid navbar-inner">
             {this.logo}
             {this.current_user()}
           </div>

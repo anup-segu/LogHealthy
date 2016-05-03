@@ -1,0 +1,69 @@
+$font-bold: Montserrat, sans-serif;
+$font-primary: Khula, sans-serif;
+
+$btn-color-primary: #6026D2;
+$btn-color-highlight: #6026D2;
+
+.app-render > .navbar-custom {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.btn-custom {
+  margin-left: 5px;
+  background-color: $btn-color-primary;
+  border: 2px solid $btn-color-primary;
+}
+
+.btn-login {
+  border: 2px solid $btn-color-primary;
+  background-color: #ffffff;
+  color: $btn-color-primary;
+}
+
+.btn-login:hover {
+  border: 2px solid $btn-color-primary;
+  background-color: #ffffff;
+  color: $btn-color-primary;
+}
+
+.demo-dropdown {
+  display: block;
+}
+
+.nav-block {
+  float: left;
+  height: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.nav-button {
+  float: right;
+  font-family: $font-bold;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.navbar-custom {
+  margin-bottom: 0;
+  position: absolute;
+  width: 100%;
+  border-radius: 0;
+  box-shadow: 1px 1px 2px #888888;
+  z-index: 2;
+}
+
+.welcome-message {
+  font-family: $font-bold;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  text-align: right;
+  display: inline-block;
+  max-width: 250px;
+}

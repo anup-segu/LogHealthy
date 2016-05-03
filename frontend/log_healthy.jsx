@@ -36,7 +36,7 @@ var App = React.createClass({
 
   render: function () {
     return (
-      <div>
+      <div className="app-render">
         <NavBar />
         <div className="container-fluid app-body">
           <AuthForm />
