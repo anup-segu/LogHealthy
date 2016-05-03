@@ -23,8 +23,18 @@ var ConversationActions = {
           actionType: ConversationConstants.THREADS_RECEIVED,
           conversations: conversations
         });
-      }
+      },
+      error: ConversationActions.handleError
     });
+  },
+
+  handleError: function (error) {
+    if (error.responseJSON) {
+			AppDispatcher.dispatch({
+				actionType: ConversationConstants.CONVERSATION_ERROR,
+				errors: error.responseJSON.errors
+			});
+		}
   }
 };
 

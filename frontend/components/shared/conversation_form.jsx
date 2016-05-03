@@ -18,6 +18,18 @@ var ConversationForm = React.createClass({
     };
   },
 
+  componentDidMount: function() {
+    this.conversationListener =
+      ConversationStore.addListener(this._updateStatus);
+  },
+
+  _updateStatus: function() {
+    this.setState({
+      submitted: ConversationStore.updateStatus(),
+      errors: ConversationStore.errors()
+    });
+  },
+
   _resetForm: function() {
     this.setState({
       recipient_id: null,
@@ -25,7 +37,8 @@ var ConversationForm = React.createClass({
       subject: "",
       body: "",
       searchStr: "",
-      submitted: true
+      submitted: true,
+      errors: null
     });
     this.refs.searchBar.value = "";
     this.refs.subjectField.value = "";
@@ -103,16 +116,25 @@ var ConversationForm = React.createClass({
       recipient_type: this.state.recipient_type,
       body: this.state.body
     });
-    if (this.state.recipient_id && this.state.subject && this.state.body) {
-      this._resetForm();
-    }
   },
 
-  successMessage: function() {
+  message: function() {
     if (this.state.submitted) {
+      this._resetForm();
       return (
         <div className="alert alert-success width-fix" role="alert">
           Message was sent!
+        </div>
+      );
+    } else if (this.state.errors) {
+      var errors = this.state.errors.map(function (error, i){
+        return <li key={i}>{error}</li>;
+      });
+      return (
+        <div className="alert alert-danger" role="alert">
+          <ul>
+            {errors}
+          </ul>
         </div>
       );
     }
@@ -123,7 +145,7 @@ var ConversationForm = React.createClass({
     return (
       <form className="reply-form"
         onSubmit={this.handleSubmit}>
-        {this.successMessage()}
+        {this.message()}
         <div className="form-group">
           <label htmlFor="to-field">Recipient: </label>
           <div className="input-group patient-search-bar form-search">

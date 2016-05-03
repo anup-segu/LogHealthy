@@ -13,7 +13,8 @@ module.exports = {
       url: options.url,
       data: { conversation: options.conversation },
       type: 'post',
-      success: options.success
+      success: options.success,
+      error: options.error
     });
   }
 };
