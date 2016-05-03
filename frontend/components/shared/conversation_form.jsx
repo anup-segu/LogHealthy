@@ -7,6 +7,17 @@ var ConversationStore = require('../../stores/conversation_store.js');
 
 var ConversationForm = React.createClass({
   getInitialState: function() {
+    if (this.props.doctor) {
+      return {
+        doctor: this.props.doctor,
+        recipient_id: this.props.doctor.id,
+        recipient_type: "Doctor",
+        subject: "",
+        body: "",
+        searchStr: "",
+        submitted: false
+      };
+    }
     return {
       patients: this.props.patients,
       recipient_id: null,
@@ -23,10 +34,14 @@ var ConversationForm = React.createClass({
       ConversationStore.addListener(this._updateStatus);
   },
 
+  componentWillUnmount: function() {
+    this.conversationListener.remove();
+  },
+
   _updateStatus: function() {
     var status = ConversationStore.status();
 
-    if (status) {
+    if (status && this.state.patients) {
       this.setState({
         submitted: status,
         errors: ConversationStore.errors(),
@@ -36,30 +51,34 @@ var ConversationForm = React.createClass({
         body: "",
         searchStr: "",
       });
-      this.refs.searchBar.value = "";
-      this.refs.subjectField.value = "";
-      this.refs.bodyField.value = "";
+      if (this.refs.subjectField) {
+        this.refs.subjectField.value = "";
+      }
+      if (this.refs.bodyField) {
+        this.refs.bodyField.value = "";
+      }
+      if (this.refs.searchBar) {
+        this.refs.searchBar.value = "";
+      }
+    } else if (status && this.state.doctor) {
+      this.setState({
+        submitted: status,
+        errors: ConversationStore.errors(),
+        subject: "",
+        body: ""
+      });
+      if (this.refs.subjectField) {
+        this.refs.subjectField.value = "";
+      }
+      if (this.refs.bodyField) {
+        this.refs.bodyField.value = "";
+      }
     } else {
       this.setState({
         submitted: status,
         errors: ConversationStore.errors()
       });
     }
-  },
-
-  _resetForm: function() {
-    this.setState({
-      recipient_id: null,
-      recipient_type: "Patient",
-      subject: "",
-      body: "",
-      searchStr: "",
-      submitted: true,
-      errors: null
-    });
-    this.refs.searchBar.value = "";
-    this.refs.subjectField.value = "";
-    this.refs.bodyField.value = "";
   },
 
   componentWillReceiveProps: function (newProps) {
@@ -157,32 +176,57 @@ var ConversationForm = React.createClass({
     return;
   },
 
+  searchField: function() {
+    if (this.state.doctor) {
+      var name =
+        this.state.doctor.first_name+" "+this.state.doctor.last_name;
+      return (
+        <div className="form-group">
+          <label htmlFor="to-field">Recipient: </label>
+          <input
+            type="text"
+            id="subject-field"
+            ref="subjectField"
+            className="form-control"
+            defaultValue={name}
+            disabled={true}
+            placeholder="Your subject here"/>
+          <p className="help-block">
+            We will send this to your doctor, no need to specify.</p>
+        </div>
+      );
+    }
+    return (
+      <div className="form-group">
+        <label htmlFor="to-field">Recipient: </label>
+        <div className="input-group patient-search-bar form-search">
+          <input
+            type="text"
+            ref="searchBar"
+            className="form-control"
+            defaultValue=""
+            onChange={this.updateSearch}
+            placeholder="Search your recipient by name... ex. Demo"
+            aria-describedby="basic-addon2" />
+          <span
+            className="input-group-addon"
+            id="basic-addon2">
+            <span
+              className="glyphicon glyphicon-search"
+              aria-hidden="true"></span>
+          </span>
+          {this.matches()}
+        </div>
+      </div>
+    );
+  },
+
   render: function() {
     return (
       <form className="reply-form"
         onSubmit={this.handleSubmit}>
         {this.message()}
-        <div className="form-group">
-          <label htmlFor="to-field">Recipient: </label>
-          <div className="input-group patient-search-bar form-search">
-            <input
-              type="text"
-              ref="searchBar"
-              className="form-control"
-              defaultValue=""
-              onChange={this.updateSearch}
-              placeholder="Search your recipient by name... ex. Demo"
-              aria-describedby="basic-addon2" />
-            <span
-              className="input-group-addon"
-              id="basic-addon2">
-              <span
-                className="glyphicon glyphicon-search"
-                aria-hidden="true"></span>
-            </span>
-            {this.matches()}
-          </div>
-        </div>
+        {this.searchField()}
         <div className="form-group">
           <label htmlFor="subject-field">Subject: </label>
           <input

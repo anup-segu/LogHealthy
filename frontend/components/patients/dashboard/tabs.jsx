@@ -4,10 +4,15 @@ var LogsIndex = require('./logs/logs_index.jsx');
 var LogActions = require('../../../actions/log_actions.js');
 var PatientStore = require('../../../stores/patient_store.js');
 var GlucoseChart = require('./progress/glucose_chart.jsx');
+var ConversationThread = require('./conversations/conversation_thread.jsx');
 
 var Tabs = React.createClass({
   getInitialState: function() {
-    return { tabPane: "logs", logData: PatientStore.currentPatient().logs };
+    return {
+      tabPane: "logs",
+      logData: PatientStore.currentPatient().logs,
+      doctor: PatientStore.currentPatient().doctor
+    };
   },
 
   componentDidMount: function() {
@@ -16,7 +21,10 @@ var Tabs = React.createClass({
 
   _updateLogData: function() {
     if (PatientStore.currentPatient()){
-      this.setState({ logData: PatientStore.currentPatient().logs});
+      this.setState({ 
+        logData: PatientStore.currentPatient().logs,
+        doctor: PatientStore.currentPatient().doctor
+      });
     }
   },
 
@@ -81,7 +89,11 @@ var Tabs = React.createClass({
         this.conversationClass = "";
         break;
       case "conversations":
-        content = <div>"conversations"</div>;
+        content = (
+          <div className="container conversation-section">
+            <ConversationThread doctor={this.state.doctor}/>
+          </div>
+        );
           this.logClass = "";
           this.progressClass = "";
           this.conversationClass = "active";

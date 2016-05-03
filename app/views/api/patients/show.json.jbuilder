@@ -3,6 +3,8 @@ if @patient
 
   json.logs @patient.logs_hash
 
+  json.doctor @patient.doctor
+
 else
   {}
 end
