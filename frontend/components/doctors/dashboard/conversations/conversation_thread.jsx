@@ -3,10 +3,17 @@ var React = require('react');
 var ConversationStore = require('../../../../stores/conversation_store.js');
 var ConversationActions = require('../../../../actions/conversation_actions.js');
 var ConversationDetail = require('../../../shared/conversation_detail.jsx');
+var NewForm = require('../../../shared/conversation_form.jsx');
 
 var ConversationThread = React.createClass({
   getInitialState: function() {
-    return { inbox: null, outbox: null, tab: "inbox" };
+    return {
+      inbox: null,
+      outbox: null,
+      tab: "inbox",
+      conversation: {},
+      patients: this.props.patients
+    };
   },
 
   componentDidMount: function() {
@@ -17,6 +24,10 @@ var ConversationThread = React.createClass({
 
   componentWillUnmount: function() {
     this.conversationListener.remove();
+  },
+
+  componentWillReceiveProps: function (newProps) {
+    this.setState({ patients: newProps.patients });
   },
 
   _updateConversations: function() {
@@ -69,6 +80,12 @@ var ConversationThread = React.createClass({
     return;
   },
 
+  newContent: function() {
+    return (
+      <NewForm patients={this.state.patients}/>
+    );
+  },
+
   inboxTab: function() {
     if (this.state.tab === "inbox") {
       return "active patient-detail-tab";
@@ -78,6 +95,13 @@ var ConversationThread = React.createClass({
 
   outboxTab: function() {
     if (this.state.tab === "outbox") {
+      return "active patient-detail-tab";
+    }
+    return "patient-detail-tab";
+  },
+
+  newTab: function() {
+    if (this.state.tab === "new") {
       return "active patient-detail-tab";
     }
     return "patient-detail-tab";
@@ -95,6 +119,12 @@ var ConversationThread = React.createClass({
     }
   },
 
+  toggleNew: function() {
+    if (this.state.tab !== "new") {
+      this.setState({ tab: "new" });
+    }
+  },
+
   navigation: function() {
     return (
       <nav className="navbar navbar-default">
@@ -108,6 +138,10 @@ var ConversationThread = React.createClass({
              onClick={this.toggleOutbox}>
              <a>Outbox</a>
            </li>
+           <li className={this.newTab()}
+             onClick={this.toggleNew}>
+             <a>New Conversation</a>
+           </li>
          </ul>
        </div>
       </nav>
@@ -119,6 +153,8 @@ var ConversationThread = React.createClass({
       return this.inboxContent();
     } else if (this.state.tab === "outbox") {
       return this.outboxContent();
+    } else if (this.state.tab === "new") {
+      return this.newContent();
     }
   },
 

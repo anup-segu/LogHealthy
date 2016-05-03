@@ -50,7 +50,7 @@ var ConversationForm = React.createClass({
             rows="3"
             onChange={this.updateBody}></textarea>
         </div>
-        <button className="btn btn-default">Reply</button>
+        <button className="btn btn-primary">Reply</button>
       </form>
     );
   }

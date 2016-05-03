@@ -77,7 +77,7 @@ var Tabs = React.createClass({
 
   conversationDetail: function() {
     return (
-      <ConversationThread />
+      <ConversationThread patients={this.state.patients}/>
     );
   },
 
