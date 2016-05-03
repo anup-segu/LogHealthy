@@ -2,7 +2,7 @@ $font-bold: Montserrat, sans-serif;
 $font-primary: Khula, sans-serif;
 
 $btn-color-primary: #6026D2;
-$btn-color-highlight: #6026D2;
+$btn-color-highlight: #18D8B7;
 
 .app-render > .navbar-custom {
   background: rgba(255, 255, 255, 0.9);
@@ -18,16 +18,28 @@ $btn-color-highlight: #6026D2;
   border: 2px solid $btn-color-primary;
 }
 
+.btn-custom:hover {
+  background-color: $btn-color-highlight;
+  border: 2px solid $btn-color-highlight;
+}
+
 .btn-login {
+  margin-left: 5px;
   border: 2px solid $btn-color-primary;
   background-color: #ffffff;
   color: $btn-color-primary;
 }
 
 .btn-login:hover {
-  border: 2px solid $btn-color-primary;
+  border: 2px solid $btn-color-highlight;
   background-color: #ffffff;
-  color: $btn-color-primary;
+  color: $btn-color-highlight;
+}
+
+.btn-dropdown-login:hover > button {
+  border: 2px solid $btn-color-highlight;
+  background-color: #ffffff;
+  color: $btn-color-highlight;
 }
 
 .demo-dropdown {

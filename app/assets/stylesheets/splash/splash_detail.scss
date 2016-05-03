@@ -1,0 +1,123 @@
+$font-bold: Montserrat, sans-serif;
+$font-primary: Khula, sans-serif;
+
+$color-1: #6026D2;
+$color-2: #18D8B7;
+$color-3: #fc636b;
+
+
+.splash-detail {
+  position: relative;
+  top: 60px;
+  height: 300px;
+  overflow-x: hidden;
+}
+
+.splash-patient {
+  position: relative;
+}
+
+.doctor-test {
+  position: relative;
+  left: 100%;
+  width: 100%;
+  height: 231px;
+  padding-top: 4px;
+  padding-left: auto;
+  padding-right: auto;
+  margin: 20px;
+  margin-top: 0px;
+}
+
+.doctor-sub-test-1 {
+  float: left;
+  position: absolute;
+  top: 0px;
+  height: 224px;
+  margin-right: 0;
+  padding: 0 5px 0 5px;
+  width: 31%;
+}
+
+.doctor-sub-test-2 {
+  float: left;
+  position: absolute;
+  margin-left: auto;
+  top: 0px;
+  height: 224px;
+  left: 33%;
+  padding: 0 5px 0 5px;
+  width: 31%;
+}
+
+.doctor-sub-test-3 {
+  float: left;
+  position: absolute;
+  margin-left: auto;
+  margin-right: 0;
+  top: 0px;
+  height: 224px;
+  left: 66%;
+  padding: 0 5px 0 5px;
+  width: 31%;
+}
+
+.product-move-left {
+  animation-name: left;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.product-move-right {
+  animation-name: right;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.patient-doctor-toggle {
+  max-width: 500px;
+  margin-bottom: 15px;
+}
+
+.about-icon {
+  width: 100%;
+  font-size: 40px;
+  padding-top: 10px;
+  padding-left: auto;
+  padding-right: auto;
+}
+
+.about-thumbnail {
+  box-shadow: 1px 1px 2px #888888;
+  height: 231px;
+}
+
+.about-header {
+  font-family: $font-bold;
+}
+
+.about-copy {
+  font-family: $font-primary;
+}
+
+.detail-1 {
+  color: $color-1;
+}
+
+.detail-2 {
+  color: $color-2;
+}
+
+.detail-3 {
+  color: $color-3;
+}
+
+@keyframes left {
+    from {left: 0px;}
+    to {left: -103%;}
+}
+
+@keyframes right {
+    from {right: 95%;}
+    to {right: 0%}
+}

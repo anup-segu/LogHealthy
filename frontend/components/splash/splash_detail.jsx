@@ -94,12 +94,12 @@ var SplashDetail = React.createClass({
           <div className="thumbnail about-thumbnail">
             <div className="container about-icon">
               <span
-                className="glyphicon glyphicon-cloud-upload"
+                className="glyphicon glyphicon-cloud-upload detail-1"
                 aria-hidden="true"></span>
             </div>
             <div className="caption">
-              <h4>Track Your Glucose in One Location.</h4>
-              <p>No more paper logs - ever. Plus, you keep your doctor in the loop too.</p>
+              <h4 className="about-header">Track Your Glucose in One Location.</h4>
+              <p className="about-copy">No more paper logs - ever. Plus, you keep your doctor in the loop too.</p>
             </div>
           </div>
         </div>
@@ -107,12 +107,12 @@ var SplashDetail = React.createClass({
           <div className="thumbnail about-thumbnail">
             <div className="container about-icon">
               <span
-                className="glyphicon glyphicon-stats"
+                className="glyphicon glyphicon-stats detail-2"
                 aria-hidden="true"></span>
             </div>
             <div className="caption">
-              <h4>Visualize and Optimize Your Treatment.</h4>
-              <p>Identify trends in your treatment faster with our visualization tools.</p>
+              <h4 className="about-header">Visualize and Optimize Your Treatment.</h4>
+              <p className="about-copy">Identify trends in your treatment faster with our visualization tools.</p>
             </div>
           </div>
         </div>
@@ -120,12 +120,12 @@ var SplashDetail = React.createClass({
           <div className="thumbnail about-thumbnail">
             <div className="container about-icon">
               <span
-                className="glyphicon glyphicon-comment"
+                className="glyphicon glyphicon-comment detail-3"
                 aria-hidden="true"></span>
             </div>
             <div className="caption">
-              <h4>Communicate With Your Doctor.</h4>
-              <p>Messaging platform to connect with the experts whenever you need it.</p>
+              <h4 className="about-header">Communicate With Your Doctor. Anywhere.</h4>
+              <p className="about-copy">Messaging platform to connect with the experts whenever you need it.</p>
             </div>
           </div>
         </div>
@@ -134,12 +134,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-ok"
+                  className="glyphicon glyphicon-ok detail-1"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Instantly Follow Your Patients Progress.</h4>
-                <p>Follow their progress and quickly spot patterns to optimize treatment.</p>
+                <h4 className="about-header">Instantly Follow Your Patients Progress.</h4>
+                <p className="about-copy">Follow their progress and quickly spot patterns to optimize treatment.</p>
               </div>
             </div>
           </div>
@@ -147,12 +147,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-pencil"
+                  className="glyphicon glyphicon-pencil detail-2"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Update Insulin Treatment In Realtime.</h4>
-                <p>Dynamic tools available to update patient's treatment and provide personalized attention.</p>
+                <h4 className="about-header">Update Insulin Treatment In Realtime.</h4>
+                <p className="about-copy">Dynamic tools available to update patient's treatment and provide personalized attention.</p>
               </div>
             </div>
           </div>
@@ -160,12 +160,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-envelope"
+                  className="glyphicon glyphicon-envelope detail-3"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Contact And Respond To Patients Seamlessly.</h4>
-                <p>Convenient options to communicate with your patients. Forget the rolodex. </p>
+                <h4 className="about-header">Contact And Respond To Patients Seamlessly.</h4>
+                <p className="about-copy">Convenient options to communicate with your patients. Forget the rolodex. </p>
               </div>
             </div>
           </div>
@@ -181,12 +181,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-cloud-upload"
+                  className="glyphicon glyphicon-cloud-upload detail-1"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Track Your Glucose in One Location.</h4>
-                <p>No more paper logs - ever. Plus, you keep your doctor in the loop too.</p>
+                <h4 className="about-header">Track Your Glucose in One Location.</h4>
+                <p className="about-copy">No more paper logs - ever. Plus, you keep your doctor in the loop too.</p>
               </div>
             </div>
           </div>
@@ -194,12 +194,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-stats"
+                  className="glyphicon glyphicon-stats detail-2"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Visualize and Optimize Your Treatment.</h4>
-                <p>Identify trends in your treatment faster with our visualization tools.</p>
+                <h4 className="about-header">Visualize and Optimize Your Treatment.</h4>
+                <p className="about-copy">Identify trends in your treatment faster with our visualization tools.</p>
               </div>
             </div>
           </div>
@@ -207,12 +207,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-comment"
+                  className="glyphicon glyphicon-comment detail-3"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Communicate With Your Doctor.</h4>
-                <p>Messaging platform to connect with the experts whenever you need it.</p>
+                <h4 className="about-header">Communicate With Your Doctor. Anywhere.</h4>
+                <p className="about-copy">Messaging platform to connect with the experts whenever you need it.</p>
               </div>
             </div>
           </div>
@@ -220,12 +220,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-ok"
+                  className="glyphicon glyphicon-ok detail-1"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Instantly Follow Your Patients Progress.</h4>
-                <p>Follow their progress and quickly spot patterns to optimize treatment.</p>
+                <h4 className="about-header">Instantly Follow Your Patients Progress.</h4>
+                <p className="about-copy">Follow their progress and quickly spot patterns to optimize treatment.</p>
               </div>
             </div>
           </div>
@@ -233,12 +233,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-pencil"
+                  className="glyphicon glyphicon-pencil detail-2"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Update Insulin Treatment In Realtime.</h4>
-                <p>Dynamic tools available to update patient's treatment and provide personalized attention.</p>
+                <h4 className="about-header">Update Insulin Treatment In Realtime.</h4>
+                <p className="about-copy">Dynamic tools available to update patient's treatment and provide personalized attention.</p>
               </div>
             </div>
           </div>
@@ -246,12 +246,12 @@ var SplashDetail = React.createClass({
             <div className="thumbnail about-thumbnail">
               <div className="container about-icon">
                 <span
-                  className="glyphicon glyphicon-envelope"
+                  className="glyphicon glyphicon-envelope detail-3"
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4>Contact And Respond To Patients Seamlessly.</h4>
-                <p>Convenient options to communicate with your patients. Forget the rolodex. </p>
+                <h4 className="about-header">Contact And Respond To Patients Seamlessly.</h4>
+                <p className="about-copy">Convenient options to communicate with your patients. Forget the rolodex. </p>
               </div>
             </div>
           </div>

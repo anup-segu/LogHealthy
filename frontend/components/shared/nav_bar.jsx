@@ -94,7 +94,7 @@ module.exports = React.createClass({
           <div className="nav-button">
             <div className="nav navbar-nav navbar-right nav-button">
               <button
-                className="btn btn-primary btn-custom"
+                className="btn btn-primary btn-login"
                 onClick={this.logout}>
                 <span
                   className="glyphicon glyphicon-lock"
@@ -111,7 +111,7 @@ module.exports = React.createClass({
       } else {
         return (
           <div className="nav navbar-nav navbar-right nav-button">
-            <div className="btn-group">
+            <div className="btn-group btn-dropdown-login">
               <button type="button"
                 className="btn btn-default btn-login">Demo</button>
               <button type="button"
@@ -134,7 +134,7 @@ module.exports = React.createClass({
               className="btn btn-success btn-custom"
               onClick={this.openCreateModal}>Get Started for FREE</button>
             <button
-              className="btn btn-primary btn-custom btn-login"
+              className="btn btn-primary btn-login"
               onClick={this.openSignInModal}>
               <span
                 className="glyphicon glyphicon-lock"
