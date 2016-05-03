@@ -122,18 +122,12 @@ $color-3: #fc636b;
   font-family: $font-bold;
 }
 
-.btn-patient-active {
+.btn-patient-active, .btn-patient-active:focus {
   border: 2px solid $color-1;
   color: #ffffff;
   background-color: $color-1;
   font-family: $font-bold;
-}
-
-.btn-patient-active:focus {
-  border: 2px solid $color-1;
-  color: #ffffff;
-  background-color: $color-1;
-  font-family: $font-bold;
+  outline: 0;
 }
 
 .btn-patient-active:hover {
@@ -151,18 +145,12 @@ $color-3: #fc636b;
   font-family: $font-bold;
 }
 
-.btn-doctor-active {
+.btn-doctor-active, .btn-doctor-active:focus {
   border: 2px solid $color-2;
   color: #ffffff;
   background-color: $color-2;
   font-family: $font-bold;
-}
-
-.btn-doctor-active:focus {
-  border: 2px solid $color-2;
-  color: #ffffff;
-  background-color: $color-2;
-  font-family: $font-bold;
+  outline: 0;
 }
 
 .btn-doctor-active:hover {

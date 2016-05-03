@@ -1,8 +1,8 @@
 $font-bold: Montserrat, sans-serif;
 $font-primary: Khula, sans-serif;
 
-$btn-color-primary: #6026D2;
-$btn-color-highlight: #18D8B7;
+$color-1: #6026D2;
+$color-2: #18D8B7;
 
 $Logo-main: "http://i.imgur.com/naTFrh2.png";
 $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
@@ -15,38 +15,66 @@ $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
   max-width: 200px;
 }
 
-.btn-custom {
+.btn-custom, .btn-custom:focus {
   margin-left: 5px;
-  background-color: $btn-color-primary;
-  border: 2px solid $btn-color-primary;
+  background-color: $color-1;
+  border: 2px solid $color-1;
+  outline: 0;
 }
 
 .btn-custom:hover {
-  background-color: $btn-color-highlight;
-  border: 2px solid $btn-color-highlight;
+  background-color: $color-2;
+  border: 2px solid $color-2;
 }
 
-.btn-login {
+.btn-login, .btn-login:focus {
   margin-left: 5px;
-  border: 2px solid $btn-color-primary;
+  border: 2px solid $color-1;
   background-color: #ffffff;
-  color: $btn-color-primary;
+  color: $color-1;
+  outline: 0;
 }
 
 .btn-login:hover {
-  border: 2px solid $btn-color-highlight;
+  border: 2px solid $color-2;
   background-color: #ffffff;
-  color: $btn-color-highlight;
+  color: $color-2;
 }
 
 .btn-dropdown-login:hover > button {
-  border: 2px solid $btn-color-highlight;
+  border: 2px solid $color-2;
   background-color: #ffffff;
-  color: $btn-color-highlight;
+  color: $color-2;
 }
 
 .demo-dropdown {
   display: block;
+}
+
+.demo-list-patient:hover {
+  background-color: #ffffff !important;
+}
+
+.demo-list-patient > a {
+  border-left: 2px solid #ffffff;
+}
+
+.demo-list-patient:hover > a {
+  color: $color-1 !important;
+  border-left: 2px solid $color-1;
+}
+
+.demo-list-patient:hover {
+  background-color: #ffffff !important;
+}
+
+.demo-list-doctor > a {
+  border-left: 2px solid #ffffff;
+}
+
+.demo-list-doctor:hover > a {
+  color: $color-2 !important;
+  border-left: 2px solid $color-2;
 }
 
 .nav-block {

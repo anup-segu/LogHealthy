@@ -12,6 +12,7 @@ $btn-color-primary: #6026D2;
 @import "nav_bar/nav_bar.scss";
 @import "splash/splash_detail.scss";
 @import "splash/splash_main.scss";
+@import "forms/auth_form.scss";
 
 
 // general app styles
@@ -36,14 +37,6 @@ html {
 .width-fix {
   width: 100%;
 }
-
-// sign up form format
-
-.splash-form {
-  max-width: 500px;
-}
-
-// splash page formats
 
 
 // Dashboard Layout

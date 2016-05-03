@@ -5,6 +5,23 @@ var Modal = require("react-modal");
 
 var PatientActions = require("../../actions/patient_actions");
 var CurrentPatientState = require("../../mixins/current_patient_state");
+
+var style = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.6)'
+  },
+  content: {
+    width: '55%',
+    height: '100%',
+    marginTop: '5%',
+    marginLeft: "auto",
+    marginRight: "auto",
+    minWidth: '500px',
+    maxWidth: '550px',
+    maxHeight: '500px'
+  }
+};
+
 var DoctorActions = require("../../actions/doctor_actions");
 var AuthStore = require("../../stores/auth_form_store.js");
 var AuthActions = require("../../actions/auth_actions");
@@ -38,14 +55,16 @@ var LogInForm = React.createClass({
   },
 
   signInForm: function() {
+    // AuthActions.openSignInForm();
     this.setState($.extend({
       form: "login",
       patientErrors: null,
-      doctorErrors: null },
-      this.blankAttrs));
+      doctorErrors: null }, this.blankAttrs));
   },
 
   signUpForm: function() {
+    // AuthActions.openCreateForm();
+
     this.setState($.extend({
       form: "signup",
       patientErrors: null,
@@ -95,44 +114,35 @@ var LogInForm = React.createClass({
     DoctorActions.logout();
     this.setState(this.blankAttrs);
   },
-  //
-  // greeting: function() {
-  //   if (!this.state.currentPatient && !this.state.currentDoctor) {
-  //     return;
-  //   } else if (this.state.currentDoctor) {
-  //     return (
-  //       <div>
-  // 				<h2>Welcome, Dr. {this.state.currentDoctor.last_name}</h2>
-  // 				<input type="submit" value="logout" onClick={this.logout}/>
-  // 			</div>
-  //     );
-  //   }
-  //   return (
-  //     <div>
-	// 			<h2>Welcome, {this.state.currentPatient.first_name}</h2>
-	// 			<input type="submit" value="logout" onClick={this.logout}/>
-	// 		</div>
-  //   );
-  // },
 
   errors: function() {
     var self = this;
 		if (this.state.patientErrors) {
-      return (<ul>
-  		{
-  			Object.keys(this.state.patientErrors).map(function(key, i){
-  				return (<li key={i}>{self.state.patientErrors[key]}</li>);
-  			})
-  		}
-  		</ul>);
+      return (
+        <div className="error-box">
+          <p>Woops, please check the following:</p>
+          <ul>
+        		{
+        			Object.keys(this.state.patientErrors).map(function(key, i){
+        				return (<li key={i}>{self.state.patientErrors[key]}</li>);
+        			})
+        		}
+    		  </ul>
+        </div>
+      );
 		} else if (this.state.doctorErrors) {
-      return (<ul>
-  		{
-  			Object.keys(this.state.doctorErrors).map(function(key, i){
-  				return (<li key={i}>{self.state.doctorErrors[key]}</li>);
-  			})
-  		}
-  		</ul>);
+      return (
+        <div className="error-box">
+          <p>Woops, please check the following:</p>
+          <ul>
+        		{
+        			Object.keys(this.state.doctorErrors).map(function(key, i){
+        				return (<li key={i}>{self.state.doctorErrors[key]}</li>);
+        			})
+        		}
+      		</ul>
+        </div>
+      );
     }
     return;
 	},
@@ -146,68 +156,66 @@ var LogInForm = React.createClass({
 
     if (this.state.form === "signup") {
       form = (
-        <form onSubmit={this.handleSubmit} className="form-horizontal">
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
   					<label
               htmlFor="email_field"
-              className="col-sm-2 control-label">Email Address </label>
-            <div className="col-sm-10">
-              <input
-                  type="text"
-                  id="email_field"
-                  className="form-control"
-                  valueLink={this.linkState("email")}/>
-            </div>
+              className="control-label">Email Address </label>
+            <input
+                type="text"
+                id="email_field"
+                className="form-control"
+                placeholder="name@example.com"
+                valueLink={this.linkState("email")}/>
           </div>
 
           <div className="form-group">
   					<label
               htmlFor="password_field"
-              className="col-sm-2 control-label">Password </label>
-            <div className="col-sm-10">
-              <input
-                  type="password"
-                  id="password_field"
-                  className="form-control"
-                  valueLink={this.linkState("password")}/>
-            </div>
+              className="control-label">Password </label>
+            <input
+                type="password"
+                id="password_field"
+                className="form-control"
+                placeholder="minimum 6 characters"
+                valueLink={this.linkState("password")}/>
           </div>
 
           <div className="form-group">
             <label
               htmlFor="first_name_field"
-              className="col-sm-2 control-label">First Name</label>
-            <div className="col-sm-10">
-              <input
-                  type="text"
-                  id="first_name_field"
-                  className="form-control"
-                  valueLink={this.linkState("first_name")}/>
-            </div>
+              className="control-label">First Name</label>
+            <input
+                type="text"
+                id="first_name_field"
+                className="form-control"
+                placeholder="first name"
+                valueLink={this.linkState("first_name")}/>
           </div>
 
           <div className="form-group">
             <label
               htmlFor="last_name_field"
-              className="col-sm-2 control-label">Last Name </label>
-            <div className="col-sm-10">
-              <input
-                  type="text"
-                  id="last_name_field"
-                  className="form-control"
-                  valueLink={this.linkState("last_name")}/>
-            </div>
+              className="control-label">Last Name </label>
+            <input
+                type="text"
+                id="last_name_field"
+                className="form-control"
+                placeholder="last name"
+                valueLink={this.linkState("last_name")}/>
           </div>
 
           <div className="row patient-doctor-toggle">
-            <div className="col-sm-4">
+
               <button
                 onClick={this.createPatient}
-                className="btn btn-default">Get started as a patient</button>
+                className="btn btn-patient-form">
+                Get started as a patient</button>
               <button
                 onClick={this.createDoctor}
-                className="btn btn-default">Get started as a doctor</button>
-            </div>
+                className="btn btn-doctor-form">
+                Get started as a doctor</button>
+
           </div>
 
           <div className="container">
@@ -223,45 +231,40 @@ var LogInForm = React.createClass({
       );
     } else if (this.state.form === "login") {
       form = (
-        <form onSubmit={this.handleSubmit} className="form-horizontal">
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label
               htmlFor="email_field"
-              className="col-sm-2 control-label">Email Address </label>
-            <div className="col-sm-10">
-              <input
-                type="text"
-                id="email_field"
-                className="form-control"
-                valueLink={this.linkState("email")}/>
-            </div>
+              className="control-label">Email Address </label>
+            <input
+              type="text"
+              id="email_field"
+              className="form-control"
+              placeholder="name@example.com"
+              valueLink={this.linkState("email")}/>
           </div>
 
           <div className="form-group">
             <label
               htmlFor="password_field"
-              className="col-sm-2 control-label">Password </label>
-            <div className="col-sm-10">
-              <input
-                type="password"
-                id="password_field"
-                className="form-control"
-                valueLink={this.linkState("password")}/>
-            </div>
+              className="control-label">Password </label>
+            <input
+              type="password"
+              id="password_field"
+              className="form-control"
+              placeholder="minimum 6 characters"
+              valueLink={this.linkState("password")}/>
           </div>
 
           <div className="row">
-            <div className="col-sm-4">
-              <button className="btn btn-default">Sign In</button>
-              <br/>
-              <a
-                href="#"
-                onClick={this.signUpForm}>Create a new account</a>
-              <br/>
-              <a
-                href="#"
-                onClick={this.closeModal}>Go Back</a>
-            </div>
+            <button className="btn btn-login-form">Sign In</button>
+            <br/>
+          </div>
+          <div className="row login-alt-options">
+            <a href="#"
+              onClick={this.signUpForm}>Create a new account</a>
+            <a href="#"
+              onClick={this.closeModal}>Go Back</a>
           </div>
         </form>
       );
@@ -288,7 +291,8 @@ var LogInForm = React.createClass({
     return (
       <Modal
         isOpen={this.state.modalOpen}
-        onRequestClose={this.closeModal}>
+        onRequestClose={this.closeModal}
+        style={style}>
         <div id="login-form" className="container splash-form">
           <h3>{title}</h3>
           {this.errors()}

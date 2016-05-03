@@ -117,10 +117,10 @@ module.exports = React.createClass({
               <ul
                 className={ this.dropDownClass() }
                 onBlur = { this.dropDownClose }>
-                <li
+                <li className="demo-list-patient"
                   onClick={this.demoPatient}>
                   <a href="/">Demo as Patient</a></li>
-                <li
+                <li className="demo-list-doctor"
                   onClick={this.demoDoctor}>
                   <a href="/">Demo as Doctor</a></li>
               </ul>

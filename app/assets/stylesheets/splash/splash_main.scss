@@ -51,14 +51,16 @@ h4.headline {
   margin-bottom: 50px;
 }
 
-.start-landing {
+.start-landing, .start-landing:focus {
   background-color: $color-1;
   border-color: $color-1;
   font-family: $font-bold;
+  color: #ffffff;
   width: 230px;
+  outline: 0;
 }
 
-.start-landing:hover, .start-landing:focus {
+.start-landing:hover {
   background-color: $color-2;
   border-color: $color-2;
   color: #ffffff;
