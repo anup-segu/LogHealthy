@@ -10,7 +10,7 @@ var appStorage = localStorage;
 PatientStore.login = function (patient) {
   if (patient && patient.ttype === "patient") {
     localStorage.setItem("currentPatient", JSON.stringify(patient));
-    
+
     _currentPatient = patient;
     _errors = null;
   }
@@ -38,8 +38,12 @@ PatientStore.resetErrors = function() {
 };
 
 PatientStore.currentPatient = function() {
+  var patient = JSON.parse(localStorage.getItem("currentPatient"));
+
   if (_currentPatient) {
     return $.extend({}, _currentPatient);
+  } else if (patient) {
+    return $.extend({}, patient);
   }
 };
 

@@ -33,8 +33,12 @@ DoctorStore.resetErrors = function() {
 };
 
 DoctorStore.currentDoctor = function() {
+  var doctor = JSON.parse(localStorage.getItem("currentDoctor"));
+
   if (_currentDoctor) {
     return $.extend({}, _currentDoctor);
+  } else if (doctor) {
+    return $.extend({}, doctor);
   }
 };
 
