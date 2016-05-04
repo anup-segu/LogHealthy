@@ -44,14 +44,17 @@ var Tabs = React.createClass({
   },
 
   toggleLogs: function() {
+    LogActions.closeForm();
     this.setState({ tabPane: "logs" });
   },
 
   toggleProgress: function() {
+    LogActions.closeForm();
     this.setState({ tabPane: "progress" });
   },
 
   toggleConversations: function() {
+    LogActions.closeForm();
     this.setState({ tabPane: "conversations" });
   },
 

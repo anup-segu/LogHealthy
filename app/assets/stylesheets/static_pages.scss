@@ -19,6 +19,7 @@ $btn-color-primary: #6026D2;
 @import "dashboard/logs/logs_detail.scss";
 @import "dashboard/logs/logs_form.scss";
 @import "dashboard/progress/progress_chart.scss";
+@import "dashboard/conversations/conversations.scss";
 
 
 // general app styles
@@ -74,66 +75,4 @@ html {
 
 .patient-detail-tab:hover {
   cursor: pointer;
-}
-
-//conversations
-
-.conversation-section {
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-.conversation-thread {
-  list-style: none;
-}
-
-.conversation-list {
-  padding-left: 0;
-}
-
-.thumbnail > .conversation-box {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-.conversation-header {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.conversation-subject {
-  display: inline-block;
-}
-
-.conversation-show-btn {
-  float: right;
-  margin-right: 5px;
-}
-
-.thread-container {
-  width: 100%;
-  padding: inherit;
-}
-
-.time-tag {
-  display: inline-block;
-}
-
-.location-tag {
-  display: inline-block;
-  float: left;
-  padding-right: 10px;
-}
-
-.reply-form {
-  margin-bottom: 15px;
-}
-
-.form-search {
-  position: relative;
-}
-
-.form-hits {
-  top: 35px;
 }

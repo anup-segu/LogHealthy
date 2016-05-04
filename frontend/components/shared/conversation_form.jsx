@@ -3,6 +3,7 @@ var Clearfix = require('react-bootstrap/lib/Clearfix');
 var MenuItem = require('react-bootstrap/lib/MenuItem');
 
 var ConversationActions = require('../../actions/conversation_actions.js');
+var LogActions = require('../../actions/log_actions.js');
 var ConversationStore = require('../../stores/conversation_store.js');
 
 var ConversationForm = React.createClass({
@@ -146,6 +147,7 @@ var ConversationForm = React.createClass({
 
   handleSubmit: function (event) {
     event.preventDefault();
+    LogActions.closeForm();
     ConversationActions.createConversation({
       subject: this.state.subject ? this.state.subject : "(No Subject)",
       recipient_id: this.state.recipient_id,
@@ -167,6 +169,7 @@ var ConversationForm = React.createClass({
       });
       return (
         <div className="alert alert-danger" role="alert">
+          Woops, please check the following:
           <ul>
             {errors}
           </ul>
@@ -250,7 +253,7 @@ var ConversationForm = React.createClass({
             rows="3"
             onChange={this.updateBody}></textarea>
         </div>
-        <button className="btn btn-primary">
+        <button className="btn btn-send">
           <span className="glyphicon glyphicon-envelope"
             aria-hidden="true"></span> Send</button>
       </form>
