@@ -1,6 +1,8 @@
 var React = require('react');
 
 var AuthActions = require('../../actions/auth_actions.js');
+var PatientActions = require('../../actions/patient_actions.js');
+var DoctorActions = require('../../actions/doctor_actions.js');
 var PatientStore = require('../../stores/patient_store.js');
 var DoctorStore = require('../../stores/doctor_store.js');
 var SplashDetail = require('./splash_detail.jsx');
@@ -13,11 +15,15 @@ var SplashBody = React.createClass({
   componentDidMount: function() {
     this.patientListener = PatientStore.addListener(this._checkLogin);
     this.doctorListener = DoctorStore.addListener(this._checkLogin);
+
+    PatientActions.fetchCurrentPatient();
+    DoctorActions.fetchCurrentDoctor();
   },
 
   _checkLogin: function() {
     var patient = PatientStore.currentPatient();
     var doctor = DoctorStore.currentDoctor();
+    // debugger;
     if (patient || doctor) {
       this.setState({ render: false });
     } else {
