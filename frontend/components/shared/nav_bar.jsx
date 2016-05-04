@@ -87,19 +87,18 @@ module.exports = React.createClass({
       if (this.state.username) {
         return (
           <div className="nav-button">
-            <div className="nav navbar-nav navbar-right nav-button">
+            <div className="nav navbar-nav navbar-right">
+              <div className="container welcome-message">
+                Welcome, {this.state.username}
+              </div>
+
               <button
                 className="btn btn-primary btn-login"
                 onClick={this.logout}>
                 <span
                   className="glyphicon glyphicon-lock"
                   aria-hidden="true"></span> Logout
-              </button>
-            </div>
-            <div className="nav navbar-nav navbar-right nav-button">
-              <div className="container welcome-message">
-                Welcome, {this.state.username}
-              </div>
+              </button>            
             </div>
           </div>
         );
