@@ -55,20 +55,11 @@ var LogInForm = React.createClass({
   },
 
   signInForm: function() {
-    // AuthActions.openSignInForm();
-    this.setState($.extend({
-      form: "login",
-      patientErrors: null,
-      doctorErrors: null }, this.blankAttrs));
+    AuthActions.openSignInForm();
   },
 
   signUpForm: function() {
-    // AuthActions.openCreateForm();
-
-    this.setState($.extend({
-      form: "signup",
-      patientErrors: null,
-      doctorErrors: null }, this.blankAttrs));
+    AuthActions.openCreateForm();
   },
 
   button: function() {

@@ -29,8 +29,17 @@ AuthStore.closeModal = function() {
   _modelState = false;
 };
 
-AuthStore.formReset = function() {
-  _reset = true;
+AuthStore.getForm = function() {
+  var form = _form;
+  return form;
+};
+
+AuthStore.setForm = function (form) {
+  _form = form;
+};
+
+AuthStore.formReset = function (reset) {
+  _reset = reset;
 };
 
 AuthStore.modalState = function() {
@@ -45,13 +54,21 @@ AuthStore.modalState = function() {
 AuthStore.__onDispatch = function (payload) {
   switch(payload.actionType){
     case AuthConstants.OPEN_SIGN_IN_FORM:
+      AuthStore.setForm("login");
+      AuthStore.formReset(true);
       AuthStore.openSignInModal();
       break;
     case AuthConstants.OPEN_CREATE_FORM:
+      AuthStore.setForm("signup");
+      AuthStore.formReset(true);
       AuthStore.openCreateModal();
       break;
     case AuthConstants.CLOSE_FORM:
       AuthStore.closeModal();
+      break;
+    case AuthConstants.ERROR:
+      AuthStore.setForm(payload.form);
+      AuthStore.formReset(false);
       break;
   }
   AuthStore.__emitChange();

@@ -57,6 +57,12 @@ PatientStore.__onDispatch = function (payload) {
     case AuthConstants.CLOSE_FORM:
       PatientStore.resetErrors();
       break;
+    case AuthConstants.OPEN_SIGN_IN_FORM:
+      PatientStore.resetErrors();
+      break;
+    case AuthConstants.OPEN_CREATE_FORM:
+      PatientStore.resetErrors();
+      break;
     case LogConstants.PATIENT_UPDATED:
       PatientStore.updatePatient(payload.patient);
       break;

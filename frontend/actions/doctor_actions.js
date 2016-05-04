@@ -2,6 +2,7 @@ var AuthConstants = require('../constants/auth_constants');
 var AuthActions = require("../actions/auth_actions");
 var DoctorApiUtil = require('../util/doctor_api_util');
 var DoctorStore = require('../stores/doctor_store');
+var AuthStore = require('../stores/auth_form_store');
 var DoctorConstants = require('../constants/doctor_constants');
 var AppDispatcher = require('../dispatcher/dispatcher');
 var PatientActions = require('../actions/patient_actions');
@@ -53,7 +54,8 @@ var DoctorActions = {
 		if (error.responseJSON) {
 			AppDispatcher.dispatch({
 				actionType: AuthConstants.ERROR,
-				errors: error.responseJSON.errors
+				errors: error.responseJSON.errors,
+				form: AuthStore.getForm()
 			});
 		}
 	},

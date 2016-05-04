@@ -61,6 +61,12 @@ DoctorStore.__onDispatch = function (payload) {
     case AuthConstants.CLOSE_FORM:
       DoctorStore.resetErrors();
       break;
+    case AuthConstants.OPEN_SIGN_IN_FORM:
+      DoctorStore.resetErrors();
+      break;
+    case AuthConstants.OPEN_CREATE_FORM:
+      DoctorStore.resetErrors();
+      break;
     case DoctorConstants.VIEW_PATIENT:
       DoctorStore.loadPatient(payload.patient);
       break;
