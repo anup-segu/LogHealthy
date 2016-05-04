@@ -7,12 +7,15 @@ var PatientActions = require('../../../actions/patient_actions');
 
 var Dashboard = React.createClass({
   getInitialState: function() {
+    if (PatientStore.currentPatient()) {
+      return {render: true};
+    }
     return {render: false};
   },
 
   componentDidMount: function() {
     this.patientListener = PatientStore.addListener(this._checkLogin);
-    
+
   },
 
   componentWillUnmount: function() {

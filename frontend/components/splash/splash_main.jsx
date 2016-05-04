@@ -26,10 +26,8 @@ var SplashBody = React.createClass({
     var doctor = DoctorStore.currentDoctor();
     // debugger;
     if (patient) {
-      hashHistory.push("/pdashboard");
       this.setState({ render: false });
     } else if (doctor) {
-      hashHistory.push("/ddashboard");
       this.setState({ render: false });
     } else {
       this.setState({ render: true });

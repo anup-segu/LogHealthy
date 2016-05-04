@@ -7,12 +7,15 @@ var Tabs = require('./tabs.jsx');
 
 var DashBoard = React.createClass({
   getInitialState: function() {
+    if (DoctorStore.currentDoctor()) {
+      return {render: true};
+    }
     return {render: false};
   },
 
   componentDidMount: function() {
     this.doctorListener = DoctorStore.addListener(this._checkLogin);
-    
+
   },
 
   componentWillUnmount: function() {
