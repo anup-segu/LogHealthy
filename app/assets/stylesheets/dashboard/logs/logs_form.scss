@@ -1,0 +1,104 @@
+$font-bold: Montserrat, sans-serif;
+$font-primary: Khula, sans-serif;
+
+$color-1: #6026D2; //deep purple
+$color-2: #18D8B7; //teal
+$color-3: #fc636b; //orange
+$color-4: #eeeeee; //light-gray
+$color-5: #333333; //dark-gray for fonts
+
+.btn-unselected {
+  color: $color-5;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 2px solid $color-4;
+  background-color: #ffffff;
+}
+
+.btn-selected-1, .btn-selected-1:focus {
+  color: $color-1;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  border-bottom: 2px solid $color-1;
+  background-color: #ffffff;;
+}
+
+.btn-selected-2, .btn-selected-2:focus {
+  color: $color-2;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  border-bottom: 2px solid $color-2;
+  background-color: #ffffff;;
+}
+
+.btn-selected-3, .btn-selected-3:focus {
+  color: $color-3;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0;
+  outline: 0;
+  border-bottom: 2px solid $color-3;
+  background-color: #ffffff;;
+}
+
+.btn-submit-log, .btn-submit-log:focus {
+  font-family: $font-bold;
+  color: #ffffff;
+  background-color: $color-1;
+  outline: 0;
+}
+
+.btn-submit-log:hover {
+  background-color: $color-1;
+  color: #ffffff;
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(96,38,210,0.61);
+  -moz-box-shadow: 0px 0px 5px 5px rgba(96,38,210,0.61);
+  box-shadow: 0px 0px 5px 5px rgba(96,38,210,0.61);
+}
+
+.log-form > h3 {
+  font-family: $font-bold;
+  text-align: center;
+  color: $color-5;
+}
+
+.form-group {
+  font-family: $font-primary;
+  color: $color-5;
+}
+
+.input-group-addon {
+  border: 0;
+  background-color: #ffffff;
+  color: $color-5;
+}
+
+textarea.form-control {
+  border-radius: 0;
+}
+
+textarea.form-control:focus {
+  outline: 0;
+  border: 2px solid $color-1;
+  box-shadow: none;
+}
+
+.log-btn-group {
+  width: 100%;
+}
+
+.meal-btn {
+  width: 33%;
+}
+
+.meal-taken-btn {
+  width: 50%;
+}
+
+.cancel-link {
+  cursor: pointer;
+}

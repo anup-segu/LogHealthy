@@ -129,41 +129,41 @@ var LogEditForm = React.createClass({
 
   breakfastMealTypeClass: function() {
     if (this.state.meal_type === "breakfast") {
-      return "btn btn-primary meal-btn";
+      return "btn btn-selected-1 meal-btn";
     } else {
-      return "btn btn-default meal-btn";
+      return "btn btn-unselected meal-btn";
     }
   },
 
   lunchMealTypeClass: function() {
     if (this.state.meal_type === "lunch") {
-      return "btn btn-primary meal-btn";
+      return "btn btn-selected-2 meal-btn";
     } else {
-      return "btn btn-default meal-btn";
+      return "btn btn-unselected meal-btn";
     }
   },
 
   dinnerMealTypeClass: function() {
     if (this.state.meal_type === "dinner") {
-      return "btn btn-primary meal-btn";
+      return "btn btn-selected-3 meal-btn";
     } else {
-      return "btn btn-default meal-btn";
+      return "btn btn-unselected meal-btn";
     }
   },
 
   mealTakenClass: function() {
     if (this.state.meal_taken === "yes") {
-      return "btn btn-primary meal-taken-btn";
+      return "btn btn-selected-1 meal-taken-btn";
     } else {
-      return "btn btn-default meal-taken-btn";
+      return "btn btn-unselected meal-taken-btn";
     }
   },
 
   mealNotTakenClass: function() {
     if (this.state.meal_taken === "no") {
-      return "btn btn-primary meal-taken-btn";
+      return "btn btn-selected-3 meal-taken-btn";
     } else {
-      return "btn btn-default meal-taken-btn";
+      return "btn btn-unselected meal-taken-btn";
     }
   },
 
@@ -268,9 +268,9 @@ var LogEditForm = React.createClass({
           <p className="help-block">Feel free to detail your meal or any notable symptoms.</p>
         </div>
 
-        <button className="btn btn-primary">Update Log</button>
+        <button className="btn btn-submit-log">Update Log</button>
         <br/>
-        <a onClick={this.cancelLog}>Go Back To Logs</a>
+        <a className="cancel-link" onClick={this.cancelLog}>Go Back To Logs</a>
       </form>
     );
   },
@@ -281,9 +281,11 @@ var LogEditForm = React.createClass({
         isOpen={this.state.modalOpen}
         onRequestClose={this.cancelLog}
         style={style}>
-        <h3>Edit This Log</h3>
-        {this.errors()}
-        {this.form()}
+        <div className="log-form">
+          <h3 className="log-form-header">Edit This Log</h3>
+          {this.errors()}
+          {this.form()}
+        </div>
       </Modal>
     );
   }

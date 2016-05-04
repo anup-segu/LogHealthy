@@ -17,6 +17,7 @@ $btn-color-primary: #6026D2;
 @import "dashboard/tabs.scss";
 @import "dashboard/logs/logs_index.scss";
 @import "dashboard/logs/logs_detail.scss";
+@import "dashboard/logs/logs_form.scss";
 
 
 // general app styles
@@ -42,35 +43,6 @@ html {
   width: 100%;
 }
 
-//Tabs
-
-
-//Logs Index
-
-
-
-//Logs Detail
-
-
-
-// log-form
-
-.log-form-modal {
-  width: 50%;
-  max-width: 350px;
-}
-
-.log-btn-group {
-  width: 100%;
-}
-
-.meal-btn {
-  width: 33%;
-}
-
-.meal-taken-btn {
-  width: 50%;
-}
 
 // progress chart
 

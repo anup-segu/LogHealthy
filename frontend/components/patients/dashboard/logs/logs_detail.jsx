@@ -71,16 +71,19 @@ var LogDetail = React.createClass({
 
   editbreakfastLog: function (event) {
     event.preventDefault();
+    LogActions.closeForm();
     LogActions.openEditForm(this.props.log["breakfast"]);
   },
 
   editlunchLog: function (event) {
     event.preventDefault();
+    LogActions.closeForm();
     LogActions.openEditForm(this.props.log["lunch"]);
   },
 
   editdinnerLog: function (event) {
     event.preventDefault();
+    LogActions.closeForm();
     LogActions.openEditForm(this.props.log["dinner"]);
   },
 

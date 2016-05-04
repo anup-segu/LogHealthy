@@ -125,41 +125,41 @@ var LogForm = React.createClass({
 
   breakfastMealTypeClass: function() {
     if (this.state.meal_type === "breakfast") {
-      return "btn btn-primary meal-btn";
+      return "btn btn-selected-1 meal-btn";
     } else {
-      return "btn btn-default meal-btn";
+      return "btn btn-unselected meal-btn";
     }
   },
 
   lunchMealTypeClass: function() {
     if (this.state.meal_type === "lunch") {
-      return "btn btn-primary meal-btn";
+      return "btn btn-selected-2 meal-btn";
     } else {
-      return "btn btn-default meal-btn";
+      return "btn btn-unselected meal-btn";
     }
   },
 
   dinnerMealTypeClass: function() {
     if (this.state.meal_type === "dinner") {
-      return "btn btn-primary meal-btn";
+      return "btn btn-selected-3 meal-btn";
     } else {
-      return "btn btn-default meal-btn";
+      return "btn btn-unselected meal-btn";
     }
   },
 
   mealTakenClass: function() {
     if (this.state.meal_taken === "yes") {
-      return "btn btn-primary meal-taken-btn";
+      return "btn btn-selected-1 meal-taken-btn";
     } else {
-      return "btn btn-default meal-taken-btn";
+      return "btn btn-unselected meal-taken-btn";
     }
   },
 
   mealNotTakenClass: function() {
     if (this.state.meal_taken === "no") {
-      return "btn btn-primary meal-taken-btn";
+      return "btn btn-selected-3 meal-taken-btn";
     } else {
-      return "btn btn-default meal-taken-btn";
+      return "btn btn-unselected meal-taken-btn";
     }
   },
 
@@ -181,7 +181,7 @@ var LogForm = React.createClass({
 
   form: function() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="log-form" onSubmit={this.handleSubmit}>
         <div className="form-group">
           <label htmlFor="glucose_field">Glucose</label>
           <div className="input-group">
@@ -261,9 +261,9 @@ var LogForm = React.createClass({
           <p className="help-block">Feel free to detail your meal or any notable symptoms.</p>
         </div>
 
-        <button className="btn btn-primary">Record Log</button>
+        <button className="btn btn-submit-log">Record Log</button>
         <br/>
-        <a onClick={this.cancelLog}>Go Back To Logs</a>
+        <a className="cancel-link" onClick={this.cancelLog}>Go Back To Logs</a>
       </form>
     );
   },
@@ -274,9 +274,11 @@ var LogForm = React.createClass({
           isOpen={this.state.modalOpen}
           onRequestClose={this.closeModal}
           style={style}>
-          <h3>Create A New Log</h3>
-          {this.errors()}
-          {this.form()}
+          <div className="log-form">
+            <h3 className="log-form-header">Create A New Log</h3>
+            {this.errors()}
+            {this.form()}
+          </div>
         </Modal>
     );
   }
