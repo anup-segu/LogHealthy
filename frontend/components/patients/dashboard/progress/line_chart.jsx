@@ -173,6 +173,17 @@ var LineChart=React.createClass({
       );
     },
 
+    color: function() {
+      switch (this.state.mealType) {
+        case "breakfast":
+          return "#6026D2";
+        case "lunch":
+          return "#18D8B7";
+        case "dinner":
+          return "#fc636b";
+      }
+    },
+
     render: function() {
         var glucoseData = this.parseGlucoseData();
 
@@ -249,9 +260,12 @@ var LineChart=React.createClass({
                 <path
                   className="line shadow"
                   d={line(glucoseData)}
-                  strokeLinecap="round"/>
+                  strokeLinecap="round"
+                  stroke={this.color()}/>
                 <Dots
                   data={glucoseData}
+                  color={this.color()}
+                  color2="#333333"
                   x={x}
                   y={y}
                   showToolTip={this.showToolTip}

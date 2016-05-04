@@ -20,12 +20,12 @@ var Dots = React.createClass({
         return (
           <circle
             className="dot"
-            r="7"
+            r="5"
             cx={_self.props.x(d.date)}
             cy={_self.props.y(d.count)}
-            fill="#7dc7f4"
-            stroke="#3f5175"
-            strokeWidth="5px"
+            fill={_self.props.color}
+            stroke={_self.props.color2}
+            strokeWidth="3px"
             key={i}
             onMouseOver={_self.props.showToolTip}
             onMouseOut={_self.props.hideToolTip}
