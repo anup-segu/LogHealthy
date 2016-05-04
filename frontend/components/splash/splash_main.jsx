@@ -24,7 +24,7 @@ var SplashBody = React.createClass({
   _checkLogin: function() {
     var patient = PatientStore.currentPatient();
     var doctor = DoctorStore.currentDoctor();
-    // debugger;
+    
     if (patient) {
       this.setState({ render: false });
     } else if (doctor) {

@@ -9,11 +9,11 @@ var Axis = require('./axis.jsx');
 var Grid = require('./grid.jsx');
 var ToolTip = require('./tool_tip.jsx');
 
-var LineChart=React.createClass({
+var LineChart = React.createClass({
     propTypes: {
-        width:React.PropTypes.number,
-        height:React.PropTypes.number,
-        chartId:React.PropTypes.string
+        width: React.PropTypes.number,
+        height: React.PropTypes.number,
+        chartId: React.PropTypes.string
     },
 
     mixins: [resizeMixin],
@@ -21,7 +21,7 @@ var LineChart=React.createClass({
     getDefaultProps: function() {
         return {
             width: $(window).width()*.6,
-            height: $(window).width()*.4,
+            height: $(window).height()*.5,
             chartId: 'v1_chart'
         };
     },
@@ -35,28 +35,29 @@ var LineChart=React.createClass({
     },
 
     showToolTip:function(e){
-    e.target.setAttribute('fill', '#FFFFFF');
+      e.target.setAttribute('fill', '#FFFFFF');
 
-    this.setState(
-      { tooltip:
-        { display:true,
+      this.setState(
+        { tooltip:
+          { display:true,
 
-          data: {
-            key:e.target.getAttribute('data-key'),
-            value:e.target.getAttribute('data-value')
-          },
+            data: {
+              key:e.target.getAttribute('data-key'),
+              value:e.target.getAttribute('data-value')
+            },
 
-          pos: {
-            x:e.target.getAttribute('cx'),
-            y:e.target.getAttribute('cy')
+            pos: {
+              x:e.target.getAttribute('cx'),
+              y:e.target.getAttribute('cy')
+            }
+
           }
-
         }
-      });
+      );
     },
 
     hideToolTip: function (event) {
-      event.target.setAttribute('fill', '#7dc7f4');
+      event.target.setAttribute('fill', this.color());
       this.setState(
         { tooltip:
           { display: false,
@@ -149,24 +150,41 @@ var LineChart=React.createClass({
         this.state.mealType[0].toUpperCase() +
         this.state.mealType.slice(1);
 
+
+      var _self = this;
+
+      var btnClass = function() {
+        switch (_self.state.mealType) {
+          case "breakfast":
+            return "meal-toggle-btn btn-color-1";
+          case "lunch":
+            return "meal-toggle-btn btn-color-2";
+          case "dinner":
+            return "meal-toggle-btn btn-color-3";
+        }
+      };
+
       return (
         <DropdownButton
           bsStyle="default"
-          className="meal-toggle-btn"
+          className={btnClass()}
           title={title}>
           <MenuItem
             eventKey="1"
             onClick={this.toggleBreakfast}
+            className="list-color-1"
             active={this.state.mealType === "breakfast"}>
             Breakfast</MenuItem>
           <MenuItem
             eventKey="2"
             onClick={this.toggleLunch}
+            className="list-color-2"
             active={this.state.mealType === "lunch"}>
             Lunch</MenuItem>
           <MenuItem
             eventKey="3"
             onClick={this.toggleDinner}
+            className="list-color-3"
             active={this.state.mealType === "dinner"}>
             Dinner</MenuItem>
         </DropdownButton>
@@ -181,6 +199,17 @@ var LineChart=React.createClass({
           return "#18D8B7";
         case "dinner":
           return "#fc636b";
+      }
+    },
+
+    navbarClass: function() {
+      switch (this.state.mealType) {
+        case "breakfast":
+          return "navbar navbar-default navbar-chart navbar-color-1";
+        case "lunch":
+          return "navbar navbar-default navbar-chart navbar-color-2";
+        case "dinner":
+          return "navbar navbar-default navbar-chart navbar-color-3";
       }
     },
 
@@ -242,7 +271,7 @@ var LineChart=React.createClass({
 
         return (
           <div className="chart-container">
-            <div className="navbar navbar-default">
+            <div className={this.navbarClass()}>
               <h4 className="nav navbar-nav navbar-left chart-title">
                 Glucose Levels </h4>
               <div className="nav navbar-nav navbar-right">
@@ -271,7 +300,7 @@ var LineChart=React.createClass({
                   showToolTip={this.showToolTip}
                   hideToolTip={this.hideToolTip}/>
 
-                 <ToolTip tooltip={this.state.tooltip}/>
+                <ToolTip tooltip={this.state.tooltip} color={this.color()}/>
               </g>
             </svg>
           </div>

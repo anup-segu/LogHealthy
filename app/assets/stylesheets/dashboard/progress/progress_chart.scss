@@ -54,3 +54,73 @@ $color-5: #333333; //dark-gray for fonts
 .chart-title {
   margin: 14px 20px 5px 20px;
 }
+
+.navbar-chart {
+  background-color: #ffffff;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 2px solid $color-5;
+  font-family: $font-bold;
+  color: $color-5;
+}
+
+.navbar-color-1 {
+  border-bottom: 2px solid $color-1;
+  color: $color-1
+}
+
+.navbar-color-2 {
+  border-bottom: 2px solid $color-2;
+  color: $color-2
+}
+
+.navbar-color-3 {
+  border-bottom: 2px solid $color-3;
+  color: $color-3
+}
+
+.meal-toggle-btn, .meal-toggle-btn.open {
+  margin: 5px 20px 5px 30px;
+  border: 0;
+  background-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+.meal-toggle-btn:hover {
+  background-color: #ffffff;
+}
+
+.btn-color-1, .btn-color-1:focus {
+  color: $color-1;
+}
+
+.btn-color-2, .btn-color-2:focus {
+  color: $color-2;
+}
+
+.btn-color-3, .btn-color-3:focus {
+  color: $color-3;
+}
+
+.dropdown-menu > li > a {
+  margin-left: 5px;
+}
+
+.dropdown-menu > .active > a {
+  background-color: #ffffff !important;
+}
+
+.dropdown-menu > .active.list-color-1 > a {
+  color: $color-1 !important;
+  border-left: 2px solid $color-1;
+}
+
+.dropdown-menu > .active.list-color-2 > a {
+  color: $color-2 !important;
+  border-left: 2px solid $color-2;
+}
+
+.dropdown-menu > .active.list-color-3 > a {
+  color: $color-3 !important;
+  border-left: 2px solid $color-3;
+}

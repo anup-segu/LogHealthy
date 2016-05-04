@@ -8,7 +8,7 @@ var resizeMixin = {
       _self.updateSize();
     });
 
-    this.setState({width:this.props.width});
+    this.setState({ width:this.props.width, height: this.props.height });
   },
 
   componentDidMount: function() {
@@ -22,7 +22,8 @@ var resizeMixin = {
   updateSize: function() {
     var node = ReactDOM.findDOMNode(this);
     var parentWidth = $(node).width();
-    this.setState({width: parentWidth*.95});
+    var parentHeight = $(node).height();
+    this.setState({width: parentWidth*.95, height: parentHeight*.95 });
   }
 };
 

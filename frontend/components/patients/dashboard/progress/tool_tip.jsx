@@ -6,6 +6,21 @@ var ToolTip = React.createClass({
     tooltip: React.PropTypes.object
   },
 
+  getInitialState: function() {
+    if (this.props.color === "#6026D2") {
+      return { color: "#ffffff" };
+    }
+    return { color: this.props.color };
+  },
+
+  componentWillReceiveProps: function (newProps) {
+    if (newProps.color === "#6026D2") {
+      this.setState({ color: "#ffffff" });
+    } else {
+      this.setState({ color: newProps.color });
+    }
+  },
+
   render: function() {
 
     var visibility="hidden";
@@ -43,13 +58,13 @@ var ToolTip = React.createClass({
           rx="5"
           ry="5"
           visibility={visibility}
-          fill="#6391da"
+          fill="#333333"
           opacity=".9"/>
         <polygon
           className="shadow"
           is points="10,0  30,0  20,10"
           transform={transformArrow}
-          fill="#6391da"
+          fill="#333333"
           opacity=".9"
           visibility={visibility}/>
         <text
@@ -67,7 +82,7 @@ var ToolTip = React.createClass({
               text-anchor="middle"
               dy="25"
               font-size="15px"
-              fill="#a9f3ff">
+              fill={this.state.color}>
               {this.props.tooltip.data.value+" units"}
             </tspan>
         </text>
