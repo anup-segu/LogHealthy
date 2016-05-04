@@ -155,7 +155,8 @@ module.exports = React.createClass({
       }
   },
 
-  launchLog: function() {
+  launchLog: function (event) {
+    event.preventDefault();
     LogActions.openForm();
   },
 
@@ -188,6 +189,7 @@ module.exports = React.createClass({
   },
 
   optionsToggle: function() {
+    LogActions.closeForm();
     DashboardActions.expandSidebar();
   },
 

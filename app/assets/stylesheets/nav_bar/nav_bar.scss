@@ -4,6 +4,7 @@ $font-primary: Khula, sans-serif;
 $color-1: #6026D2;
 $color-2: #18D8B7;
 $color-3: #fc636b;
+$color-5: #333333;
 
 $Logo-main: "http://i.imgur.com/naTFrh2.png";
 $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
@@ -105,7 +106,7 @@ $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
 }
 
 .options-action > a {
-  color: #333333 !important;
+  color: $color-5 !important;
   border-left: 2px solid #ffffff;
   margin-bottom: 10px;
   padding-left: 10px;

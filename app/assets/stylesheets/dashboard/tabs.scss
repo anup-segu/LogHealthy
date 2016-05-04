@@ -1,0 +1,69 @@
+$font-bold: Montserrat, sans-serif;
+$font-primary: Khula, sans-serif;
+
+$color-1: #6026D2; //deep purple
+$color-2: #18D8B7; //teal
+$color-3: #fc636b; //orange
+$color-4: #eeeeee; //light-gray
+$color-5: #333333; //dark-gray for fonts
+
+.tab-content {
+  width: 100%;
+  padding-top: 15px;
+  height: 100%;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.tab-view {
+  margin: 15px;
+  margin-left: 28%;
+  padding: 15px;
+  height: 120%;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 2px #888888;
+}
+
+.dashboard-header {
+  font-family: $font-bold;
+  color: $color-5;
+  text-align: center;
+}
+
+.nav-tabs {
+  padding-left: 17%;
+  padding-right: 17%;
+  border: 0;
+}
+
+.nav-tabs > li {
+  width: 33%;
+  text-align: center;
+  font-family: $font-bold;
+  border-bottom: 2px solid #ffffff;
+}
+
+.nav-tabs > li > a {
+  color: $color-5;
+  font-family: $font-bold;
+}
+
+.nav-tabs > li.active > a {
+  border: 0 !important;
+  color: $color-3 !important;
+}
+
+.nav-tabs > li:hover {
+  border: 0 !important;
+  border-bottom: 2px solid $color-2 !important;
+}
+
+.nav-tabs > li > a:hover {
+  color: $color-2 !important;
+  border: 0 !important;
+  background-color: #ffffff;
+}
+
+.nav-tabs > li.active {
+  border-bottom: 2px solid $color-3;
+}

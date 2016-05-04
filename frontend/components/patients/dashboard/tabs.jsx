@@ -135,7 +135,7 @@ var Tabs = React.createClass({
   render: function() {
     return (
       <div className={this.tabClass()}>
-        <h2>My Dashboard</h2>
+        <h2 className="dashboard-header">My Dashboard</h2>
         {this.tabLabels()}
         {this.tabContent()}
       </div>
