@@ -3,6 +3,7 @@ var React = require('react');
 var Sidebar = require('./sidebar.jsx');
 var Tabs = require('./tabs.jsx');
 var PatientStore = require('../../../stores/patient_store');
+var PatientActions = require('../../../actions/patient_actions');
 
 var Dashboard = React.createClass({
   getInitialState: function() {
@@ -11,6 +12,7 @@ var Dashboard = React.createClass({
 
   componentDidMount: function() {
     this.patientListener = PatientStore.addListener(this._checkLogin);
+    
   },
 
   componentWillUnmount: function() {

@@ -1,6 +1,7 @@
 var React = require('react');
 
 var DoctorStore = require('../../../stores/doctor_store.js');
+var DoctorActions = require('../../../actions/doctor_actions.js');
 var Sidebar = require('./sidebar.jsx');
 var Tabs = require('./tabs.jsx');
 
@@ -11,6 +12,7 @@ var DashBoard = React.createClass({
 
   componentDidMount: function() {
     this.doctorListener = DoctorStore.addListener(this._checkLogin);
+    
   },
 
   componentWillUnmount: function() {

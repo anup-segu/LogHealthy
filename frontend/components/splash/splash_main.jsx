@@ -1,4 +1,5 @@
 var React = require('react');
+var hashHistory = require('react-router').hashHistory;
 
 var AuthActions = require('../../actions/auth_actions.js');
 var PatientActions = require('../../actions/patient_actions.js');
@@ -24,7 +25,11 @@ var SplashBody = React.createClass({
     var patient = PatientStore.currentPatient();
     var doctor = DoctorStore.currentDoctor();
     // debugger;
-    if (patient || doctor) {
+    if (patient) {
+      hashHistory.push("/pdashboard");
+      this.setState({ render: false });
+    } else if (doctor) {
+      hashHistory.push("/ddashboard");
       this.setState({ render: false });
     } else {
       this.setState({ render: true });
