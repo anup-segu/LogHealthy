@@ -9,6 +9,7 @@ $color-5: #333333; //dark-gray for fonts
 
 .panel-default {
   border: 0;
+  box-shadow: 0;
 }
 
 .panel-heading {
@@ -16,7 +17,13 @@ $color-5: #333333; //dark-gray for fonts
   background-color: #ffffff !important;
   font-family: $font-bold;
   color: $color-5;
-  border-bottom: 1px solid $color-5;
+  border-bottom: 2px solid $color-4;
+}
+
+.panel-body {
+  padding-bottom: 0;
+  border-bottom: 2px solid $color-4;
+  border-bottom: 2px solid $color-2;
 }
 
 .log-heading {
@@ -26,21 +33,65 @@ $color-5: #333333; //dark-gray for fonts
   float: left;
 }
 
-.log-table-row:hover {
-  background-color: #cbe6ec;
-  font-weight: bold;
+.log-selected {
+  color: $color-2;
 }
 
-.panel-toggle {
+.log-table-row:hover {
+  color: $color-2;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.table {
+  margin-bottom: 0;
+  font-family: $font-primary;
+}
+
+.panel-toggle, .panel-toggle:focus {
   float: right;
   margin-right: 15px;
+  border: 0;
+  background-color: #ffffff;
+  color: $color-5;
+  outline: 0;
+}
+
+.panel-toggle:hover {
+  background-color: #ffffff;
+  color: $color-3;
 }
 
 .panel-default > .log-heading-active {
-  // background-color: #ffffff;
-  color: $color-1;
+  border-bottom: 2px solid $color-2;
+}
+
+.panel-toggle-active {
+  color: $color-2 !important;
 }
 
 .panel-default > .log-body-inactive {
   display: none;
+}
+
+.btn-edit-log, .btn-edit-log:focus {
+  color: $color-5;
+  background-color: #ffffff;
+  outline: 0;
+}
+
+.btn-edit-log:hover {
+  background-color: $color-3;
+  color: #ffffff;
+}
+
+.btn-delete-log, .btn-delete-log:focus {
+  color: $color-5;
+  background-color: #ffffff;
+  outline: 0;
+}
+
+.btn-delete-log:hover {
+  background-color: $color-3;
+  color: #ffffff;
 }

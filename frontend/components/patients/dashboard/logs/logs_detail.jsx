@@ -37,11 +37,27 @@ var LogDetail = React.createClass({
     }
   },
 
+  headerClass: function(){
+    if (this.state.showDetail) {
+      return "log-heading log-selected";
+    } else {
+      return "log-heading";
+    }
+  },
+
   buttonGlyph: function(){
     if (this.state.showDetail) {
-      return "glyphicon glyphicon-chevron-up";
+      return "glyphicon glyphicon-triangle-top";
     } else {
-      return "glyphicon glyphicon-chevron-down";
+      return "glyphicon glyphicon-triangle-bottom";
+    }
+  },
+
+  buttonClass: function() {
+    if (this.state.showDetail) {
+      return "btn panel-toggle panel-toggle-active";
+    } else {
+      return "btn panel-toggle";
     }
   },
 
@@ -83,6 +99,14 @@ var LogDetail = React.createClass({
     LogActions.delete(this.props.log["dinner"].id);
   },
 
+  mealTakenContent: function (boolean) {
+    if (boolean) {
+      return "Meal Taken";
+    } else {
+      return "No Meal Taken";
+    }
+  },
+
   data: function() {
     var elements = ["breakfast", "lunch", "dinner"].map(function (meal_type) {
       if (this.props.log[meal_type]) {
@@ -96,7 +120,12 @@ var LogDetail = React.createClass({
             rootClose
             placement="left"
             overlay={
-              <Popover title="Comments">
+              <Popover title="Details">
+                  <p>
+                    <strong>
+                      {this.mealTakenContent(this.props.log[meal_type]["meal_taken?"])}
+                    </strong>
+                  </p>
                   <p>{this.props.log[meal_type]["comment"]}</p>
               </Popover>}>
             <tr className="log-table-row" key={meal}>
@@ -105,7 +134,7 @@ var LogDetail = React.createClass({
               <td>{this.parseCarbs(this.props.log[meal_type]["carbs"])}</td>
               <td>
                 <button
-                  className="btn btn-default btn-sm"
+                  className="btn btn-edit-log btn-sm"
                   onClick={this["edit"+meal_type+"Log"]}>
                   <span
                     className="glyphicon glyphicon-pencil"
@@ -117,7 +146,7 @@ var LogDetail = React.createClass({
               </td>
               <td>
                 <button
-                  className="btn btn-danger btn-sm"
+                  className="btn btn-delete-log btn-sm"
                   onClick={this["delete"+meal_type+"Log"]}>
                   <span
                     className="glyphicon glyphicon-trash"
@@ -149,12 +178,12 @@ var LogDetail = React.createClass({
 
   render: function() {
     return (
-      <div key={this.props.date} className="panel panel-default date-panel">
+      <div key={this.props.date} className="panel panel-default">
         <div key="heading" className={this.panelHeaderClass()}>
-          <div className="row">
-            <h4 className="log-heading">{this.props.date}</h4>
+          <div className="row row-header">
+            <h4 className={this.headerClass()}>{this.props.date}</h4>
             <button
-              className="btn btn-default panel-toggle"
+              className={this.buttonClass()}
               onClick={this.togglePanel}>
               <span className={this.buttonGlyph()} aria-hidden="true"></span>
             </button>
