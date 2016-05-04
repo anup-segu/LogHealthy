@@ -1,0 +1,102 @@
+.content-view {
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.sidebar {
+  background-color: #1B2432;
+  margin-top: 58px;
+  margin-left: 0;
+  padding: 0;
+  position: fixed;
+  width: 25%;
+  max-width: 250px;
+  height: 100%;
+  min-height: 500px;
+}
+
+.sidebar-content {
+  width: 100%;
+  margin: 10px 10px 10px 0;
+  padding-left: 0;
+  position: relative;
+  top: 5px;
+}
+
+.collapse-container {
+  color: #ffffff;
+  font-size: 18px;
+  text-align: right;
+  padding: 0 0 30px 0;
+}
+
+.collapse-icon {
+  padding: 0;
+}
+
+.collapse-icon:hover {
+  cursor: pointer;
+}
+
+@keyframes collapse {
+    from {width: 25%;}
+    to {width: 0%;}
+}
+
+@keyframes collapse_out {
+    from {width: 0%;}
+    to {width: 25%;}
+}
+
+.collapse-in {
+  animation-name: collapse;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.collapse-out {
+  animation-name: collapse_out;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.dashboard {
+  padding-top: 75px;
+  margin-right: 0;
+  height: 100%;
+  width: 100%;
+  background: #cbe6ec;
+}
+
+.tab-view {
+  margin: 15px;
+  margin-left: 28%;
+  padding: 15px;
+  height: 120%;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 2px #888888;
+}
+
+.tab-expand {
+  animation-name: expand_tabs;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+.tab-collapse {
+  animation-name: collapse_tabs;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes expand_tabs {
+  from {margin-left: 28%;}
+  to {margin-left: 2%;}
+}
+
+@keyframes collapse_tabs {
+  from {margin-left: 2%;}
+  to {margin-left: 28%;}
+}

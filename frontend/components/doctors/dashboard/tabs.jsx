@@ -1,6 +1,7 @@
 var React = require('react');
 
 var DoctorStore = require('../../../stores/doctor_store.js');
+var DashboardStore = require('../../../stores/dashboard_store.js');
 var PatientSearch = require('./patients/patient_search.jsx');
 var PatientDetail = require('./patients/patient_detail.jsx');
 var ConversationThread = require('./conversations/conversation_thread.jsx');
@@ -9,6 +10,7 @@ var Tabs = React.createClass({
 
   getInitialState: function() {
     return {
+      viewWidth: "default",
       tabPane: "patients",
       patients: DoctorStore.currentDoctor().patients,
       viewPatient: null
@@ -17,6 +19,19 @@ var Tabs = React.createClass({
 
   componentDidMount: function() {
     this.doctorListener = DoctorStore.addListener(this._updatePatients);
+    this.dashboardListener = DashboardStore.addListener(this._updateView);
+  },
+
+  componentWillUnmount: function() {
+    this.dashboardListener.remove();
+  },
+
+  _updateView: function() {
+    if (DashboardStore.sidebarStatus()) {
+      this.setState({ viewWidth: "collapse" });
+    } else {
+      this.setState({ viewWidth: "expand" });
+    }
   },
 
   _updatePatients: function() {
@@ -108,9 +123,19 @@ var Tabs = React.createClass({
     );
   },
 
+  tabClass: function() {
+    if (this.state.viewWidth === "default") {
+      return "tab-view";
+    } else if (this.state.viewWidth === "expand") {
+      return "tab-view tab-expand";
+    } else if (this.state.viewWidth === "collapse") {
+      return "tab-view tab-collapse";
+    }
+  },
+
   render: function() {
     return (
-      <div className="tab-view">
+      <div className={this.tabClass()}>
         <h2>My Dashboard</h2>
         {this.tabLabels()}
         {this.tabContent()}
