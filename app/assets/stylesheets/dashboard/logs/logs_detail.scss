@@ -1,0 +1,46 @@
+$font-bold: Montserrat, sans-serif;
+$font-primary: Khula, sans-serif;
+
+$color-1: #6026D2; //deep purple
+$color-2: #18D8B7; //teal
+$color-3: #fc636b; //orange
+$color-4: #eeeeee; //light-gray
+$color-5: #333333; //dark-gray for fonts
+
+.panel-default {
+  border: 0;
+}
+
+.panel-heading {
+  padding: 0;
+  background-color: #ffffff !important;
+  font-family: $font-bold;
+  color: $color-5;
+  border-bottom: 1px solid $color-5;
+}
+
+.log-heading {
+  font-family: $font-bold;
+  color: $color-5;
+  padding-left: 18px;
+  float: left;
+}
+
+.log-table-row:hover {
+  background-color: #cbe6ec;
+  font-weight: bold;
+}
+
+.panel-toggle {
+  float: right;
+  margin-right: 15px;
+}
+
+.panel-default > .log-heading-active {
+  // background-color: #ffffff;
+  color: $color-1;
+}
+
+.panel-default > .log-body-inactive {
+  display: none;
+}

@@ -15,6 +15,8 @@ $btn-color-primary: #6026D2;
 @import "forms/auth_form.scss";
 @import "dashboard/dashboard.scss";
 @import "dashboard/tabs.scss";
+@import "dashboard/logs/logs_index.scss";
+@import "dashboard/logs/logs_detail.scss";
 
 
 // general app styles
@@ -45,46 +47,11 @@ html {
 
 //Logs Index
 
-.logs-list {
-  padding-left: 0;
-  padding-right: 0;
-  width: inherit;
-}
 
-.logs-list-container {
-  width: 100%;
-}
-
-.date-panel {
-  width: inherit;
-  box-shadow: 1px 1px 2px #888888;
-}
 
 //Logs Detail
 
-.log-heading {
-  padding-left: 15px;
-  float: left;
-}
 
-.log-table-row:hover {
-  background-color: #cbe6ec;
-  font-weight: bold;
-}
-
-.panel-toggle {
-  float: right;
-  margin-right: 15px;
-}
-
-.panel-default > .log-heading-active {
-  background-color: #cbe6ec;
-  color: #2e3c54;
-}
-
-.panel-default > .log-body-inactive {
-  display: none;
-}
 
 // log-form
 
