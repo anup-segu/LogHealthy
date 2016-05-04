@@ -180,9 +180,22 @@ module.exports = React.createClass({
     );
   },
 
+  popoOverDoctorContent: function() {
+    return (
+      <Popover
+        className="action-popover">
+        <ul className="options-menu">
+
+        </ul>
+      </Popover>
+    );
+  },
+
   popOverContent: function() {
     if (this.state.username.indexOf("Dr.") !== 0) {
       return this.popOverPatientContent();
+    } else if (this.state.username) {
+      return this.popoOverDoctorContent();
     } else {
       return;
     }
