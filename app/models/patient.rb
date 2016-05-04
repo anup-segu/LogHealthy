@@ -75,6 +75,17 @@ class Patient < ActiveRecord::Base
     self.recipient_conversations.where(parent_id: nil)
   end
 
+  def doctor_extract
+    doctor = {}
+    doctor["id"] = self.doctor.id
+    doctor["first_name"] = self.doctor.first_name
+    doctor["last_name"] = self.doctor.last_name
+    doctor["last_name"] = self.doctor.last_name
+    doctor["email"] = self.doctor.email
+    doctor["ttype"] = self.doctor.ttype
+    doctor
+  end
+
   private
   def new_session_token
     SecureRandom.urlsafe_base64(16)

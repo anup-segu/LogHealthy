@@ -12,12 +12,17 @@ var DoctorActions = require('../actions/doctor_actions');
 
 var PatientActions = {
 	fetchCurrentPatient: function(){
-		PatientApiUtil.fetchCurrentPatient(
-      PatientActions.receiveCurrentPatient,
-      function(){
-        return;
-      }
-    );
+		var patient = JSON.parse(localStorage.getItem("currentPatient"));
+		if (patient) {
+			PatientActions.receiveCurrentPatient(patient);
+		} else {
+			PatientApiUtil.fetchCurrentPatient(
+	      PatientActions.receiveCurrentPatient,
+	      function(){
+	        return;
+	      }
+	    );
+		}		
 	},
 
 	signup: function(patient){

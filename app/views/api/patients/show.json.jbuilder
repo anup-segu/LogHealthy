@@ -3,7 +3,7 @@ if @patient
 
   json.logs @patient.logs_hash
 
-  json.doctor @patient.doctor
+  json.doctor @patient.doctor_extract
 
 else
   {}

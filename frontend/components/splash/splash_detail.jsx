@@ -138,7 +138,7 @@ var SplashDetail = React.createClass({
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4 className="about-header">Instantly Follow Your Patients Progress.</h4>
+                <h4 className="about-header">Instantly Follow All Patient Progress.</h4>
                 <p className="about-copy">Follow their progress and quickly spot patterns to optimize treatment.</p>
               </div>
             </div>
@@ -224,7 +224,7 @@ var SplashDetail = React.createClass({
                   aria-hidden="true"></span>
               </div>
               <div className="caption">
-                <h4 className="about-header">Instantly Follow Your Patients Progress.</h4>
+                <h4 className="about-header">Instantly Follow All Patient Progress.</h4>
                 <p className="about-copy">Follow their progress and quickly spot patterns to optimize treatment.</p>
               </div>
             </div>

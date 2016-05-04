@@ -8,12 +8,17 @@ var DoctorStore = new Store(AppDispatcher);
 
 DoctorStore.login = function (doctor) {
   if (doctor && doctor.ttype === "doctor") {
+    localStorage.setItem("currentDoctor", JSON.stringify(doctor));
+
     _currentDoctor = doctor;
     _errors = null;
   }
 };
 
 DoctorStore.logout = function (doctor) {
+  localStorage.removeItem("currentPatient");
+  localStorage.removeItem("currentDoctor");
+
   _currentDoctor = null;
   _errors = null;
   _viewPatient = null;

@@ -5,15 +5,21 @@ var AppDispatcher = require('../dispatcher/dispatcher.js');
 
 var _currentPatient, _errors;
 var PatientStore = new Store(AppDispatcher);
+var appStorage = localStorage;
 
 PatientStore.login = function (patient) {
   if (patient && patient.ttype === "patient") {
+    localStorage.setItem("currentPatient", JSON.stringify(patient));
+    
     _currentPatient = patient;
     _errors = null;
   }
 };
 
 PatientStore.logout = function (patient) {
+  localStorage.removeItem("currentPatient");
+  localStorage.removeItem("currentDoctor");
+
   _currentPatient = null;
   _errors = null;
 };
