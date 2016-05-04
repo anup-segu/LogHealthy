@@ -58,15 +58,7 @@ var Sidebar = React.createClass({
         </div>
       );
     } else {
-      return (
-        <div>
-          <div className="container width-fix collapse-container">
-            <span className="glyphicon glyphicon-remove collapse-icon"
-              onClick={this.collapse}
-              aria-hidden="true"></span>
-          </div>
-        </div>
-      );
+      return;
     }
   },
 

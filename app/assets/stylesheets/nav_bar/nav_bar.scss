@@ -3,6 +3,7 @@ $font-primary: Khula, sans-serif;
 
 $color-1: #6026D2;
 $color-2: #18D8B7;
+$color-3: #fc636b;
 
 $Logo-main: "http://i.imgur.com/naTFrh2.png";
 $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
@@ -13,6 +14,34 @@ $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
 
 .logo {
   max-width: 200px;
+}
+
+.btn-options-toggle, .btn-options-toggle:focus {
+  margin-left: 10px;
+  background-color: #ffffff;
+  border: 2px solid $color-1;
+  color: $color-1;
+  outline: 0;
+}
+
+.btn-options-toggle:hover {
+  color: $color-2;
+  background-color: #ffffff;
+  border: 2px solid $color-2;
+}
+
+.btn-actions-toggle, .btn-actions-toggle:focus {
+  margin-left: 10px;
+  background-color: #ffffff;
+  border: 2px solid $color-3;
+  color: $color-3;
+  outline: 0;
+}
+
+.btn-actions-toggle:hover {
+  color: #ffffff;
+  background-color: $color-3;
+  border: 2px solid $color-3;
 }
 
 .btn-custom, .btn-custom:focus {
@@ -47,6 +76,10 @@ $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
   color: $color-2;
 }
 
+.action-popover {
+  font-family: $font-bold;
+};
+
 .demo-dropdown {
   display: block;
 }
@@ -62,6 +95,27 @@ $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
 .demo-list-patient:hover > a {
   color: $color-1 !important;
   border-left: 2px solid $color-1;
+}
+
+.options-menu {
+  font-family: $font-bold;
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px
+}
+
+.options-action > a {
+  color: #333333 !important;
+  border-left: 2px solid #ffffff;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.options-action:hover > a {
+  color: $color-3 !important;
+  border-left: 2px solid $color-3;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .demo-list-patient:hover {

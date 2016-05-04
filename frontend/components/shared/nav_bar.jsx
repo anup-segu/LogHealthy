@@ -1,11 +1,18 @@
 var React = require('react');
 var hashHistory = require('react-router').hashHistory;
 var Modal = require("react-modal");
+var Fade = require('react-bootstrap/lib/Fade');
+var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
+var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
+var Popover = require('react-bootstrap/lib/Popover');
 
 var PatientStore = require('../../stores/patient_store.js');
 var DoctorStore = require('../../stores/doctor_store.js');
+var DashboardStore = require('../../stores/dashboard_store.js');
 var PatientActions = require('../../actions/patient_actions.js');
 var DoctorActions = require('../../actions/doctor_actions.js');
+var LogActions = require('../../actions/log_actions.js');
+var DashboardActions = require('../../actions/dashboard_actions.js');
 var AuthForm = require('../auth/auth_form.jsx');
 var AuthActions = require('../../actions/auth_actions.js');
 
@@ -21,14 +28,23 @@ module.exports = React.createClass({
       username = "Dr. " + DoctorStore.currentDoctor().last_name;
     }
 
-    return({ username: username, dropDown: false });
+    return({ username: username, dropDown: false, sideOptions: false });
   },
 
   componentDidMount: function() {
     this.patientListener = PatientStore.addListener(this._receiveUser);
     this.doctorListener = DoctorStore.addListener(this._receiveUser);
+    this.dashboardListener = DashboardStore.addListener(this._updateOptions);
     PatientActions.fetchCurrentPatient();
     DoctorActions.fetchCurrentDoctor();
+  },
+
+  _updateOptions: function() {
+    if (DashboardStore.sidebarStatus()) {
+      this.setState({ sideOptions: false });
+    } else {
+      this.setState({ sideOptions: true });
+    }
   },
 
   _receiveUser: function() {
@@ -98,7 +114,7 @@ module.exports = React.createClass({
                 <span
                   className="glyphicon glyphicon-lock"
                   aria-hidden="true"></span> Logout
-              </button>            
+              </button>
             </div>
           </div>
         );
@@ -139,12 +155,71 @@ module.exports = React.createClass({
       }
   },
 
-  options: function(){
-    return (
-      <div className="nav navbar-nav navbar-right nav-button">
+  launchLog: function() {
+    LogActions.openForm();
+  },
 
-      </div>
+  contactDoctor: function() {
+
+  },
+
+  popOverPatientContent: function() {
+    return (
+      <Popover
+        className="action-popover">
+        <ul className="options-menu">
+          <li className="options-action"
+            onClick={this.launchLog}>
+            <a>Create a new log</a></li>
+          <li className="options-action"
+            onClick={this.contactDoctor}>
+            <a>Contact doctor</a></li>
+        </ul>
+      </Popover>
     );
+  },
+
+  popOverContent: function() {
+    if (this.state.username.indexOf("Dr.") !== 0) {
+      return this.popOverPatientContent();
+    } else {
+      return;
+    }
+  },
+
+  optionsToggle: function() {
+    DashboardActions.expandSidebar();
+  },
+
+  options: function(){
+    if (this.state.username) {
+      return (
+        <Fade in={this.state.sideOptions}>
+          <div className="nav navbar-nav navbar-left nav-button">
+            <button
+              className="btn btn-options-toggle"
+              onClick={this.optionsToggle}>
+              <span
+                className="glyphicon glyphicon-menu-hamburger"
+                aria-hidden="true"></span>
+            </button>
+            <OverlayTrigger
+              trigger="click"
+              rootClose placement="bottom"
+              overlay={this.popOverContent()}>
+              <button
+                className="btn btn-actions-toggle">
+                <span
+                  className="glyphicon glyphicon-plus"
+                  aria-hidden="true"></span>
+              </button>
+            </OverlayTrigger>
+          </div>
+        </Fade>
+      );
+    } else {
+      return;
+    }
   },
 
   openSignInModal: function(){
@@ -172,6 +247,7 @@ module.exports = React.createClass({
         <nav className="navbar navbar-default navbar-custom">
           <div className="container-fluid navbar-inner">
             {this.logo}
+            {this.options()}
             {this.current_user()}
           </div>
         </nav>
