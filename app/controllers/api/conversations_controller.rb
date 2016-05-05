@@ -2,7 +2,7 @@ class Api::ConversationsController < ApplicationController
   def index
     puts params[:ttype]
     puts params[:id]
-    if (current_user.nil? && params[:ttype] == "Patient")
+    if (params[:ttype] == "Patient")
       patient = Patient.find(params[:id])
       @inbox = patient.received_threads
       @outbox = patient.authored_threads
@@ -10,11 +10,11 @@ class Api::ConversationsController < ApplicationController
     # else
     #   @errors = ["No user logged in"]
     #   render "api/shared/error", status: 422
-    end
-
-    @inbox = current_user.received_threads
-    @outbox = current_user.authored_threads
-    render "api/conversations/index"
+    else
+      @inbox = current_user.received_threads
+      @outbox = current_user.authored_threads
+      render "api/conversations/index"
+    end    
   end
 
   def create
