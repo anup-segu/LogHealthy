@@ -28,7 +28,7 @@ class Api::LogsController < ApplicationController
   def destroy
     @log = Log.find(params[:id])
     @log.destroy
-    @patient = current_patient
+    @patient = @log.patient
     render "api/patients/show"
   end
 
