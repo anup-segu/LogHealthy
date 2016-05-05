@@ -4,8 +4,7 @@ var PatientStore = require('../stores/patient_store.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
 var _showSidebar = true;
-var _tab = PatientStore.currentPatient() ? "logs" : "patients",
-    _subTab = "inbox";
+var _tab = "logs", _subTab = "inbox";
 var DashboardStore = new Store(AppDispatcher);
 
 DashboardStore.expandSidebar = function() {
