@@ -39,7 +39,6 @@ LogStore.errors = function() {
   if (_errors) {
     var errors  = [].slice.call(_errors);
     _errors = null;
-    console.log("errors are "+ errors);
     return errors;
   }
   return;

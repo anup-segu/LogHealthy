@@ -4,6 +4,7 @@ var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 var Popover = require('react-bootstrap/lib/Popover');
 
 var LogStore = require('../../../../stores/log_store.js');
+var PatientStore = require('../../../../stores/patient_store.js');
 var LogActions = require('../../../../actions/log_actions.js');
 
 var style = {
@@ -117,6 +118,7 @@ var LogForm = React.createClass({
       parsedMealTaken = false;
     }
     var log = {
+      patient_id: PatientStore.currentPatient().id,
       glucose: this.state.glucose,
       carbs: this.state.carbs,
       meal_type: this.state.meal_type,
