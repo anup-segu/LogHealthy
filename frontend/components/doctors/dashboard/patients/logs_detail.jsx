@@ -66,6 +66,14 @@ var LogDetail = React.createClass({
     }
   },
 
+  mealTakenContent: function (boolean) {
+    if (boolean) {
+      return "Meal Taken";
+    } else {
+      return "No Meal Taken";
+    }
+  },
+
   data: function() {
     var elements = ["breakfast", "lunch", "dinner"].map(function (meal_type) {
       if (this.props.log[meal_type]) {
