@@ -1,6 +1,7 @@
 var React = require('react');
 
 var ConversationStore = require('../../../../stores/conversation_store.js');
+var PatientStore = require('../../../../stores/patient_store.js');
 var ConversationActions = require('../../../../actions/conversation_actions.js');
 var ConversationDetail = require('../../../shared/conversation_detail.jsx');
 var NewForm = require('../../../shared/conversation_form.jsx');
@@ -19,7 +20,10 @@ var ConversationThread = React.createClass({
   componentDidMount: function() {
     this.conversationListener =
       ConversationStore.addListener(this._updateConversations);
-    ConversationActions.fetchConversations();
+    ConversationActions.fetchConversations(
+      PatientStore.currentPatient().id,
+      "Patient"
+    );
   },
 
   componentWillUnmount: function() {

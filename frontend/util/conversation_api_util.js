@@ -4,6 +4,7 @@ module.exports = {
   fetchConversations: function (options) {
     $.ajax({
       url: 'api/conversations',
+      data: options.data,
       success: options.success
     });
   },

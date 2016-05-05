@@ -3,8 +3,9 @@ var ConversationApiUtil = require('../util/conversation_api_util.js');
 var ConversationConstants = require('../constants/conversation_constants.js');
 
 var ConversationActions = {
-  fetchConversations: function() {
+  fetchConversations: function (id, ttype) {
     ConversationApiUtil.fetchConversations({
+      data: { id: id, ttype: ttype },
       success: function (conversations) {
         AppDispatcher.dispatch({
           actionType: ConversationConstants.THREADS_RECEIVED,

@@ -1,9 +1,16 @@
 class Api::ConversationsController < ApplicationController
   def index
-    if (current_user.nil?)
+    puts params
+    if (current_user.nil? && params[:ttype] == "Patient")
+      patient = Patient.find(params[:id])
+      @inbox = patient.received_threads
+      @outbox = patient.authored_threads
+      render "api/conversations/index"
+    else
       @errors = ["No user logged in"]
       render "api/shared/error", status: 422
     end
+
     @inbox = current_user.received_threads
     @outbox = current_user.authored_threads
     render "api/conversations/index"
