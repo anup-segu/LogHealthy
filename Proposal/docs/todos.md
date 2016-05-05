@@ -5,6 +5,9 @@ contact patient should redirect correctly
 error handling on create message is buggy
 change order of messages
 
+dropdown button for login (fix colors and make one button)
+navbar transition fix
+
 loading screen/bar for
 login
 log create (maybe just affect submit button)

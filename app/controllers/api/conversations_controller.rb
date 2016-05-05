@@ -1,7 +1,5 @@
 class Api::ConversationsController < ApplicationController
   def index
-    puts params[:ttype]
-    puts params[:id]
     if (params[:ttype] == "Patient")
       patient = Patient.find(params[:id])
       @inbox = patient.received_threads
@@ -17,10 +15,12 @@ class Api::ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new(conversation_params)
 
-    if current_patient
-      @conversation.author_id = current_patient.id
-      @conversation.author_type = "Patient"
-    elsif current_doctor
+    # if current_patient
+    #   @conversation.author_id = current_patient.id
+    #   @conversation.author_type = "Patient"
+    # elsif 
+
+    if current_doctor
       @conversation.author_id = current_doctor.id
       @conversation.author_type = "Doctor"
     end
@@ -40,6 +40,8 @@ class Api::ConversationsController < ApplicationController
   def conversation_params
     params.require(:conversation)
       .permit(
+        :author_id,
+        :author_type,
         :recipient_id,
         :recipient_type,
         :parent_id,

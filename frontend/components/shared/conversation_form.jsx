@@ -5,6 +5,7 @@ var MenuItem = require('react-bootstrap/lib/MenuItem');
 var ConversationActions = require('../../actions/conversation_actions.js');
 var LogActions = require('../../actions/log_actions.js');
 var ConversationStore = require('../../stores/conversation_store.js');
+var PatientStore = require('../../stores/patient_store.js');
 
 var ConversationForm = React.createClass({
   getInitialState: function() {
@@ -148,12 +149,24 @@ var ConversationForm = React.createClass({
   handleSubmit: function (event) {
     event.preventDefault();
     LogActions.closeForm();
-    ConversationActions.createConversation({
-      subject: this.state.subject ? this.state.subject : "(No Subject)",
-      recipient_id: this.state.recipient_id,
-      recipient_type: this.state.recipient_type,
-      body: this.state.body
-    });
+
+    if (PatientStore.currentPatient()) {
+      ConversationActions.createConversation({
+        author_id: PatientStore.currentPatient().id,
+        author_type: "Patient",
+        subject: this.state.subject ? this.state.subject : "(No Subject)",
+        recipient_id: this.state.recipient_id,
+        recipient_type: this.state.recipient_type,
+        body: this.state.body
+      });
+    } else {
+      ConversationActions.createConversation({
+        subject: this.state.subject ? this.state.subject : "(No Subject)",
+        recipient_id: this.state.recipient_id,
+        recipient_type: this.state.recipient_type,
+        body: this.state.body
+      });
+    }
   },
 
   message: function() {
