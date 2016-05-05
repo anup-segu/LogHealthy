@@ -1,7 +1,7 @@
 #Todos
 
 contact doctor is launching record log
-cant leave from conversation tab
+cant leave from conversation tab / navigate from contact doctor
 
 doctor patient detail should match patient (esp with comments and meal taken)
 error handling on create message is buggy
