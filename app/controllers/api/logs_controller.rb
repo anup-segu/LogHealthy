@@ -5,7 +5,7 @@ class Api::LogsController < ApplicationController
     @log.date = Date.today
 
     if @log.save
-      @patient = current_patient
+      @patient = @log.patient
       render "api/patients/show"
     else
       @errors = @log.errors.full_messages
