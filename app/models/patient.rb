@@ -69,10 +69,12 @@ class Patient < ActiveRecord::Base
 
   def authored_threads
     self.authored_conversations.where(parent_id: nil)
+      .order(created_at: :desc)
   end
 
   def received_threads
     self.recipient_conversations.where(parent_id: nil)
+      .order(created_at: :desc)
   end
 
   def doctor_extract

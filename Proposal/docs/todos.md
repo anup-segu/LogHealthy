@@ -2,7 +2,6 @@
 
 contact patient should redirect correctly
 
-error handling on create message is buggy
 change order of messages
 
 dropdown button for login (fix colors and make one button)
