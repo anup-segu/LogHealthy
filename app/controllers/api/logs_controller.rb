@@ -17,7 +17,7 @@ class Api::LogsController < ApplicationController
     @log = Log.find(params[:log][:id])
 
     if @log.update_attributes(log_params)
-      @patient = current_patient
+      @patient = @log.patient
       render "api/patients/show"
     else
       @errors = @log.errors.full_messages
