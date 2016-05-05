@@ -2,6 +2,7 @@ var React = require('react');
 
 var LogsIndex = require('./logs/logs_index.jsx');
 var LogActions = require('../../../actions/log_actions.js');
+var DashboardActions = require('../../../actions/dashboard_actions.js');
 var PatientStore = require('../../../stores/patient_store.js');
 var DashboardStore = require('../../../stores/dashboard_store.js');
 var ConversationStore = require('../../../stores/conversation_store.js');
@@ -13,6 +14,7 @@ var Tabs = React.createClass({
     return {
       viewWidth: "default",
       tabPane: "logs",
+      subTab: "inbox",
       logData: PatientStore.currentPatient().logs,
       doctor: PatientStore.currentPatient().doctor,
       contactDoctor: false
@@ -31,9 +33,17 @@ var Tabs = React.createClass({
 
   _updateView: function() {
     if (DashboardStore.sidebarStatus()) {
-      this.setState({ viewWidth: "collapse" });
+      this.setState({
+        viewWidth: "collapse",
+        tabPane: DashboardStore.tabStatus(),
+        subTab: DashboardStore.subTabStatus() ? DashboardStore.subTabStatus() : "inbox"
+      });
     } else {
-      this.setState({ viewWidth: "expand" });
+      this.setState({
+        viewWidth: "expand",
+        tabPane: DashboardStore.tabStatus(),
+        subTab: DashboardStore.subTabStatus() ? DashboardStore.subTabStatus() : "inbox"
+      });
     }
   },
 
@@ -57,17 +67,19 @@ var Tabs = React.createClass({
 
   toggleLogs: function() {
     LogActions.closeForm();
-    this.setState({ tabPane: "logs" });
+    DashboardActions.openTab("logs");
+    // this.setState({ tabPane: "logs" });
   },
 
   toggleProgress: function() {
     LogActions.closeForm();
-    this.setState({ tabPane: "progress" });
+    DashboardActions.openTab("progress");
+    // this.setState({ tabPane: "progress" });
   },
 
   toggleConversations: function() {
     LogActions.closeForm();
-    this.setState({ tabPane: "conversations", contactDoctor: false });
+    DashboardActions.openTab("conversations", "inbox");
   },
 
   logClass: "active",
@@ -123,7 +135,7 @@ var Tabs = React.createClass({
           <div className="container conversation-section">
             <ConversationThread
               doctor={this.state.doctor}
-              tab={this.state.contactDoctor ? "new" : "inbox"}/>
+              tab={this.state.subTab}/>
           </div>
         );
           this.logClass = "";

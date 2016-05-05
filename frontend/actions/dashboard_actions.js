@@ -12,5 +12,13 @@ module.exports = {
     AppDispatcher.dispatch({
       actionType: DashboardConstants.EXPAND_SIDEBAR
     });
+  },
+
+  openTab: function (tab, subTab) {
+    AppDispatcher.dispatch({
+      actionType: DashboardConstants.NAVIGATE,
+      tab: tab,
+      subTab: subTab
+    });
   }
 };

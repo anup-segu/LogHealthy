@@ -31,7 +31,7 @@ var ConversationThread = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    this.setState({ doctor: newProps.doctor });
+    this.setState({ doctor: newProps.doctor, tab: newProps.tab });
   },
 
   _updateConversations: function() {

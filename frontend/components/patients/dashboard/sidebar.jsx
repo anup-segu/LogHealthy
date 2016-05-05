@@ -4,7 +4,6 @@ var React = require('react');
 var LogForm = require('./logs/logs_form.jsx');
 var LogActions = require('../../../actions/log_actions.js');
 var DashboardActions = require('../../../actions/dashboard_actions.js');
-var ConversationActions = require('../../../actions/conversation_actions.js');
 var DashboardStore = require('../../../stores/dashboard_store.js');
 
 var Sidebar = React.createClass({
@@ -71,7 +70,7 @@ var Sidebar = React.createClass({
   },
 
   createConversation: function() {
-    ConversationActions.openNewConversation();
+    DashboardActions.openTab("conversations", "new");
   },
 
   collapse: function (event) {

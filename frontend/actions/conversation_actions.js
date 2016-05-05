@@ -38,11 +38,11 @@ var ConversationActions = {
 		}
   },
 
-  openNewConversation: function() {
-    AppDispatcher.dispatch({
-      actionType: ConversationConstants.OPEN_NEW_CONVERSATION
-    });
-  }
+  // openNewConversation: function() {
+  //   AppDispatcher.dispatch({
+  //     actionType: ConversationConstants.OPEN_NEW_CONVERSATION
+  //   });
+  // }
 };
 
 module.exports = ConversationActions;

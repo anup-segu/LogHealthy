@@ -7,14 +7,11 @@ class Api::ConversationsController < ApplicationController
       @inbox = patient.received_threads
       @outbox = patient.authored_threads
       render "api/conversations/index"
-    # else
-    #   @errors = ["No user logged in"]
-    #   render "api/shared/error", status: 422
     else
       @inbox = current_user.received_threads
       @outbox = current_user.authored_threads
       render "api/conversations/index"
-    end    
+    end
   end
 
   def create
