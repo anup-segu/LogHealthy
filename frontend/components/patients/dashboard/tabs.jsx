@@ -32,6 +32,7 @@ var Tabs = React.createClass({
   },
 
   _updateView: function() {
+    console.log(DashboardStore.tabStatus());
     if (DashboardStore.sidebarStatus()) {
       this.setState({
         viewWidth: "collapse",
