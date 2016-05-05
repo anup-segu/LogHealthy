@@ -87,7 +87,7 @@ var ConversationDetail = React.createClass({
   buttonReplyContent: function() {
     if (this.state.form) {
       return (
-        <span className="glyphicon glyphicon-remove-circle"
+        <span className="glyphicon glyphicon-remove"
           aria-hidden="true">
         </span>
       );
@@ -109,9 +109,9 @@ var ConversationDetail = React.createClass({
       );
     } else {
       subjectLine = (
-        <h4 className="conversation-subject">
+        <h3 className="conversation-subject">
           {this.state.conversation.subject}
-        </h4>
+        </h3>
       );
     }
 
@@ -124,7 +124,7 @@ var ConversationDetail = React.createClass({
           {this.buttonContent()}
         </button>
         <button
-          className="btn btn-default btn-sm conversation-show-btn"
+          className="btn btn-default btn-sm conversation-reply-btn"
           onClick={this.toggleReply}>
           {this.buttonReplyContent()}
         </button>
@@ -153,11 +153,19 @@ var ConversationDetail = React.createClass({
     );
   },
 
+  detailClass: function() {
+    if (this.props.response) {
+      return "detail-reply";
+    } else {
+      return "detail-main";
+    }
+  },
+
   detail: function() {
     return (
       <Collapse in={this.state.detail}>
         <div className="width-fix">
-          <p>{this.state.conversation.body}</p>
+          <p className={this.detailClass()}>{this.state.conversation.body}</p>
           {this.replyForm()}
           {this.responses()}
         </div>
@@ -179,7 +187,7 @@ var ConversationDetail = React.createClass({
 
   render: function() {
     return (
-      <div className="thumbnail">
+      <div className="thumbnail conversation-outline">
         <div className="caption conversation-box">
           {this.header()}
           {this.location()}

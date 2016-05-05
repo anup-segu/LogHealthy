@@ -24,6 +24,7 @@ $color-5: #333333; //dark-gray for fonts
 .thumbnail > .conversation-box {
   padding-top: 0;
   padding-bottom: 0;
+  padding-right: 0;
 }
 
 .navbar-conversations {
@@ -63,6 +64,12 @@ $color-5: #333333; //dark-gray for fonts
   border-bottom: 2px solid $color-2;
 }
 
+.conversation-outline {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 2px solid $color-4;
+}
+
 .conversation-header {
   padding-left: 15px;
   padding-right: 15px;
@@ -70,12 +77,53 @@ $color-5: #333333; //dark-gray for fonts
 
 .conversation-subject {
   display: inline-block;
+  font-family: $font-bold;
+  color: $color-5;
 }
 
-.conversation-show-btn {
+.detail-main {
+  font-size: 17px;
+  font-family: $font-primary;
+  border-bottom: 2px solid $color-4;
+}
+
+.detail-reply {
+  font-size: 14px;
+  font-family: $font-primary;
+}
+
+.conversation-show-btn, .conversation-show-btn:focus  {
+  margin-top: 15px;
   float: right;
   margin-right: 5px;
+  background-color: #ffffff;
+  border: 2px solid $color-1;
+  color: $color-1;
+  outline: 0;
 }
+
+.conversation-show-btn:hover {
+  background-color: #ffffff;
+  border: 2px solid $color-1;
+  color: $color-1;
+}
+
+.conversation-reply-btn, .conversation-reply-btn:focus  {
+  margin-top: 15px;
+  float: right;
+  margin-right: 5px;
+  background-color: #ffffff;
+  border: 2px solid $color-2;
+  color: $color-2;
+  outline: 0;
+}
+
+.conversation-reply-btn:hover {
+  background-color: #ffffff;
+  border: 2px solid $color-2;
+  color: $color-2;
+}
+
 
 .thread-container {
   width: 100%;
@@ -84,12 +132,16 @@ $color-5: #333333; //dark-gray for fonts
 
 .time-tag {
   display: inline-block;
+  color: #999999;
+  font-family: $font-primary;
 }
 
 .location-tag {
   display: inline-block;
   float: left;
   padding-right: 10px;
+  font-family: $font-primary;
+  font-weight: bold;
 }
 
 .reply-form {
