@@ -34,17 +34,22 @@ var Tabs = React.createClass({
   },
 
   _updateView: function() {
-    console.log(DashboardStore.tabStatus());
+    var tab = DashboardStore.tabStatus();
+
+    if (tab === "default") {
+      tab = "logs";
+    }
+
     if (DashboardStore.sidebarStatus()) {
       this.setState({
         viewWidth: "collapse",
-        tabPane: DashboardStore.tabStatus() ? DashboardStore.tabStatus() : "logs",
+        tabPane: tab ? tab : "logs",
         subTab: DashboardStore.subTabStatus() ? DashboardStore.subTabStatus() : "inbox"
       });
     } else {
       this.setState({
         viewWidth: "expand",
-        tabPane: DashboardStore.tabStatus() ? DashboardStore.tabStatus() : "logs",
+        tabPane: tab ? tab : "logs",
         subTab: DashboardStore.subTabStatus() ? DashboardStore.subTabStatus() : "inbox"
       });
     }
