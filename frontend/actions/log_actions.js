@@ -45,7 +45,7 @@ var LogActions = {
   },
 
   logPosted: function (patient) {
-    LogActions.closeForm();
+    // LogActions.closeForm();
     AppDispatcher.dispatch({
       actionType: LogConstants.PATIENT_UPDATED,
       patient: patient

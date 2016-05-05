@@ -24,7 +24,9 @@ PatientStore.logout = function (patient) {
 };
 
 PatientStore.updatePatient = function (patient) {
+  debugger;
   _currentPatient = patient;
+  localStorage.setItem("currentPatient", JSON.stringify(patient));
   _errors = null;
 };
 

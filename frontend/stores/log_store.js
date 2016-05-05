@@ -84,6 +84,7 @@ LogStore.__onDispatch = function (payload) {
       LogStore.closeEditForm();
       break;
     case LogConstants.PATIENT_UPDATED:
+      LogStore.closeLogForm();
       LogStore.closeEditForm();
       break;
   }
