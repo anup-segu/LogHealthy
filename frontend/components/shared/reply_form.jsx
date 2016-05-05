@@ -50,7 +50,9 @@ var ConversationForm = React.createClass({
             rows="3"
             onChange={this.updateBody}></textarea>
         </div>
-        <button className="btn btn-primary">Reply</button>
+        <button
+          className="btn btn-reply-submit"
+          disabled={this.state.body ? false : true}>Reply</button>
       </form>
     );
   }

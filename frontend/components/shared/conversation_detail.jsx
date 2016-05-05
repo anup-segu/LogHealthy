@@ -9,7 +9,7 @@ var ConversationDetail = React.createClass({
       conversation: this.props.conversation,
       type: this.props.type,
       response: this.props.response,
-      detail: false,
+      detail: this.props.detail,
       form: false
     };
   },
@@ -100,6 +100,26 @@ var ConversationDetail = React.createClass({
     }
   },
 
+  buttonReplyClass: function() {
+    if (this.props.response && this.state.form ) {
+      return "btn btn-default btn-sm conversation-reply-btn-cancel";
+    } else if (this.state.response) {
+      return "btn btn-default btn-sm conversation-reply-btn";
+    } else if (this.state.form) {
+      return "btn btn-default btn-sm conversation-reply-btn-cancel main-offset";
+    } else {
+      return "btn btn-default btn-sm conversation-reply-btn main-offset";
+    }
+  },
+
+  buttonShowClass: function() {
+    if (this.props.response) {
+      return "btn btn-default btn-sm conversation-show-btn";
+    } else {
+      return "btn btn-default btn-sm conversation-show-btn main-offset";
+    }
+  },
+
   header: function() {
     if (this.props.response) {
       var subjectLine = (
@@ -119,12 +139,12 @@ var ConversationDetail = React.createClass({
       <div className="row conversation-header">
         {subjectLine}
         <button
-          className="btn btn-default btn-sm conversation-show-btn"
+          className={this.buttonShowClass()}
           onClick={this.toggleDetail}>
           {this.buttonContent()}
         </button>
         <button
-          className="btn btn-default btn-sm conversation-reply-btn"
+          className={this.buttonReplyClass()}
           onClick={this.toggleReply}>
           {this.buttonReplyContent()}
         </button>
@@ -140,6 +160,7 @@ var ConversationDetail = React.createClass({
             <ConversationDetail
               key={response.id}
               conversation={response}
+              detail={true}
               type={this.oppositeType()}
               response={true}/>
           </li>

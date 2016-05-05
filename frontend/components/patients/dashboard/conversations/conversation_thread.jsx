@@ -140,7 +140,7 @@ var ConversationThread = React.createClass({
            </li>
            <li className={this.newTab()}
              onClick={this.toggleNew}>
-             <a>New Conversation</a>
+             <a>Create</a>
            </li>
          </ul>
        </div>

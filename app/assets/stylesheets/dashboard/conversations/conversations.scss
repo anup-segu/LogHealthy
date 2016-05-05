@@ -79,6 +79,11 @@ $color-5: #333333; //dark-gray for fonts
   display: inline-block;
   font-family: $font-bold;
   color: $color-5;
+  max-width: 80%;
+}
+
+h3.conversation-subject {
+  font-size: 21px;
 }
 
 .detail-main {
@@ -92,8 +97,11 @@ $color-5: #333333; //dark-gray for fonts
   font-family: $font-primary;
 }
 
+.main-offset {
+  margin-top: 20px;
+}
+
 .conversation-show-btn, .conversation-show-btn:focus  {
-  margin-top: 15px;
   float: right;
   margin-right: 5px;
   background-color: #ffffff;
@@ -103,13 +111,12 @@ $color-5: #333333; //dark-gray for fonts
 }
 
 .conversation-show-btn:hover {
-  background-color: #ffffff;
+  background-color: $color-1;
   border: 2px solid $color-1;
-  color: $color-1;
+  color: #ffffff;
 }
 
 .conversation-reply-btn, .conversation-reply-btn:focus  {
-  margin-top: 15px;
   float: right;
   margin-right: 5px;
   background-color: #ffffff;
@@ -119,9 +126,24 @@ $color-5: #333333; //dark-gray for fonts
 }
 
 .conversation-reply-btn:hover {
-  background-color: #ffffff;
+  background-color: $color-2;
   border: 2px solid $color-2;
-  color: $color-2;
+  color: #ffffff;
+}
+
+.conversation-reply-btn-cancel, .conversation-reply-btn-cancel:focus  {
+  float: right;
+  margin-right: 5px;
+  background-color: #ffffff;
+  border: 2px solid $color-3;
+  color: $color-3;
+  outline: 0;
+}
+
+.conversation-reply-btn-cancel:hover {
+  background-color: $color-3;
+  border: 2px solid $color-3;
+  color: #ffffff;
 }
 
 
@@ -167,6 +189,19 @@ $color-5: #333333; //dark-gray for fonts
   -webkit-box-shadow: 0px 0px 5px 5px rgba(96,38,210,0.61);
   -moz-box-shadow: 0px 0px 5px 5px rgba(96,38,210,0.61);
   box-shadow: 0px 0px 5px 5px rgba(96,38,210,0.61);
+}
+
+.btn-reply-submit, .btn-reply-submit:focus {
+  background-color: #ffffff;
+  border: 2px solid $color-1;
+  color: $color-1;
+  outline: 0;
+}
+
+.btn-reply-submit:hover {
+  background-color: $color-1;
+  border: 2px solid $color-1;
+  color: #ffffff;
 }
 
 .alert-success {
