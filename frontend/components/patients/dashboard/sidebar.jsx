@@ -70,6 +70,7 @@ var Sidebar = React.createClass({
   },
 
   createConversation: function() {
+    LogActions.closeForm();
     DashboardActions.openTab("conversations", "new");
   },
 
