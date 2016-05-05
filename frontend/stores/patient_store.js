@@ -10,7 +10,7 @@ var appStorage = localStorage;
 PatientStore.login = function (patient) {
   if (patient && patient.ttype === "patient") {
     localStorage.setItem("currentPatient", JSON.stringify(patient));
-
+    console.log(JSON.parse(localStorage.getItem("currentPatient")));
     _currentPatient = patient;
     _errors = null;
   }

@@ -49,7 +49,6 @@ LogStore.editErrors = function() {
   if (_editErrors) {
     var errors  = [].slice.call(_editErrors);
     _editErrors = null;
-    console.log("errors are "+ errors);
     return errors;
   }
   return;

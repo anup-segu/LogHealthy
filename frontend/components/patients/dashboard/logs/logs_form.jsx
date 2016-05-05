@@ -63,13 +63,17 @@ var LogForm = React.createClass({
     var self = this;
     if (this.state.errors) {
       return (
-        <ul>
-          {
-            this.state.errors.map(function(error, i){
-              return (<li key={i}>{error}</li>);
-            })
-          }
-        </ul>
+        <div className="log-errors">
+          Woops, please check the following:
+          <ul>
+            {
+              this.state.errors.map(function(error, i){
+                return (<li key={i}>{error}</li>);
+              })
+            }
+          </ul>
+        </div>
+
       );
     }
     return;

@@ -102,3 +102,13 @@ textarea.form-control:focus {
 .cancel-link {
   cursor: pointer;
 }
+
+.log-errors {
+  width: 100%;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid $color-3;
+  color: $color-3;
+  font-family: $font-primary;
+}

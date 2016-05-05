@@ -1,7 +1,7 @@
 class Api::LogsController < ApplicationController
   def create
     @log = Log.new(log_params)
-    @log.patient_id = current_patient.id
+    @log.patient_id ||= current_patient.id
     @log.date = Date.today
 
     if @log.save
@@ -35,6 +35,14 @@ class Api::LogsController < ApplicationController
   private
   def log_params
     params.require(:log)
-      .permit(:glucose, :meal_type, :meal_taken?, :carbs, :comment, :id)
+      .permit(
+        :glucose,
+        :meal_type,
+        :meal_taken?,
+        :carbs,
+        :comment,
+        :id,
+        :patient_id
+      )
   end
 end
