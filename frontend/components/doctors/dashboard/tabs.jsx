@@ -1,6 +1,7 @@
 var React = require('react');
 
 var DoctorStore = require('../../../stores/doctor_store.js');
+var DashboardActions = require('../../../actions/dashboard_actions.js');
 var DashboardStore = require('../../../stores/dashboard_store.js');
 var PatientSearch = require('./patients/patient_search.jsx');
 var PatientDetail = require('./patients/patient_detail.jsx');
@@ -27,10 +28,24 @@ var Tabs = React.createClass({
   },
 
   _updateView: function() {
+    var tab = DashboardStore.tabStatus();
+
+    if (tab === "default") {
+      tab = "patients";
+    }
+
     if (DashboardStore.sidebarStatus()) {
-      this.setState({ viewWidth: "collapse" });
+      this.setState({
+        viewWidth: "collapse",
+        tabPane: tab ? tab : "patients",
+        subTab: DashboardStore.subTabStatus() ? DashboardStore.subTabStatus() : "inbox"
+      });
     } else {
-      this.setState({ viewWidth: "expand" });
+      this.setState({
+        viewWidth: "expand",
+        tabPane: tab ? tab : "patients",
+        subTab: DashboardStore.subTabStatus() ? DashboardStore.subTabStatus() : "inbox"
+      });
     }
   },
 
@@ -45,12 +60,14 @@ var Tabs = React.createClass({
 
   togglePatients: function (event) {
     event.preventDefault();
-    this.setState({ tabPane: "patients" });
+    // this.setState({ tabPane: "patients" });
+    DashboardActions.openTab("patients");
   },
 
   toggleConversations: function (event) {
     event.preventDefault();
-    this.setState({ tabPane: "conversations" });
+    // this.setState({ tabPane: "conversations" });
+    DashboardActions.openTab("conversations", "inbox");
   },
 
   patientsClass: function() {

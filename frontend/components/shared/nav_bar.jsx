@@ -160,7 +160,9 @@ module.exports = React.createClass({
     LogActions.openForm();
   },
 
-  contactDoctor: function() {
+  contactDoctor: function (event) {
+    event.preventDefault();
+    LogActions.closeForm();
     DashboardActions.openTab("conversations", "new");
   },
 
