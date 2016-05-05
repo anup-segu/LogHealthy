@@ -127,9 +127,9 @@ var ConversationThread = React.createClass({
 
   navigation: function() {
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-conversations">
         <div className="navbar-collapse">
-         <ul className="nav navbar-nav">
+         <ul className="nav navbar-nav conversation-tab-list">
            <li className={this.inboxTab()}
              onClick={this.toggleInbox}>
              <a>Inbox</a>

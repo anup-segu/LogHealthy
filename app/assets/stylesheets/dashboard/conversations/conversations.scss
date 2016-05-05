@@ -26,6 +26,43 @@ $color-5: #333333; //dark-gray for fonts
   padding-bottom: 0;
 }
 
+.navbar-conversations {
+  border: 0;
+  border-radius: 0;
+  background-color: #ffffff;
+  font-family: $font-bold;
+}
+
+.conversation-tab-list {
+  width: 66%;
+  margin-left: 17%;
+  margin-right: 17%;
+}
+
+.conversation-tab-list > li {
+  width: 33%;
+  text-align: center;
+  color: $color-5 !important;
+}
+
+.conversation-tab-list > li:hover {
+  background-color: #ffffff;
+}
+
+.conversation-tab-list > li:hover > a {
+  color: $color-3 !important;
+  background-color: #ffffff;
+}
+
+.conversation-tab-list > li > a {
+  color: $color-5 !important;
+}
+
+.conversation-tab-list > li.active > a {
+  color: $color-2 !important;
+  border-bottom: 2px solid $color-2;
+}
+
 .conversation-header {
   padding-left: 15px;
   padding-right: 15px;
