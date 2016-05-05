@@ -1,6 +1,7 @@
 class Api::ConversationsController < ApplicationController
   def index
-    puts params
+    puts params[:ttype]
+    puts params[:id]
     if (current_user.nil? && params[:ttype] == "Patient")
       patient = Patient.find(params[:id])
       @inbox = patient.received_threads
