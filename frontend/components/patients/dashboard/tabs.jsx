@@ -35,13 +35,13 @@ var Tabs = React.createClass({
     if (DashboardStore.sidebarStatus()) {
       this.setState({
         viewWidth: "collapse",
-        tabPane: DashboardStore.tabStatus(),
+        tabPane: DashboardStore.tabStatus() ? DashboardStore.tabStatus() : "logs",
         subTab: DashboardStore.subTabStatus() ? DashboardStore.subTabStatus() : "inbox"
       });
     } else {
       this.setState({
         viewWidth: "expand",
-        tabPane: DashboardStore.tabStatus(),
+        tabPane: DashboardStore.tabStatus() ? DashboardStore.tabStatus() : "logs",
         subTab: DashboardStore.subTabStatus() ? DashboardStore.subTabStatus() : "inbox"
       });
     }
