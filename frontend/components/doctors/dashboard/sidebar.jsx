@@ -34,6 +34,11 @@ var Sidebar = React.createClass({
     }
   },
 
+  createConversation: function (event) {
+    event.preventDefault();
+    DashboardActions.openTab("conversations", "new");
+  },
+
   sidebarClass: function() {
     if (this.state.sidebar === "show") {
       return "container sidebar";
@@ -53,6 +58,15 @@ var Sidebar = React.createClass({
               <span className="glyphicon glyphicon-remove collapse-icon"
                 onClick={this.collapse}
                 aria-hidden="true"></span>
+            </div>
+            <div className="sidebar-actions">
+              <button
+                className="btn btn-lg sidebar-btn"
+                onClick={this.createConversation}>
+                <span
+                  className="glyphicon glyphicon-envelope"
+                  aria-hidden="true"></span> Contact Doctor
+              </button>
             </div>
           </ul>
         </div>

@@ -166,6 +166,11 @@ module.exports = React.createClass({
     DashboardActions.openTab("conversations", "new");
   },
 
+  contactPatient: function (event) {
+    event.preventDefault();
+    DashboardActions.openTab("conversations", "new");
+  },
+
   popOverPatientContent: function() {
     return (
       <Popover
@@ -176,7 +181,7 @@ module.exports = React.createClass({
             <a>Create a new log</a></li>
           <li className="options-action"
             onClick={this.contactDoctor}>
-            <a>Contact doctor</a></li>
+            <a>Contact Doctor</a></li>
         </ul>
       </Popover>
     );
@@ -187,7 +192,9 @@ module.exports = React.createClass({
       <Popover
         className="action-popover">
         <ul className="options-menu">
-
+          <li className="options-action"
+            onClick={this.contactPatient}>
+            <a>Contact Patient</a></li>
         </ul>
       </Popover>
     );

@@ -13,6 +13,7 @@ var Tabs = React.createClass({
     return {
       viewWidth: "default",
       tabPane: "patients",
+      subTab: "inbox",
       patients: DoctorStore.currentDoctor().patients,
       viewPatient: null
     };
@@ -60,13 +61,11 @@ var Tabs = React.createClass({
 
   togglePatients: function (event) {
     event.preventDefault();
-    // this.setState({ tabPane: "patients" });
     DashboardActions.openTab("patients");
   },
 
   toggleConversations: function (event) {
     event.preventDefault();
-    // this.setState({ tabPane: "conversations" });
     DashboardActions.openTab("conversations", "inbox");
   },
 
@@ -109,7 +108,7 @@ var Tabs = React.createClass({
 
   conversationDetail: function() {
     return (
-      <ConversationThread patients={this.state.patients}/>
+      <ConversationThread patients={this.state.patients} tab={this.state.subTab}/>
     );
   },
 

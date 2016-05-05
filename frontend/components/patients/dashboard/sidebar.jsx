@@ -1,5 +1,4 @@
 var React = require('react');
-// var Fade = require('react-bootstrap/lib/Fade');
 
 var LogForm = require('./logs/logs_form.jsx');
 var LogActions = require('../../../actions/log_actions.js');
@@ -76,6 +75,7 @@ var Sidebar = React.createClass({
 
   collapse: function (event) {
     event.preventDefault();
+    LogActions.closeForm();
     if (this.state.sidebar === "show" || this.state.sidebar === "out") {
       DashboardActions.collapseSidebar();
     } else {
