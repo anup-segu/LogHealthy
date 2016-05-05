@@ -79,7 +79,12 @@ var LogDetail = React.createClass({
             rootClose
             placement="left"
             overlay={
-              <Popover title="Comments">
+              <Popover title="Details" id="log-details">
+                  <p>
+                    <strong>
+                      {this.mealTakenContent(this.props.log[meal_type]["meal_taken?"])}
+                    </strong>
+                  </p>
                   <p>{this.props.log[meal_type]["comment"]}</p>
               </Popover>}>
             <tr className="log-table-row" key={meal}>

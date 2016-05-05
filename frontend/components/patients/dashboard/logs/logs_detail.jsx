@@ -123,7 +123,7 @@ var LogDetail = React.createClass({
             rootClose
             placement="left"
             overlay={
-              <Popover title="Details">
+              <Popover title="Details" id="log-details">
                   <p>
                     <strong>
                       {this.mealTakenContent(this.props.log[meal_type]["meal_taken?"])}
