@@ -26,6 +26,7 @@ var Tabs = React.createClass({
 
   componentWillUnmount: function() {
     this.dashboardListener.remove();
+    this.doctorListener.remove();
   },
 
   _updateView: function() {

@@ -18,7 +18,7 @@ class Api::SessionsController < ApplicationController
       render "api/doctors/show"
     else
       @errors = ["Invalid login, please try again"]
-      render "api/shared/error", status: 401
+      render "api/shared/error" #, status: 401
     end
   end
 
