@@ -35,6 +35,12 @@ var ConversationActions = {
 				errors: error.responseJSON.errors
 			});
 		}
+  },
+
+  openNewConversation: function() {
+    AppDispatcher.dispatch({
+      actionType: ConversationConstants.OPEN_NEW_CONVERSATION
+    });
   }
 };
 

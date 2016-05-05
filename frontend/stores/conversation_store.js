@@ -3,7 +3,7 @@ var AppDispatcher = require('../dispatcher/dispatcher.js');
 
 var ConversationConstants = require('../constants/conversation_constants.js');
 
-var _inbox, _outbox, _status, _errors;
+var _inbox, _outbox, _status, _errors, _conversationTabOpen;
 var ConversationStore = new Store(AppDispatcher);
 
 ConversationStore.updateConversations = function (conversations) {
@@ -36,6 +36,18 @@ ConversationStore.errors = function() {
   return;
 };
 
+ConversationStore.updateConversationTab = function() {
+  if (!_conversationTabOpen) {
+    _conversationTabOpen = true;
+  }
+};
+
+ConversationStore.conversationTabStatus = function() {
+  var tabOpen = _conversationTabOpen;
+  _conversationTabOpen = null;
+  return tabOpen;
+};
+
 ConversationStore.inbox = function() {
   return [].slice.call(_inbox);
 };
@@ -53,6 +65,9 @@ ConversationStore.__onDispatch = function (payload) {
     case ConversationConstants.CONVERSATION_ERROR:
       ConversationStore.updateErrors(payload.errors);
       ConversationStore.updateStatus(false);
+      break;
+    case ConversationConstants.OPEN_NEW_CONVERSATION:
+      ConversationStore.updateConversationTab();
       break;
   }
   ConversationStore.__emitChange();

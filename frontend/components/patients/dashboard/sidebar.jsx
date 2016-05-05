@@ -1,9 +1,10 @@
 var React = require('react');
-var PropTypes = React.PropTypes;
+// var Fade = require('react-bootstrap/lib/Fade');
 
 var LogForm = require('./logs/logs_form.jsx');
 var LogActions = require('../../../actions/log_actions.js');
 var DashboardActions = require('../../../actions/dashboard_actions.js');
+var ConversationActions = require('../../../actions/conversation_actions.js');
 var DashboardStore = require('../../../stores/dashboard_store.js');
 
 var Sidebar = React.createClass({
@@ -59,14 +60,18 @@ var Sidebar = React.createClass({
 
   buttonClass: function() {
     if (this.state.buttonText) {
-      return "btn btn-success";
+      return "btn sidebar-btn";
     } else {
-      return "btn btn-lg btn-success";
+      return "btn btn-lg sidebar-btn";
     }
   },
 
   openForm: function() {
     LogActions.openForm();
+  },
+
+  createConversation: function() {
+    ConversationActions.openNewConversation();
   },
 
   collapse: function (event) {
@@ -88,6 +93,12 @@ var Sidebar = React.createClass({
     }
   },
 
+  showSidebarButtons: function() {
+    if (this.state.sidebar === "out" || this.state.sidebar === "show") {
+      return true;
+    }
+  },
+
   sidebarContent: function() {
     if (this.state.sidebar === "out" || this.state.sidebar === "show") {
       return (
@@ -99,11 +110,20 @@ var Sidebar = React.createClass({
                   onClick={this.collapse}
                   aria-hidden="true"></span>
               </div>
-              <button
-                className={this.buttonClass()}
-                onClick={this.openForm}>
-                {this.buttonText()}
-              </button>
+              <div className="sidebar-actions">
+                <button
+                  className={this.buttonClass()}
+                  onClick={this.openForm}>
+                  {this.buttonText()}
+                </button>
+                <button
+                  className={this.buttonClass()}
+                  onClick={this.createConversation}>
+                  <span
+                    className="glyphicon glyphicon-envelope"
+                    aria-hidden="true"></span> Contact Doctor
+                </button>
+              </div>
             </li>
           </ul>
         </div>

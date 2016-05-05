@@ -10,7 +10,7 @@ var ConversationThread = React.createClass({
     return {
       inbox: null,
       outbox: null,
-      tab: "inbox",
+      tab: this.props.tab,
       conversation: {},
       doctor: this.props.doctor
     };

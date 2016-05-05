@@ -4,6 +4,7 @@ var LogsIndex = require('./logs/logs_index.jsx');
 var LogActions = require('../../../actions/log_actions.js');
 var PatientStore = require('../../../stores/patient_store.js');
 var DashboardStore = require('../../../stores/dashboard_store.js');
+var ConversationStore = require('../../../stores/conversation_store.js');
 var GlucoseChart = require('./progress/glucose_chart.jsx');
 var ConversationThread = require('./conversations/conversation_thread.jsx');
 
@@ -13,13 +14,15 @@ var Tabs = React.createClass({
       viewWidth: "default",
       tabPane: "logs",
       logData: PatientStore.currentPatient().logs,
-      doctor: PatientStore.currentPatient().doctor
+      doctor: PatientStore.currentPatient().doctor,
+      contactDoctor: false
     };
   },
 
   componentDidMount: function() {
     this.patientListener = PatientStore.addListener(this._updateLogData);
     this.dashboardListener = DashboardStore.addListener(this._updateView);
+    this.conversationListener = ConversationStore.addListener(this._openNewConveration);
   },
 
   componentWillUnmount: function() {
@@ -43,6 +46,15 @@ var Tabs = React.createClass({
     }
   },
 
+  _openNewConveration: function() {
+    if (ConversationStore.conversationTabStatus()) {
+      this.setState({
+        tabPane: "conversations",
+        contactDoctor: true
+      });
+    }
+  },
+
   toggleLogs: function() {
     LogActions.closeForm();
     this.setState({ tabPane: "logs" });
@@ -55,7 +67,7 @@ var Tabs = React.createClass({
 
   toggleConversations: function() {
     LogActions.closeForm();
-    this.setState({ tabPane: "conversations" });
+    this.setState({ tabPane: "conversations", contactDoctor: false });
   },
 
   logClass: "active",
@@ -109,7 +121,9 @@ var Tabs = React.createClass({
       case "conversations":
         content = (
           <div className="container conversation-section">
-            <ConversationThread doctor={this.state.doctor}/>
+            <ConversationThread
+              doctor={this.state.doctor}
+              tab={this.state.contactDoctor ? "new" : "inbox"}/>
           </div>
         );
           this.logClass = "";

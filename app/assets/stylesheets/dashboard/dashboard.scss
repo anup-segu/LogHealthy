@@ -100,3 +100,28 @@ $color-4: #eeeeee; //light-gray
   from {margin-left: 2%;}
   to {margin-left: 28%;}
 }
+
+.sidebar-actions {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  height: 300px;
+}
+
+.sidebar-btn, .sidebar-btn:focus {
+  position: relative;
+  width: 90%;
+  min-width: 165px;
+  margin-bottom: 15px;
+  background-color: #1B2432;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  outline: 0;
+  font-family: $font-bold;
+}
+
+.sidebar-btn:hover {
+  background-color: #1B2432;
+  border: 4px solid #ffffff;
+  color: #ffffff;
+}
