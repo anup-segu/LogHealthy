@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    # return current_patient if current_patient
+    return current_patient if current_patient
     return current_doctor if current_doctor
     nil
   end

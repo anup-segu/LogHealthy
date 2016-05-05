@@ -6,8 +6,9 @@ class Api::ConversationsController < ApplicationController
       @outbox = patient.authored_threads
       render "api/conversations/index"
     else
-      @inbox = current_user.received_threads
-      @outbox = current_user.authored_threads
+      doctor = Doctor.find(params[:id])
+      @inbox = doctor.received_threads
+      @outbox = doctor.authored_threads
       render "api/conversations/index"
     end
   end
@@ -26,7 +27,7 @@ class Api::ConversationsController < ApplicationController
       else
         user = Patient.find(@conversation.author_id)
       end
-      
+
       @inbox = user.received_threads
       @outbox = user.authored_threads
       render "api/conversations/index"
