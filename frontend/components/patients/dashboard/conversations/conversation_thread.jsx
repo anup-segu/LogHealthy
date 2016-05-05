@@ -3,6 +3,7 @@ var React = require('react');
 var ConversationStore = require('../../../../stores/conversation_store.js');
 var PatientStore = require('../../../../stores/patient_store.js');
 var ConversationActions = require('../../../../actions/conversation_actions.js');
+var DashboardActions = require('../../../../actions/dashboard_actions.js');
 var ConversationDetail = require('../../../shared/conversation_detail.jsx');
 var NewForm = require('../../../shared/conversation_form.jsx');
 
@@ -112,21 +113,15 @@ var ConversationThread = React.createClass({
   },
 
   toggleInbox: function() {
-    if (this.state.tab !== "inbox") {
-      this.setState({ tab: "inbox" });
-    }
+    DashboardActions.openTab("conversations", "inbox");
   },
 
   toggleOutbox: function() {
-    if (this.state.tab !== "outbox") {
-      this.setState({ tab: "outbox" });
-    }
+    DashboardActions.openTab("conversations", "outbox");
   },
 
   toggleNew: function() {
-    if (this.state.tab !== "new") {
-      this.setState({ tab: "new" });
-    }
+    DashboardActions.openTab("conversations", "new");
   },
 
   navigation: function() {

@@ -1,6 +1,7 @@
 var React = require('react');
 
 var ConversationActions = require('../../actions/conversation_actions.js');
+var PatientStore = require('../../stores/patient_store.js');
 
 var ConversationForm = React.createClass({
   getInitialState: function() {
@@ -20,13 +21,25 @@ var ConversationForm = React.createClass({
 
   handleSubmit: function (event) {
     event.preventDefault();
-    ConversationActions.createConversation({
-      subject: this.state.subject,
-      parent_id: this.state.parent_id,
-      recipient_id: this.state.recipient_id,
-      recipient_type: this.state.recipient_type,
-      body: this.state.body
-    });
+    if (PatientStore.currentPatient()) {
+      ConversationActions.createConversation({
+        author_id: PatientStore.currentPatient().id,
+        author_type: "Patient",
+        subject: this.state.subject,
+        parent_id: this.state.parent_id,
+        recipient_id: this.state.recipient_id,
+        recipient_type: this.state.recipient_type,
+        body: this.state.body
+      });
+    } else {
+      ConversationActions.createConversation({
+        subject: this.state.subject,
+        parent_id: this.state.parent_id,
+        recipient_id: this.state.recipient_id,
+        recipient_type: this.state.recipient_type,
+        body: this.state.body
+      });
+    }
     this.clearForm();
   },
 
