@@ -1,7 +1,5 @@
 #Todos
 
-contact patient should redirect correctly
-
 dropdown button for login (fix colors and make one button)
 navbar transition fix
 

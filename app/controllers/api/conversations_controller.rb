@@ -16,14 +16,14 @@ class Api::ConversationsController < ApplicationController
   def create
     @conversation = Conversation.new(conversation_params)
 
-    if current_doctor
-      @conversation.author_id = current_doctor.id
-      @conversation.author_type = "Doctor"
-    end
+    # if current_doctor
+    #   @conversation.author_id = current_doctor.id
+    #   @conversation.author_type = "Doctor"
+    # end
 
     if @conversation.save
-      if (current_user)
-        user = current_user
+      if @conversation.author_type == "Doctor"
+        user = Doctor.find(@conversation.author_id)
       else
         user = Patient.find(@conversation.author_id)
       end

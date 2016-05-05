@@ -6,6 +6,7 @@ var ConversationActions = require('../../actions/conversation_actions.js');
 var LogActions = require('../../actions/log_actions.js');
 var ConversationStore = require('../../stores/conversation_store.js');
 var PatientStore = require('../../stores/patient_store.js');
+var DoctorStore = require('../../stores/doctor_store.js');
 
 var ConversationForm = React.createClass({
   getInitialState: function() {
@@ -161,6 +162,8 @@ var ConversationForm = React.createClass({
       });
     } else {
       ConversationActions.createConversation({
+        author_id: DoctorStore.currentDoctor().id,
+        author_type: "Doctor",
         subject: this.state.subject ? this.state.subject : "(No Subject)",
         recipient_id: this.state.recipient_id,
         recipient_type: this.state.recipient_type,
