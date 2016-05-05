@@ -1,6 +1,5 @@
 #Todos
 
-doctor patient detail should match patient (esp with comments and meal taken)
 contact patient should redirect correctly
 
 error handling on create message is buggy

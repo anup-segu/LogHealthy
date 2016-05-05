@@ -42,7 +42,7 @@ var ConversationForm = React.createClass({
   _updateStatus: function() {
     var status = ConversationStore.status();
 
-    if (status && this.state.patients) {
+    if (this.state.patients) {
       this.setState({
         submitted: status,
         errors: ConversationStore.errors(),
@@ -61,7 +61,7 @@ var ConversationForm = React.createClass({
       if (this.refs.searchBar) {
         this.refs.searchBar.value = "";
       }
-    } else if (status && this.state.doctor) {
+    } else if (this.state.doctor) {
       this.setState({
         submitted: status,
         errors: ConversationStore.errors(),
@@ -157,13 +157,7 @@ var ConversationForm = React.createClass({
   },
 
   message: function() {
-    if (this.state.submitted) {
-      return (
-        <div className="alert alert-success width-fix" role="alert">
-          Message was sent!
-        </div>
-      );
-    } else if (this.state.errors) {
+    if (this.state.errors) {
       var errors = this.state.errors.map(function (error, i){
         return <li key={i}>{error}</li>;
       });
@@ -173,6 +167,12 @@ var ConversationForm = React.createClass({
           <ul>
             {errors}
           </ul>
+        </div>
+      );
+    } else if (this.state.submitted) {
+      return (
+        <div className="alert alert-success width-fix" role="alert">
+          Message was sent!
         </div>
       );
     }

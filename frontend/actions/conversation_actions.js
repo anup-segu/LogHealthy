@@ -21,7 +21,7 @@ var ConversationActions = {
       conversation: conversation,
       success: function (conversations) {
         AppDispatcher.dispatch({
-          actionType: ConversationConstants.THREADS_RECEIVED,
+          actionType: ConversationConstants.THREAD_SUBMITTED,
           conversations: conversations
         });
       },

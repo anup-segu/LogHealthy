@@ -60,6 +60,9 @@ ConversationStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case ConversationConstants.THREADS_RECEIVED:
       ConversationStore.updateConversations(payload.conversations);
+      break;
+    case ConversationConstants.THREAD_SUBMITTED:
+      ConversationStore.updateConversations(payload.conversations);
       ConversationStore.updateStatus(true);
       break;
     case ConversationConstants.CONVERSATION_ERROR:
