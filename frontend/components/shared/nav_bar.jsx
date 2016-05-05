@@ -123,11 +123,8 @@ module.exports = React.createClass({
           <div className="nav navbar-nav navbar-right nav-button">
             <div className="btn-group btn-dropdown-login">
               <button type="button"
-                className="btn btn-default btn-login">Demo</button>
-              <button type="button"
                 className="btn btn-default dropdown-toggle btn-login"
-                onClick = { this.dropdownToggle }>
-                <span className="caret"></span>
+                onClick = { this.dropdownToggle }>Demo <span className="caret"></span>
               </button>
               <ul
                 className={ this.dropDownClass() }

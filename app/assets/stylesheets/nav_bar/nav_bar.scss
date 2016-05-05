@@ -95,7 +95,8 @@ $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
 
 .demo-list-patient:hover > a {
   color: $color-1 !important;
-  border-left: 2px solid $color-1;
+  border-left: 2px solid $color-1 !important;
+  font-weight: bold;
 }
 
 .options-menu {
@@ -130,6 +131,7 @@ $Logo-highlight: "http://i.imgur.com/PxvTRoJ.png";
 .demo-list-doctor:hover > a {
   color: $color-2 !important;
   border-left: 2px solid $color-2;
+  font-weight: bold;
 }
 
 .nav-block {
