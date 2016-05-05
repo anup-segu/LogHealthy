@@ -2,8 +2,6 @@
 
 contact patient should redirect correctly
 
-change order of messages
-
 dropdown button for login (fix colors and make one button)
 navbar transition fix
 

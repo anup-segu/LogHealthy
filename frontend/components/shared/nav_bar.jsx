@@ -161,7 +161,7 @@ module.exports = React.createClass({
   },
 
   contactDoctor: function() {
-
+    DashboardActions.openTab("conversations", "new");
   },
 
   popOverPatientContent: function() {

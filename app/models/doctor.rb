@@ -48,17 +48,19 @@ class Doctor < ActiveRecord::Base
     self.save
     self.session_token
   end
-  
+
   def name
     self.first_name + " " + self.last_name
   end
 
   def authored_threads
     self.authored_conversations.where(parent_id: nil)
+      .order(created_at: :desc)
   end
 
   def received_threads
     self.recipient_conversations.where(parent_id: nil)
+      .order(created_at: :desc)
   end
 
   private
