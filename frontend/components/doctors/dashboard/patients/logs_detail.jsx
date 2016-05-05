@@ -34,11 +34,27 @@ var LogDetail = React.createClass({
     }
   },
 
+  headerClass: function(){
+    if (this.state.showDetail) {
+      return "log-heading log-selected";
+    } else {
+      return "log-heading";
+    }
+  },
+
   buttonGlyph: function(){
     if (this.state.showDetail) {
-      return "glyphicon glyphicon-chevron-up";
+      return "glyphicon glyphicon-triangle-top";
     } else {
-      return "glyphicon glyphicon-chevron-down";
+      return "glyphicon glyphicon-triangle-bottom";
+    }
+  },
+
+  buttonClass: function() {
+    if (this.state.showDetail) {
+      return "btn panel-toggle panel-toggle-active";
+    } else {
+      return "btn panel-toggle";
     }
   },
 
@@ -98,9 +114,9 @@ var LogDetail = React.createClass({
       <div key={this.props.date} className="panel panel-default date-panel">
         <div key="heading" className={this.panelHeaderClass()}>
           <div className="row">
-            <h4 className="log-heading">{this.props.date}</h4>
+            <h4 className={this.headerClass()}>{this.props.date}</h4>
             <button
-              className="btn btn-default panel-toggle"
+              className={this.buttonClass()}
               onClick={this.togglePanel}>
               <span className={this.buttonGlyph()} aria-hidden="true"></span>
             </button>

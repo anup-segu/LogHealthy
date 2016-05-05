@@ -1,5 +1,5 @@
 var React = require('react');
-var PropTypes = React.PropTypes;
+var Fade = require('react-bootstrap/lib/Fade');
 
 var LogDetail = require('./logs_detail.jsx');
 var GlucoseChart = require('../../../patients/dashboard/progress/glucose_chart.jsx');
@@ -41,7 +41,7 @@ var PatientDetail = React.createClass({
 
   patientHeading: function () {
     return (
-      <nav className="navbar navbar-default">
+      <nav className="navbar navbar-default patients-navbar">
         <div className="navbar-header">
           <a className="navbar-brand">
             {this.state.patient.first_name + " " +
@@ -90,7 +90,7 @@ var PatientDetail = React.createClass({
       );
     } else {
       return (
-        <div className="well well-lg width-fix">
+        <div className="well well-lg width-fix no-content">
           There doesn't seem to be anything here..
         </div>
       );
@@ -106,9 +106,9 @@ var PatientDetail = React.createClass({
       );
     } else {
       return (
-        <div className="well well-lg width-fix">
+        <div className="well well-lg width-fix no-content">
           There doesn't seem to be anything here..
-        </div>
+        </div>        
       );
     }
   },
