@@ -60,13 +60,13 @@ $color-4: #eeeeee; //light-gray
 
 .collapse-in {
   animation-name: collapse;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .collapse-out {
   animation-name: collapse_out;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
@@ -81,13 +81,13 @@ $color-4: #eeeeee; //light-gray
 
 .tab-expand {
   animation-name: expand_tabs;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 
 .tab-collapse {
   animation-name: collapse_tabs;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
 

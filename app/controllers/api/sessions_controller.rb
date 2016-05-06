@@ -42,7 +42,7 @@ class Api::SessionsController < ApplicationController
     elsif !current_doctor.nil?
       render "api/doctors/show"
     else
-			render "api/shared/error", status: 404
+			render "api/shared/error" #, status: 404
     end
   end
 end

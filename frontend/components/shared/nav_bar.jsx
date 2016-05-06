@@ -171,6 +171,7 @@ module.exports = React.createClass({
   popOverPatientContent: function() {
     return (
       <Popover
+        id="action-popover"
         className="action-popover">
         <ul className="options-menu">
           <li className="options-action"
