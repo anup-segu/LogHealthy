@@ -22,6 +22,12 @@ var SplashDetail = React.createClass({
     this.resize = window.addEventListener("resize", this.updateProductContent);
   },
 
+  componentWillUnmount: function() {
+    if (this.resize) {
+      this.resize.remove();
+    }
+  },
+
   updateProductContent: function() {
     var windowSize = $(window).width();
     var productContent;

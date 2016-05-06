@@ -2,8 +2,6 @@
 add doctor / add patient function
 change display line text for conversation create when no doctor is defined
 
-Fix error message for log custom validation
-
 progress tab dropdown styling off for first element
 
 loading screen/bar for

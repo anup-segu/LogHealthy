@@ -80,12 +80,14 @@ module.exports = React.createClass({
     }
   },
 
-  demoPatient: function() {
+  demoPatient: function (event) {
+    event.preventDefault();
     this.dropDownClose();
     PatientActions.login({ email: "patient@demo.com", password: "password" });
   },
 
-  demoDoctor: function() {
+  demoDoctor: function (event) {
+    event.preventDefault();
     this.dropDownClose();
     PatientActions.login({ email: "doctor@demo.com", password: "password" });
   },
