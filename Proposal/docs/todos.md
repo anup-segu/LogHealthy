@@ -13,11 +13,6 @@ log delete
 production readme
 
 Seedfile
-
-multiple patients with data (for doctor view)
-conversation inbox and outbox
 proper comments for logs
-
-dropdown menu should toggle on both buttons plus fix list style
 
 pay for dyno
