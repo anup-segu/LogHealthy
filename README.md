@@ -22,7 +22,7 @@ The root page listens to a `PatientStore` and a `DoctorStore` and renders conten
 
 ### Log Rendering and Editing for Patients
 
-Patients track diabetes progress by creating Logs which track their glucose (blood sugar) levels before each meal that they have. Logs can also store additional information regarding whether or not they ate a meal, and their expected carb intake for the meal.
+Patients track diabetes progress by creating Logs to store their glucose (blood sugar) levels before each meal that they have. Logs can also store additional information regarding whether or not they ate a meal, and their expected carb intake for the meal.
 
 ![logs-table](./Proposal/docs/screenshots/logs-table.png)
 
@@ -68,9 +68,9 @@ When doctors log in, they have the ability to view all of their patients data. T
 
 The patients found in the search bar are based on an association between the doctor and the patients on the backend.
 
-![search-bar](./Proposal/docs/screenshots/search-bar.png)
-
 A `PatientDoctors` join table maintains the relationship between the `doctors` table and the `patients` on `doctor_id` and `patient_id`. When a doctor logs in, a doctor object returned by the api request is stored in `DoctorStore` and the doctor's patients are available as key on the object. Only information (for ex. the patient's name, id ..) pertinent to the search bar is retrieved from the server to cap the data passed through in the request.
+
+![search-bar](./Proposal/docs/screenshots/search-bar.png)
 
 On the frontend the `PatientSearch` component will generate matches based on the input field string. Upon clicking a match, `DoctorActions.viewPatient()` is called which fires an api request to retrieve all of the Patient's data based on `patient_id`. The data returned includes the log data of the patient which is passed to the `PatientDetail` subcomponent as a prop. This subcomponent generates views to display the logs in both a tabular (logs tab) and graphical fashion (progress tab).
 
