@@ -3,7 +3,7 @@ var AuthConstants = require('../constants/auth_constants.js');
 var LogConstants = require('../constants/log_constants.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
-var _currentPatient, _errors;
+var _currentPatient, _errors, _patientDoctorForm;
 var PatientStore = new Store(AppDispatcher);
 var appStorage = localStorage;
 
@@ -21,6 +21,20 @@ PatientStore.logout = function (patient) {
 
   _currentPatient = null;
   _errors = null;
+};
+
+PatientStore.openPatientDoctorForm = function() {
+  _patientDoctorForm = true;
+};
+
+PatientStore.closePatientDoctorForm = function() {
+  _patientDoctorForm = false;
+};
+
+PatientStore.getPatientDoctorFormStatus = function() {
+  var status = _patientDoctorForm;
+  _patientDoctorForm = null;
+  return status;
 };
 
 PatientStore.updatePatient = function (patient) {
@@ -72,6 +86,12 @@ PatientStore.__onDispatch = function (payload) {
       break;
     case AuthConstants.OPEN_CREATE_FORM:
       PatientStore.resetErrors();
+      break;
+    case AuthConstants.OPEN_PATIENT_DOCTOR:
+      PatientStore.openPatientDoctorForm();
+      break;
+    case AuthConstants.CLOSE_PATIENT_DOCTOR:
+      PatientStore.closePatientDoctorForm();
       break;
     case LogConstants.PATIENT_UPDATED:
       PatientStore.updatePatient(payload.patient);

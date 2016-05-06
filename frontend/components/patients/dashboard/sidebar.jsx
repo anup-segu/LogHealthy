@@ -2,8 +2,10 @@ var React = require('react');
 
 var LogForm = require('./logs/logs_form.jsx');
 var LogActions = require('../../../actions/log_actions.js');
+var PatientActions = require('../../../actions/patient_actions.js');
 var DashboardActions = require('../../../actions/dashboard_actions.js');
 var DashboardStore = require('../../../stores/dashboard_store.js');
+var PatientStore = require('../../../stores/patient_store.js');
 
 var Sidebar = React.createClass({
 
@@ -99,6 +101,26 @@ var Sidebar = React.createClass({
     }
   },
 
+  createPatientDoctor: function (event) {
+    event.preventDefault();
+    PatientActions.openPatientDoctorForm();
+  },
+
+  addDoctorButton: function() {
+    if (!PatientStore.currentPatient().doctor.first_name) {
+      return (
+        <button
+          className={this.buttonClass()}
+          onClick={this.createPatientDoctor}>
+          <span
+            className="glyphicon glyphicon-plus"
+            aria-hidden="true"></span> Add Doctor
+        </button>
+      );
+    }
+    return;
+  },
+
   sidebarContent: function() {
     if (this.state.sidebar === "out" || this.state.sidebar === "show") {
       return (
@@ -123,11 +145,12 @@ var Sidebar = React.createClass({
                     className="glyphicon glyphicon-envelope"
                     aria-hidden="true"></span> Contact Doctor
                 </button>
+                {this.addDoctorButton()}
               </div>
               <div className="sidebar-actions">
                 <div className="container width-fix">
                   <a className="sidebar-link"
-                    target="_blank" 
+                    target="_blank"
                     href="https://github.com/anup-segu/LogHealthy">GitHub</a>
                 </div>
               </div>

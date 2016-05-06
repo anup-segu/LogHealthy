@@ -79,6 +79,23 @@ var PatientActions = {
 			PatientActions.removeCurrentPatient,
 			PatientActions.handleError
 		);
+	},
+
+	openPatientDoctorForm: function() {
+		AppDispatcher.dispatch({
+			actionType: AuthConstants.OPEN_PATIENT_DOCTOR
+		});
+	},
+
+	createPatientDoctor: function (data) {
+		PatientApiUtil.createPatientDoctor({
+			url: "/api/patient_doctors",
+			type: "post",
+			data: { patient_doctor: data, ttype: "Patient" },
+			success: function(){
+
+			}
+		});
 	}
 };
 
