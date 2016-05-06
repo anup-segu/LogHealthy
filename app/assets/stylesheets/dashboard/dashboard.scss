@@ -93,11 +93,11 @@ $color-4: #eeeeee; //light-gray
 
 @keyframes expand_tabs {
   from {margin-left: 28%;}
-  to {margin-left: 2%;}
+  to {margin-left: 20%;}
 }
 
 @keyframes collapse_tabs {
-  from {margin-left: 2%;}
+  from {margin-left: 20%;}
   to {margin-left: 28%;}
 }
 

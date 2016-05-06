@@ -1,5 +1,6 @@
 var Store = require('flux/utils').Store;
 var DashboardConstants = require('../constants/dashboard_constants.js');
+var AuthConstants = require('../constants/auth_constants.js');
 var PatientStore = require('../stores/patient_store.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
@@ -24,6 +25,11 @@ DashboardStore.setTabs = function (tab, subTab) {
   _subTab = subTab;
 };
 
+DashboardStore.resetTabs = function() {
+  _tab = "default";
+  _subTab = "inbox";
+};
+
 DashboardStore.tabStatus = function() {
   var tab = _tab;
   return tab;
@@ -44,6 +50,9 @@ DashboardStore.__onDispatch = function (payload) {
       break;
     case DashboardConstants.NAVIGATE:
       DashboardStore.setTabs(payload.tab, payload.subTab);
+      break;
+    case AuthConstants.LOGOUT:
+      DashboardStore.resetTabs();
       break;
   }
   DashboardStore.__emitChange();

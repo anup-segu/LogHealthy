@@ -1,7 +1,5 @@
 #Todos
 
-dropdown button for login (fix colors and make one button)
-navbar transition fix
 github link
 
 loading screen/bar for
@@ -9,6 +7,8 @@ login
 log create (maybe just affect submit button)
 log edit
 log delete
+
+production readme
 
 Seedfile
 
