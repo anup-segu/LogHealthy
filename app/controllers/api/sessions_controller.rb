@@ -1,13 +1,19 @@
 class Api::SessionsController < ApplicationController
   def create
+    if params[:doctor]
+      session_params = params[:doctor]
+    elsif params[:patient]
+      session_params = params[:patient]
+    end
+
     @patient = Patient.find_by_credentials(
-      params[:patient][:email],
-      params[:patient][:password]
+      session_params[:email],
+      session_params[:password]
     )
 
     @doctor = Doctor.find_by_credentials(
-      params[:patient][:email],
-      params[:patient][:password]
+      session_params[:email],
+      session_params[:password]
     )
 
     if @patient
@@ -18,7 +24,7 @@ class Api::SessionsController < ApplicationController
       render "api/doctors/show"
     else
       @errors = ["Invalid login, please try again"]
-      render "api/shared/error" #, status: 401
+      render "api/shared/error", status: 401
     end
   end
 

@@ -22,7 +22,7 @@ var PatientActions = {
 	        return;
 	      }
 	    );
-		}		
+		}
 	},
 
 	signup: function(patient){

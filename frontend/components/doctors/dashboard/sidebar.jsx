@@ -65,7 +65,7 @@ var Sidebar = React.createClass({
                 onClick={this.createConversation}>
                 <span
                   className="glyphicon glyphicon-envelope"
-                  aria-hidden="true"></span> Contact Doctor
+                  aria-hidden="true"></span> Contact Patient
               </button>
             </div>
           </ul>
