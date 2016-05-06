@@ -16,14 +16,6 @@ class Conversation < ActiveRecord::Base
     foreign_key: :parent_id,
     class_name: :Conversation
 
-  # def self.outbox(id, ttype)
-  #   self.where(parent_id: nil, author_id: id, author_type: ttype)
-  # end
-  #
-  # def self.inbox(id, ttype)
-  #   self.where(parent_id: nil, recipient_id: id, recipient_type: ttype)
-  # end
-
   def parent_conversation
     return self if self.parent_id.nil?
     Conversation.find(self.parent_id).parent_conversation
