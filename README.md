@@ -6,12 +6,7 @@
 
 LogHealthy is a full-stack web application inspired by Asana that is tailored for diabetic patients and their doctors.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.
 
-PICTURE OF SPLASH PAGE
-----------------------
-
-![splash-page-main]
-
-[splash-page-main]: ./Proposal/docs/screenshots/splash-page.png)
+![splash page main](./Proposal/docs/screenshots/splash-page.png)
 
 ## Features & Implementation
 
@@ -21,14 +16,15 @@ LogHealthy is truly a single-page; all functionality is delivered on one static 
 
 Because the application provides different content to patients and doctors, it offers a single sign-on portal that renders content based on the type of user that signs in.
 
+![splash page main](./Proposal/docs/screenshots/create-account.png)
+
 The root page listens to a `PatientStore` and a `DoctorStore` and renders content based on a call to `.currentPatient()` or `.currentDoctor()`.  Sensitive information is kept out of the frontend of the app by making an API call to `SessionsController#show`.
 
 ### Log Rendering and Editing for Patients
 
 Patients track diabetes progress by creating Logs which track their glucose (blood sugar) levels before each meal that they have. Logs can also store additional information regarding whether or not they ate a meal, and their expected carb intake for the meal.
 
-PICTURE OF LOG TABLE
---------------------
+![logs-table](./Proposal/docs/screenshots/logs-table.png)
 
 On the frontend, logs are shown on a daily basis with each day having a table of logs. Each row represents a log, one for each meal of the day. Upon clicking a log, additional details appear. There are also buttons to edit and delete each log.
 
@@ -58,8 +54,7 @@ end
 
 The progress tab when logged in as a patient allows the user to visualize their progress in a time-series. Users can also toggle the meal type to display different sets of data. Hovering over data points will show data specific to that date.
 
-PICTURE OF PROGRESS TAB
-----------------------
+![progress-tab](./Proposal/docs/screenshots/progress-tab.png)
 
 The graph is rendered using the D3 javascript library within react components. `GlucoseChart` is the main react component that takes `glucose` as a prop that contains the logs taken from `PatientStore`. `LineChart`, `Grid`, `Axix` subcomponents are used to generate the time-series line, datapoints, and tool-tips (when hovering). The `LineChart` parses `glucose` into an array and scales the `Axix` based on the data so that all logs appear in the graph.
 
@@ -69,10 +64,11 @@ Because the log data is already fetched and stored in the `PatientStore` no addi
 
 When doctors log in, they have the ability to view all of their patients data. This is done by searching by the patient's name in the search bar which will render data based on the patient selected.
 
-PICTURE OF PATIENTS VIEW
-------------------------
+![patients-tab](./Proposal/docs/screenshots/patients-view.png)
 
 The patients found in the search bar are based on an association between the doctor and the patients on the backend.
+
+![search-bar](./Proposal/docs/screenshots/search-bar.png)
 
 A `PatientDoctors` join table maintains the relationship between the `doctors` table and the `patients` on `doctor_id` and `patient_id`. When a doctor logs in, a doctor object returned by the api request is stored in `DoctorStore` and the doctor's patients are available as key on the object. Only information (for ex. the patient's name, id ..) pertinent to the search bar is retrieved from the server to cap the data passed through in the request.
 
@@ -84,8 +80,7 @@ Finding another match in the search bar will pass new data to the patient detail
 
 Both doctors and patients have the ability to communicate with each other through the app using conversations. Patients can contact their doctor and Doctors can contact any of their patients.
 
-PICTURE OF CONVERSATIONS VIEW
------------------------------
+![conversations-view](./Proposal/docs/screenshots/conversations-view.png)
 
 On the backend, conversations are stored in a single table. A `Conversation` has a `recipient` and an `author`, both of which can be a `Patient` or `Doctor`. The model utilizes polymorphic associations for both `recipient` and `author` to handle these different scenarios. A `Conversation` can be a reply and belong to a parent `Conversation` based on `parent_id`.
 
