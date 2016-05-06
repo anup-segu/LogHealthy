@@ -61,12 +61,19 @@ var Sidebar = React.createClass({
             </div>
             <div className="sidebar-actions">
               <button
-                className="btn btn-lg sidebar-btn"
+                className="btn sidebar-btn"
                 onClick={this.createConversation}>
                 <span
                   className="glyphicon glyphicon-envelope"
                   aria-hidden="true"></span> Contact Patient
               </button>
+            </div>
+            <div className="sidebar-actions">
+              <div className="container width-fix">
+                <a className="sidebar-link"
+                  target="_blank" 
+                  href="https://github.com/anup-segu/LogHealthy">GitHub</a>
+              </div>
             </div>
           </ul>
         </div>
