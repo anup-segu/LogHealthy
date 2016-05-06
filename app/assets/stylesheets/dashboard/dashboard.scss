@@ -127,7 +127,8 @@ $color-4: #eeeeee; //light-gray
 }
 
 .sidebar-link {
-  position: absolute;
+  float: left;
+  position: relative;
   bottom: 10%;
   left: 39%;
   color: #ffffff;
