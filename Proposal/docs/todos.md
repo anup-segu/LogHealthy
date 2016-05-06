@@ -1,6 +1,8 @@
 #Todos
 
-github link
+add doctor / add patient function
+change display line text for conversation create when no doctor is defined
+
 
 loading screen/bar for
 login

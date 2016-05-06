@@ -78,6 +78,7 @@ class Patient < ActiveRecord::Base
   end
 
   def doctor_extract
+    return {} if self.doctor.nil?
     doctor = {}
     doctor["id"] = self.doctor.id
     doctor["first_name"] = self.doctor.first_name
