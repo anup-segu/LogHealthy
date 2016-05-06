@@ -166,6 +166,7 @@ var LineChart = React.createClass({
 
       return (
         <DropdownButton
+          id="meal-type-toggle"
           bsStyle="default"
           className={btnClass()}
           title={title}>

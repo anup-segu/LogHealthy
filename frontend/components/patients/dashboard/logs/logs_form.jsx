@@ -242,7 +242,7 @@ var LogForm = React.createClass({
               rootClose
               placement="right"
               overlay={
-                <Popover title="Need help counting carbs?">
+                <Popover title="Need help counting carbs?" id="carb-helper">
                 Visit <a
                   href="https://www.calorieking.com"
                   target="_blank">calorieking.com</a> htmlFor some helpful info.</Popover>

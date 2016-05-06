@@ -190,6 +190,7 @@ module.exports = React.createClass({
   popoOverDoctorContent: function() {
     return (
       <Popover
+        id="action-popover"
         className="action-popover">
         <ul className="options-menu">
           <li className="options-action"
