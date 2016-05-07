@@ -4,6 +4,11 @@ class Api::DoctorsController < ApplicationController
     render "api/doctors/index"
   end
 
+  def show
+    @doctor = Doctor.find(params[:id])
+    render "api/doctors/doctor"
+  end
+
   def create
     @doctor = Doctor.new(doctor_params)
 

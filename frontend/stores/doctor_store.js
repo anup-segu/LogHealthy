@@ -3,7 +3,7 @@ var AuthConstants = require('../constants/auth_constants.js');
 var DoctorConstants = require('../constants/doctor_constants.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
-var _currentDoctor, _errors, _viewPatient;
+var _currentDoctor, _errors, _viewPatient, _doctors=[];
 var DoctorStore = new Store(AppDispatcher);
 
 DoctorStore.login = function (doctor) {
@@ -56,6 +56,14 @@ DoctorStore.viewPatient = function () {
   return $.extend({}, _viewPatient);
 };
 
+DoctorStore.loadDoctors = function (doctors) {
+  _doctors = doctors;
+};
+
+DoctorStore.allDoctors = function() {
+  return _doctors;
+};
+
 DoctorStore.__onDispatch = function (payload) {
   switch(payload.actionType) {
     case AuthConstants.LOGIN:
@@ -78,6 +86,9 @@ DoctorStore.__onDispatch = function (payload) {
       break;
     case DoctorConstants.VIEW_PATIENT:
       DoctorStore.loadPatient(payload.patient);
+      break;
+    case DoctorConstants.DOCTORS_RECEIVED:
+      DoctorStore.loadDoctors(payload.doctors);
       break;
   }
   DoctorStore.__emitChange();

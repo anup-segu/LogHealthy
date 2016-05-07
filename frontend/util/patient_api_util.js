@@ -28,4 +28,20 @@ module.exports = {
 			error: error
 		});
 	},
+
+	createPatientDoctor: function (options) {
+		$.ajax({
+			url: options.url,
+			type: options.type,
+			data: options.data,
+			success: options.success
+		});
+	},
+
+	viewDoctor: function (options) {
+		$.ajax({
+			url: options.url,
+			success: options.success
+		});
+	}
 };

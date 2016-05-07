@@ -1,9 +1,10 @@
 var Store = require('flux/utils').Store;
 var AuthConstants = require('../constants/auth_constants.js');
+var PatientConstants = require('../constants/patient_constants.js');
 var LogConstants = require('../constants/log_constants.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
-var _currentPatient, _errors, _patientDoctorForm;
+var _currentPatient, _errors, _patientDoctorForm, _patients=[], _doctor;
 var PatientStore = new Store(AppDispatcher);
 var appStorage = localStorage;
 
@@ -21,20 +22,6 @@ PatientStore.logout = function (patient) {
 
   _currentPatient = null;
   _errors = null;
-};
-
-PatientStore.openPatientDoctorForm = function() {
-  _patientDoctorForm = true;
-};
-
-PatientStore.closePatientDoctorForm = function() {
-  _patientDoctorForm = false;
-};
-
-PatientStore.getPatientDoctorFormStatus = function() {
-  var status = _patientDoctorForm;
-  _patientDoctorForm = null;
-  return status;
 };
 
 PatientStore.updatePatient = function (patient) {
@@ -61,10 +48,25 @@ PatientStore.currentPatient = function() {
   }
 };
 
+PatientStore.loadDoctor = function (doctor) {
+  _doctor = doctor;
+};
+
+PatientStore.getDoctor = function() {
+  if (_doctor) {
+    return $.extend({}, _doctor);
+  }
+  return;
+};
+
 PatientStore.errors = function() {
   if (_errors) {
     return [].slice.call(_errors);
   }
+};
+
+PatientStore.allPatients = function() {
+
 };
 
 PatientStore.__onDispatch = function (payload) {
@@ -87,14 +89,11 @@ PatientStore.__onDispatch = function (payload) {
     case AuthConstants.OPEN_CREATE_FORM:
       PatientStore.resetErrors();
       break;
-    case AuthConstants.OPEN_PATIENT_DOCTOR:
-      PatientStore.openPatientDoctorForm();
-      break;
-    case AuthConstants.CLOSE_PATIENT_DOCTOR:
-      PatientStore.closePatientDoctorForm();
-      break;
     case LogConstants.PATIENT_UPDATED:
       PatientStore.updatePatient(payload.patient);
+      break;
+    case PatientConstants.VIEW_DOCTOR:
+      PatientStore.loadDoctor(payload.doctor);
       break;
   }
   PatientStore.__emitChange();

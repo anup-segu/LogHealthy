@@ -1,8 +1,9 @@
 var React = require('react');
 
 var LogForm = require('./logs/logs_form.jsx');
+var PatientDoctorForm = require('../../auth/patient_doctor_form.jsx');
 var LogActions = require('../../../actions/log_actions.js');
-var PatientActions = require('../../../actions/patient_actions.js');
+var AuthActions = require('../../../actions/auth_actions.js');
 var DashboardActions = require('../../../actions/dashboard_actions.js');
 var DashboardStore = require('../../../stores/dashboard_store.js');
 var PatientStore = require('../../../stores/patient_store.js');
@@ -103,7 +104,7 @@ var Sidebar = React.createClass({
 
   createPatientDoctor: function (event) {
     event.preventDefault();
-    PatientActions.openPatientDoctorForm();
+    AuthActions.openPatientDoctorForm();
   },
 
   addDoctorButton: function() {
@@ -168,6 +169,7 @@ var Sidebar = React.createClass({
       <div className={this.sidebarClass()}>
         {this.sidebarContent()}
         <LogForm />
+        <PatientDoctorForm />
       </div>
     );
   }

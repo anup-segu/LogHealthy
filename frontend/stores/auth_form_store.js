@@ -4,6 +4,7 @@ var AuthConstants = require('../constants/auth_constants.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
 var _modelState = false;
+var _patientDoctorForm = null;
 var _form = "signup";
 var _reset = "false";
 var AuthStore = new Store(AppDispatcher);
@@ -51,6 +52,20 @@ AuthStore.modalState = function() {
   return { modalOpen: _modelState, form: _form};
 };
 
+
+AuthStore.openPatientDoctorForm = function() {
+  _patientDoctorForm = true;
+};
+
+AuthStore.closePatientDoctorForm = function() {
+  _patientDoctorForm = false;
+};
+
+AuthStore.getPatientDoctorFormStatus = function() {
+  var status = _patientDoctorForm;
+  return status;
+};
+
 AuthStore.__onDispatch = function (payload) {
   switch(payload.actionType){
     case AuthConstants.OPEN_SIGN_IN_FORM:
@@ -69,6 +84,12 @@ AuthStore.__onDispatch = function (payload) {
     case AuthConstants.ERROR:
       AuthStore.setForm(payload.form);
       AuthStore.formReset(false);
+      break;
+    case AuthConstants.OPEN_PATIENT_DOCTOR:
+      AuthStore.openPatientDoctorForm();
+      break;
+    case AuthConstants.CLOSE_PATIENT_DOCTOR:
+      AuthStore.closePatientDoctorForm();
       break;
   }
   AuthStore.__emitChange();

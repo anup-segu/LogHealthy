@@ -22,6 +22,20 @@ var DoctorActions = {
 		}
 	},
 
+	fetchAllDoctors: function() {
+		DoctorApiUtil.fetchAllDoctors({
+			url: "/api/doctors",
+			success: DoctorActions.doctorsReceived
+		});
+	},
+
+	doctorsReceived: function(doctors) {
+		AppDispatcher.dispatch({
+			actionType: DoctorConstants.DOCTORS_RECEIVED,
+			doctors: doctors
+		});
+	},
+
 	signup: function(doctor){
 		DoctorApiUtil.post({
 			url: "api/doctor",

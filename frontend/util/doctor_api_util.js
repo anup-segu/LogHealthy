@@ -29,6 +29,14 @@ module.exports = {
 		});
 	},
 
+	fetchAllDoctors: function (options) {
+		$.ajax({
+			url: options.url,
+			method: 'get',
+			success: options.success
+		});
+	},
+
 	viewPatient: function (options) {
 		$.ajax({
 			url: options.url,

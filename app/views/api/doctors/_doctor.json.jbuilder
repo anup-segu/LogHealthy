@@ -1,1 +1,1 @@
-json.extract!(doctor, :first_name, :last_name, :ttype, :id))
+json.extract!(doctor, :first_name, :last_name, :ttype, :id)

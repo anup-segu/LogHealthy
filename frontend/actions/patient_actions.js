@@ -1,6 +1,7 @@
 var hashHistory = require('react-router').hashHistory;
 
 var AuthConstants = require('../constants/auth_constants');
+var PatientConstants = require('../constants/patient_constants');
 var AuthActions = require("../actions/auth_actions");
 var PatientApiUtil = require('../util/patient_api_util');
 var PatientStore = require('../stores/patient_store');
@@ -81,20 +82,30 @@ var PatientActions = {
 		);
 	},
 
-	openPatientDoctorForm: function() {
-		AppDispatcher.dispatch({
-			actionType: AuthConstants.OPEN_PATIENT_DOCTOR
-		});
-	},
-
 	createPatientDoctor: function (data) {
 		PatientApiUtil.createPatientDoctor({
 			url: "/api/patient_doctors",
 			type: "post",
 			data: { patient_doctor: data, ttype: "Patient" },
 			success: function(){
-
+				AuthActions.closePatientDoctorForm();
 			}
+		});
+	},
+
+	viewDoctor: function (id) {
+		PatientApiUtil.viewDoctor({
+			url: "api/doctors/" + id,
+			success: function (doctor) {
+				PatientActions.serveDoctor(doctor);
+			}
+		});
+	},
+
+	serveDoctor: function (doctor) {
+		AppDispatcher.dispatch({
+			actionType: PatientConstants.VIEW_DOCTOR,
+			doctor: doctor
 		});
 	}
 };
