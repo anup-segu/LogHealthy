@@ -55,7 +55,6 @@ PatientStore.loadDoctor = function (doctor) {
 PatientStore.getDoctor = function() {
   if (_doctor) {
     var doctor = _doctor;
-    _doctor = null;
     return $.extend({}, doctor);
   }
   return;
@@ -68,6 +67,7 @@ PatientStore.errors = function() {
 };
 
 PatientStore.loadPatients = function (patients) {
+  _doctor = null;
   _patients = patients;
 };
 
