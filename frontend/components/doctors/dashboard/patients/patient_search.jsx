@@ -4,6 +4,7 @@ var MenuItem = require('react-bootstrap/lib/MenuItem');
 
 var DoctorStore = require('../../../../stores/doctor_store.js');
 var DoctorActions = require('../../../../actions/doctor_actions.js');
+var AuthActions = require('../../../../actions/auth_actions.js');
 
 var PatientSearch = React.createClass({
   getInitialState: function() {
@@ -25,6 +26,7 @@ var PatientSearch = React.createClass({
   viewPatient: function (eventKey) {
     this.clearForm();
     this.setState({ searchStr: "" });
+    AuthActions.closePatientDoctorForm();
     DoctorActions.viewPatient(eventKey);
   },
 

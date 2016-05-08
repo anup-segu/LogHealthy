@@ -59,6 +59,20 @@ log_dates = (1..15).to_a.map do |num|
   num.days.ago
 end
 
+# Create logs for patient demo
+["breakfast", "lunch", "dinner"].each do |meal_type|
+  log_dates.each do |date|
+    Log.create(
+      patient_id: 1,
+      glucose: (120..200).to_a.sample,
+      carbs: (0..20).to_a.sample,
+      meal_type: meal_type,
+      comment: "Et sustainable optio aesthetic et.",
+      date: date
+    )
+  end
+end
+
 # Create Patients seeing Doctor Demo Account
 10.times do |num|
   Patient.create(
