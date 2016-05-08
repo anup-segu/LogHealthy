@@ -197,8 +197,15 @@ var ConversationForm = React.createClass({
 
   searchField: function() {
     if (this.state.doctor) {
-      var name =
-        this.state.doctor.first_name+" "+this.state.doctor.last_name;
+      if (this.state.doctor.first_name) {
+        var name =
+          this.state.doctor.first_name+" "+this.state.doctor.last_name;
+        var placeholder = "We will send this to your doctor, no need to specify.";
+      } else {
+        name = "";
+        placeholder = "Connect to a doctor first using the side bar or nav bar";
+      }
+
       return (
         <div className="form-group">
           <label htmlFor="to-field">Recipient: </label>
@@ -209,9 +216,8 @@ var ConversationForm = React.createClass({
             className="form-control"
             defaultValue={name}
             disabled={true}
-            placeholder="Your subject here"/>
-          <p className="help-block">
-            We will send this to your doctor, no need to specify.</p>
+            placeholder="Your doctor here"/>
+          <p className="help-block">{placeholder}</p>
         </div>
       );
     }
