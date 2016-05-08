@@ -30,6 +30,10 @@ class Patient < ActiveRecord::Base
     as: :recipient,
     class_name: :Conversation
 
+  def self.unmatched_patients
+    Patient.where.not(id: PatientDoctor.select(:patient_id).uniq)
+  end
+
   def self.find_by_credentials(email, password)
     patient = Patient.find_by(email: email)
     return nil unless patient

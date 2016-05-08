@@ -1,9 +1,10 @@
 var Store = require('flux/utils').Store;
 var AuthConstants = require('../constants/auth_constants.js');
+var PatientConstants = require('../constants/patient_constants.js');
 var LogConstants = require('../constants/log_constants.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
-var _currentPatient, _errors;
+var _currentPatient, _errors, _patientDoctorForm, _patients=[], _doctor;
 var PatientStore = new Store(AppDispatcher);
 var appStorage = localStorage;
 
@@ -47,10 +48,29 @@ PatientStore.currentPatient = function() {
   }
 };
 
+PatientStore.loadDoctor = function (doctor) {
+  _doctor = doctor;
+};
+
+PatientStore.getDoctor = function() {
+  if (_doctor) {
+    return $.extend({}, _doctor);
+  }
+  return;
+};
+
 PatientStore.errors = function() {
   if (_errors) {
     return [].slice.call(_errors);
   }
+};
+
+PatientStore.loadPatients = function (patients) {
+  _patients = patients;
+};
+
+PatientStore.allPatients = function() {
+  return [].slice.call(_patients);
 };
 
 PatientStore.__onDispatch = function (payload) {
@@ -75,6 +95,12 @@ PatientStore.__onDispatch = function (payload) {
       break;
     case LogConstants.PATIENT_UPDATED:
       PatientStore.updatePatient(payload.patient);
+      break;
+    case PatientConstants.PATIENTS_RECEIVED:
+      PatientStore.loadPatients(payload.patients);
+      break;
+    case PatientConstants.VIEW_DOCTOR:
+      PatientStore.loadDoctor(payload.doctor);
       break;
   }
   PatientStore.__emitChange();

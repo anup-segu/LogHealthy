@@ -1,0 +1,21 @@
+$font-bold: Montserrat, sans-serif;
+$font-primary: Khula, sans-serif;
+
+$color-1: #6026D2; //deep purple
+$color-2: #18D8B7; //teal
+$color-3: #fc636b; //orange
+$color-4: #eeeeee; //light-gray
+$color-5: #333333; //dark-gray for fonts
+
+.patient-doctor-hits {
+  position: relative !important;
+}
+
+.form-title {
+  text-align: center;
+  color: $color-5;
+}
+
+.connect-dialog {
+  padding-top: 25px;
+}

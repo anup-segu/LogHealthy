@@ -1,6 +1,7 @@
 var hashHistory = require('react-router').hashHistory;
 
 var AuthConstants = require('../constants/auth_constants');
+var PatientConstants = require('../constants/patient_constants');
 var AuthActions = require("../actions/auth_actions");
 var PatientApiUtil = require('../util/patient_api_util');
 var PatientStore = require('../stores/patient_store');
@@ -79,6 +80,51 @@ var PatientActions = {
 			PatientActions.removeCurrentPatient,
 			PatientActions.handleError
 		);
+	},
+
+	createPatientDoctor: function (data) {
+		PatientApiUtil.createPatientDoctor({
+			url: "/api/patient_doctors",
+			type: "post",
+			data: { patient_doctor: data, ttype: "Patient" },
+			success: function (patient) {
+				AuthActions.closePatientDoctorForm();
+				AppDispatcher.dispatch({
+					actionType: PatientConstants.PATIENT_UPDATED,
+					patient: patient
+				});
+			}
+		});
+	},
+
+	viewDoctor: function (id) {
+		PatientApiUtil.viewDoctor({
+			url: "api/doctors/" + id,
+			success: function (doctor) {
+				PatientActions.serveDoctor(doctor);
+			}
+		});
+	},
+
+	serveDoctor: function (doctor) {
+		AppDispatcher.dispatch({
+			actionType: PatientConstants.VIEW_DOCTOR,
+			doctor: doctor
+		});
+	},
+
+	fetchAllPatients: function() {
+		PatientApiUtil.fetchAllPatients({
+			url: "api/patients",
+			success: PatientActions.patientsReceived
+		});
+	},
+
+	patientsReceived: function (patients) {
+		AppDispatcher.dispatch({
+			actionType: PatientConstants.PATIENTS_RECEIVED,
+			patients: patients
+		});
 	}
 };
 

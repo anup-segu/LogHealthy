@@ -29,6 +29,14 @@ module.exports = {
 		});
 	},
 
+	fetchAllDoctors: function (options) {
+		$.ajax({
+			url: options.url,
+			method: 'get',
+			success: options.success
+		});
+	},
+
 	viewPatient: function (options) {
 		$.ajax({
 			url: options.url,
@@ -36,4 +44,13 @@ module.exports = {
 			success: options.success
 		});
 	},
+
+	createDoctorPatient: function (options) {
+		$.ajax({
+			url: options.url,
+			type: options.type,
+			data: options.data,
+			success: options.success
+		});
+	}
 };

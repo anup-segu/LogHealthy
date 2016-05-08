@@ -22,6 +22,20 @@ var DoctorActions = {
 		}
 	},
 
+	fetchAllDoctors: function() {
+		DoctorApiUtil.fetchAllDoctors({
+			url: "/api/doctors",
+			success: DoctorActions.doctorsReceived
+		});
+	},
+
+	doctorsReceived: function(doctors) {
+		AppDispatcher.dispatch({
+			actionType: DoctorConstants.DOCTORS_RECEIVED,
+			doctors: doctors
+		});
+	},
+
 	signup: function(doctor){
 		DoctorApiUtil.post({
 			url: "api/doctor",
@@ -91,6 +105,21 @@ var DoctorActions = {
 		AppDispatcher.dispatch({
 			actionType: DoctorConstants.VIEW_PATIENT,
 			patient: patient
+		});
+	},
+
+	createDoctorPatient: function (data) {
+		DoctorApiUtil.createDoctorPatient({
+			url: "/api/patient_doctors",
+			type: "post",
+			data: { patient_doctor: data, ttype: "Doctor" },
+			success: function (doctor) {
+				AuthActions.closePatientDoctorForm();
+				AppDispatcher.dispatch({
+					actionType: DoctorConstants.DOCTOR_UPDATED,
+					doctor: doctor
+				});
+			}
 		});
 	}
 };

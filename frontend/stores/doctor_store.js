@@ -3,7 +3,7 @@ var AuthConstants = require('../constants/auth_constants.js');
 var DoctorConstants = require('../constants/doctor_constants.js');
 var AppDispatcher = require('../dispatcher/dispatcher.js');
 
-var _currentDoctor, _errors, _viewPatient;
+var _currentDoctor, _errors, _viewPatient, _doctors=[];
 var DoctorStore = new Store(AppDispatcher);
 
 DoctorStore.login = function (doctor) {
@@ -13,6 +13,12 @@ DoctorStore.login = function (doctor) {
     _currentDoctor = doctor;
     _errors = null;
   }
+};
+
+DoctorStore.updateDoctor = function (doctor) {
+  _currentDoctor = doctor;
+  localStorage.setItem("currentDoctor", JSON.stringify(doctor));
+  _errors = null;
 };
 
 DoctorStore.logout = function (doctor) {
@@ -53,7 +59,18 @@ DoctorStore.loadPatient = function (patient) {
 };
 
 DoctorStore.viewPatient = function () {
-  return $.extend({}, _viewPatient);
+  if (_viewPatient) {
+    return $.extend({}, _viewPatient);
+  }
+  return;
+};
+
+DoctorStore.loadDoctors = function (doctors) {
+  _doctors = doctors;
+};
+
+DoctorStore.allDoctors = function() {
+  return _doctors;
 };
 
 DoctorStore.__onDispatch = function (payload) {
@@ -78,6 +95,12 @@ DoctorStore.__onDispatch = function (payload) {
       break;
     case DoctorConstants.VIEW_PATIENT:
       DoctorStore.loadPatient(payload.patient);
+      break;
+    case DoctorConstants.DOCTORS_RECEIVED:
+      DoctorStore.loadDoctors(payload.doctors);
+      break;
+    case DoctorConstants.DOCTOR_UPDATED:
+      DoctorStore.updateDoctor(payload.doctor);
       break;
   }
   DoctorStore.__emitChange();

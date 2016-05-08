@@ -16,6 +16,18 @@ module.exports = {
     });
   },
 
+  openPatientDoctorForm: function() {
+    AppDispatcher.dispatch({
+      actionType: AuthConstants.OPEN_PATIENT_DOCTOR
+    });
+  },
+
+  closePatientDoctorForm: function() {
+    AppDispatcher.dispatch({
+      actionType: AuthConstants.CLOSE_PATIENT_DOCTOR
+    });
+  },
+
   closeForm: function() {
     AppDispatcher.dispatch({
       actionType: AuthConstants.CLOSE_FORM,
