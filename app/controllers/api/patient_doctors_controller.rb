@@ -1,4 +1,4 @@
-class Api::PatientdoctorsController < ApplicationController
+class Api::PatientDoctorsController < ApplicationController
   def create
     @patient_doctor = PatientDoctor.new(patient_doctor_params)
 

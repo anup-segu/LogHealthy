@@ -91,10 +91,14 @@ var PatientDoctorForm = React.createClass({
     PatientActions.viewDoctor(eventKey);
   },
 
+  // NEED TO BUILD OUT BUTTON TO CREATE PATIENT DOCTORS
   createPatientDoctor: function() {
-    var data = { };
+    var data = {
+      patient_id: PatientStore.currentPatient().id,
+      doctor_id: this.state.viewDoctor.id
+    };
 
-    PatientActions.createPatientDoctor();
+    PatientActions.createPatientDoctor(data);
   },
 
   form: function() {

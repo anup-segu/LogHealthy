@@ -87,8 +87,12 @@ var PatientActions = {
 			url: "/api/patient_doctors",
 			type: "post",
 			data: { patient_doctor: data, ttype: "Patient" },
-			success: function(){
+			success: function (patient) {
 				AuthActions.closePatientDoctorForm();
+				AppDispatcher.dispatch({
+					actionType: PatientConstants.PATIENT_UPDATED,
+					patient: patient
+				});
 			}
 		});
 	},
