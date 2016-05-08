@@ -60,7 +60,9 @@ DoctorStore.loadPatient = function (patient) {
 
 DoctorStore.viewPatient = function () {
   if (_viewPatient) {
-    return $.extend({}, _viewPatient);
+    var patient = _viewPatient;
+    _viewPatient = null;
+    return $.extend({}, patient);
   }
   return;
 };
