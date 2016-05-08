@@ -59,6 +59,7 @@ log_dates = (1..15).to_a.map do |num|
   num.days.ago
 end
 
+# Create Patients seeing Doctor Demo Account
 10.times do |num|
   Patient.create(
     email: Faker::Internet.email,
@@ -83,17 +84,38 @@ end
   PatientDoctor.create(patient_id: num + 2, doctor_id: 1)
 end
 
-["breakfast", "lunch", "dinner"].each do |meal_type|
-  log_dates.each do |date|
-    Log.create(
-      patient_id: 1,
-      glucose: (120..200).to_a.sample,
-      carbs: (0..20).to_a.sample,
-      meal_type: meal_type,
-      comment: "Et sustainable optio aesthetic et.",
-      date: date
-    )
+
+# Create patients without doctor
+10.times do |num|
+  Patient.create(
+    email: Faker::Internet.email,
+    password: "password",
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+  )
+
+  ["breakfast", "lunch", "dinner"].each do |meal_type|
+    log_dates.each do |date|
+      Log.create(
+        patient_id: num+12,
+        glucose: (120..200).to_a.sample,
+        carbs: (0..20).to_a.sample,
+        meal_type: meal_type,
+        comment: "Et sustainable optio aesthetic et.",
+        date: date
+      )
+    end
   end
+end
+
+# Create doctors without patients
+10.times do |num|
+  Doctor.create(
+    email: Faker::Internet.email,
+    password: "password",
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name
+  )
 end
 
 
