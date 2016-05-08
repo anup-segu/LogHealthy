@@ -207,14 +207,25 @@ module.exports = React.createClass({
   },
 
   popoOverDoctorContent: function() {
+    var contactPatient;
+
+    if (DoctorStore.currentDoctor().patients.length > 0) {
+      contactPatient = (
+        <li className="options-action"
+          onClick={this.contactPatient}>
+          <a>Contact Patient</a></li>
+      );
+    }
+
     return (
       <Popover
         id="action-popover"
         className="action-popover">
         <ul className="options-menu">
+          {contactPatient}
           <li className="options-action"
-            onClick={this.contactPatient}>
-            <a>Contact Patient</a></li>
+            onClick={this.createPatientDoctor}>
+            <a>Add Patient</a></li>
         </ul>
       </Popover>
     );

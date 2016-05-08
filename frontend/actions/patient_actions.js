@@ -57,6 +57,7 @@ var PatientActions = {
 			patient: patient
 		});
 		AuthActions.closeForm();
+		AuthActions.closePatientDoctorForm();
 	},
 
 	handleError: function(error) {
