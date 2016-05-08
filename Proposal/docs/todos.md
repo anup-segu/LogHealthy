@@ -1,5 +1,5 @@
 #Todos
-Fix doctor and patient persisting between accounts when adding
+reset patients search results on modal form when closed
 change display line text for conversation create when no doctor is defined
 
 progress tab dropdown styling off for first element

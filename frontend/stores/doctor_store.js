@@ -48,6 +48,21 @@ DoctorStore.currentDoctor = function() {
   }
 };
 
+DoctorStore.currentDoctorHasPatient = function (patient) {
+  if (_currentDoctor) {
+    var patientIds = _currentDoctor.patients.map(function (currentPatient) {
+      return currentPatient.id;
+    });
+
+    if (patientIds.indexOf(patient.id) > -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  return;
+};
+
 DoctorStore.errors = function() {
   if (_errors) {
     return [].slice.call(_errors);
@@ -60,8 +75,7 @@ DoctorStore.loadPatient = function (patient) {
 
 DoctorStore.viewPatient = function () {
   if (_viewPatient) {
-    var patient = _viewPatient;
-    return $.extend({}, patient);
+    return $.extend({}, _viewPatient);
   }
   return;
 };

@@ -100,7 +100,9 @@ var Tabs = React.createClass({
   },
 
   patientDetail: function() {
-    if (this.state.viewPatient && this.state.viewPatient.email) {
+    if (this.state.viewPatient &&
+        this.state.viewPatient.email &&
+        DoctorStore.currentDoctorHasPatient(this.state.viewPatient)) {
       return <PatientDetail patient={this.state.viewPatient} />;
     } else {
       return <div></div>;

@@ -54,8 +54,7 @@ PatientStore.loadDoctor = function (doctor) {
 
 PatientStore.getDoctor = function() {
   if (_doctor) {
-    var doctor = _doctor;
-    return $.extend({}, doctor);
+    return $.extend({}, _doctor);
   }
   return;
 };

@@ -15,7 +15,7 @@ var style = {
   },
   content: {
     width: '55%',
-    height: '100%',
+    height: '80%',
     marginTop: '5%',
     marginLeft: "auto",
     marginRight: "auto",
@@ -49,6 +49,12 @@ var PatientDoctorForm = React.createClass({
     }
   },
 
+  componentWillUnmount: function() {
+    this.doctorListener.remove();
+    this.patientListener.remove();
+    this.authListener.remove();
+  },
+
   _updateDoctors: function() {
     this.setState({
       doctors: DoctorStore.allDoctors(),
@@ -64,7 +70,17 @@ var PatientDoctorForm = React.createClass({
   },
 
   _updateModal: function() {
-    this.setState({ modalOpen: AuthStore.getPatientDoctorFormStatus()});
+    var show = AuthStore.getPatientDoctorFormStatus();
+    if (show) {
+      this.setState({ modalOpen: show});
+    } else {
+      this.setState({
+        modalOpen: show,
+        searchStr: "",
+        viewDoctor: null,
+        viewPatient: null
+      });
+    }
   },
 
   updateSearch: function (event) {
@@ -253,7 +269,8 @@ var PatientDoctorForm = React.createClass({
           <button className="btn btn-login" onClick={this.createPatientDoctor}>Connect</button>
         </div>
       );
-    } else if (this.state.viewPatient) {
+    } else if (this.state.viewPatient &&
+      !DoctorStore.currentDoctorHasPatient(this.state.viewPatient)) {
       return (
         <div className="width-fix connect-dialog">
           <h4>Are you sure you want to connect to this Patient?</h4>
@@ -266,7 +283,12 @@ var PatientDoctorForm = React.createClass({
   },
 
   closeModal: function() {
-    this.setState({ modalOpen: false });
+    this.setState({
+      modalOpen: false,
+      searchStr: "",
+      viewDoctor: null,
+      viewPatient: null
+    });
   },
 
   render: function() {
@@ -274,7 +296,7 @@ var PatientDoctorForm = React.createClass({
       <Modal
         isOpen={this.state.modalOpen}
         onRequestClose={this.closeModal}
-        style={style}>
+        style={style} >
         <div id="login-form" className="container splash-form">
           <h3 className="form-title">{this.title()}</h3>
           {this.form()}
