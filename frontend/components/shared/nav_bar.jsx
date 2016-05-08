@@ -170,6 +170,27 @@ module.exports = React.createClass({
     DashboardActions.openTab("conversations", "new");
   },
 
+  createPatientDoctor: function (event) {
+    event.preventDefault();
+    AuthActions.openPatientDoctorForm();
+  },
+
+  patientDoctorOption: function() {
+    if (PatientStore.currentPatient().doctor.first_name) {
+      return (
+        <li className="options-action"
+          onClick={this.contactDoctor}>
+          <a>Contact Doctor</a></li>
+      );
+    } else {
+      return (
+        <li className="options-action"
+          onClick={this.createPatientDoctor}>
+          <a>Add Doctor</a></li>
+      );
+    }
+  },
+
   popOverPatientContent: function() {
     return (
       <Popover
@@ -179,9 +200,7 @@ module.exports = React.createClass({
           <li className="options-action"
             onClick={this.launchLog}>
             <a>Create a new log</a></li>
-          <li className="options-action"
-            onClick={this.contactDoctor}>
-            <a>Contact Doctor</a></li>
+          {this.patientDoctorOption()}
         </ul>
       </Popover>
     );

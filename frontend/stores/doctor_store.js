@@ -15,6 +15,12 @@ DoctorStore.login = function (doctor) {
   }
 };
 
+DoctorStore.updateDoctor = function (doctor) {
+  _currentDoctor = doctor;
+  localStorage.setItem("currentDoctor", JSON.stringify(doctor));
+  _errors = null;
+};
+
 DoctorStore.logout = function (doctor) {
   localStorage.removeItem("currentPatient");
   localStorage.removeItem("currentDoctor");
@@ -53,7 +59,10 @@ DoctorStore.loadPatient = function (patient) {
 };
 
 DoctorStore.viewPatient = function () {
-  return $.extend({}, _viewPatient);
+  if (_viewPatient) {
+    return $.extend({}, _viewPatient);
+  }
+  return;
 };
 
 DoctorStore.loadDoctors = function (doctors) {
@@ -89,6 +98,9 @@ DoctorStore.__onDispatch = function (payload) {
       break;
     case DoctorConstants.DOCTORS_RECEIVED:
       DoctorStore.loadDoctors(payload.doctors);
+      break;
+    case DoctorConstants.DOCTOR_UPDATED:
+      DoctorStore.updateDoctor(payload.doctor);
       break;
   }
   DoctorStore.__emitChange();

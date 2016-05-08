@@ -111,6 +111,20 @@ var PatientActions = {
 			actionType: PatientConstants.VIEW_DOCTOR,
 			doctor: doctor
 		});
+	},
+
+	fetchAllPatients: function() {
+		PatientApiUtil.fetchAllPatients({
+			url: "api/patients",
+			success: PatientActions.patientsReceived
+		});
+	},
+
+	patientsReceived: function (patients) {
+		AppDispatcher.dispatch({
+			actionType: PatientConstants.PATIENTS_RECEIVED,
+			patients: patients
+		});
 	}
 };
 

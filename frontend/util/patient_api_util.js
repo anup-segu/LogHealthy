@@ -43,5 +43,12 @@ module.exports = {
 			url: options.url,
 			success: options.success
 		});
+	},
+
+	fetchAllPatients: function (options) {
+		$.ajax({
+			url: options.url,
+			success: options.success
+		});
 	}
 };

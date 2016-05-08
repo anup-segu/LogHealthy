@@ -44,4 +44,13 @@ module.exports = {
 			success: options.success
 		});
 	},
+
+	createDoctorPatient: function (options) {
+		$.ajax({
+			url: options.url,
+			type: options.type,
+			data: options.data,
+			success: options.success
+		});
+	}
 };

@@ -1,4 +1,9 @@
 class Api::PatientsController < ApplicationController
+  def index
+    @patients = Patient.unmatched_patients
+    render "api/patients/index"
+  end
+
   def create
     @patient = Patient.new(patient_params)
 

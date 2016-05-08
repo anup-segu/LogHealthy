@@ -118,8 +118,17 @@ var Sidebar = React.createClass({
             aria-hidden="true"></span> Add Doctor
         </button>
       );
+    } else {
+      return (
+        <button
+          className={this.buttonClass()}
+          onClick={this.createConversation}>
+          <span
+            className="glyphicon glyphicon-envelope"
+            aria-hidden="true"></span> Contact Doctor
+        </button>
+      );
     }
-    return;
   },
 
   sidebarContent: function() {
@@ -138,13 +147,6 @@ var Sidebar = React.createClass({
                   className={this.buttonClass()}
                   onClick={this.openForm}>
                   {this.buttonText()}
-                </button>
-                <button
-                  className={this.buttonClass()}
-                  onClick={this.createConversation}>
-                  <span
-                    className="glyphicon glyphicon-envelope"
-                    aria-hidden="true"></span> Contact Doctor
                 </button>
                 {this.addDoctorButton()}
               </div>

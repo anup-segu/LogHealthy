@@ -65,8 +65,12 @@ PatientStore.errors = function() {
   }
 };
 
-PatientStore.allPatients = function() {
+PatientStore.loadPatients = function (patients) {
+  _patients = patients;
+};
 
+PatientStore.allPatients = function() {
+  return [].slice.call(_patients);
 };
 
 PatientStore.__onDispatch = function (payload) {
@@ -91,6 +95,9 @@ PatientStore.__onDispatch = function (payload) {
       break;
     case LogConstants.PATIENT_UPDATED:
       PatientStore.updatePatient(payload.patient);
+      break;
+    case PatientConstants.PATIENTS_RECEIVED:
+      PatientStore.loadPatients(payload.patients);
       break;
     case PatientConstants.VIEW_DOCTOR:
       PatientStore.loadDoctor(payload.doctor);

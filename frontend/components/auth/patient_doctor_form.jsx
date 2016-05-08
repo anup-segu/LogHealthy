@@ -52,7 +52,7 @@ var PatientDoctorForm = React.createClass({
   _updateDoctors: function() {
     this.setState({
       doctors: DoctorStore.allDoctors(),
-
+      viewPatient: DoctorStore.viewPatient()
     });
   },
 
@@ -91,14 +91,31 @@ var PatientDoctorForm = React.createClass({
     PatientActions.viewDoctor(eventKey);
   },
 
-  // NEED TO BUILD OUT BUTTON TO CREATE PATIENT DOCTORS
-  createPatientDoctor: function() {
+  viewPatient: function (eventKey, event) {
+    event.preventDefault();
+    this.clearForm();
+    this.setState({ searchStr: "" });
+    DoctorActions.viewPatient(eventKey);
+  },
+
+  createPatientDoctor: function (event) {
+    event.preventDefault();
     var data = {
       patient_id: PatientStore.currentPatient().id,
       doctor_id: this.state.viewDoctor.id
     };
 
     PatientActions.createPatientDoctor(data);
+  },
+
+  createDoctorPatient: function (event) {
+    event.preventDefault();
+    var data = {
+      patient_id: this.state.viewPatient.id,
+      doctor_id: DoctorStore.currentDoctor().id
+    };
+
+    DoctorActions.createDoctorPatient(data);
   },
 
   form: function() {
@@ -111,7 +128,7 @@ var PatientDoctorForm = React.createClass({
             className="form-control"
             defaultValue={this.state.searchStr}
             onChange={this.updateSearch}
-            placeholder="Search your patients by name... ex. Patient Demo"
+            placeholder="Find your doctor by name... ex. Doctor Demo"
             aria-describedby="basic-addon2" />
           <span
             className="input-group-addon"
@@ -124,7 +141,23 @@ var PatientDoctorForm = React.createClass({
       );
     } else if (DoctorStore.currentDoctor()) {
       return (
-        <div></div>
+        <div className="input-group patient-search-bar">
+          <input
+            type="text"
+            ref="searchBar"
+            className="form-control"
+            defaultValue={this.state.searchStr}
+            onChange={this.updateSearch}
+            placeholder="Find your patient by name..."
+            aria-describedby="basic-addon2" />
+          <span
+            className="input-group-addon"
+            id="basic-addon2">
+            <span
+              className="glyphicon glyphicon-search"
+              aria-hidden="true"></span>
+          </span>
+        </div>
       );
     }
   },
@@ -195,7 +228,7 @@ var PatientDoctorForm = React.createClass({
     }.bind(this));
 
     return (
-      <ul className="dropdown-menu patient-hits">
+      <ul className="dropdown-menu patient-hits patient-doctor-hits">
        {header}
        {matchedPatients}
       </ul>
@@ -218,6 +251,14 @@ var PatientDoctorForm = React.createClass({
           <h4>Are you sure you want to connect to this Doctor?</h4>
           <p>{"Dr. "+this.state.viewDoctor.first_name+" "+this.state.viewDoctor.last_name}</p>
           <button className="btn btn-login" onClick={this.createPatientDoctor}>Connect</button>
+        </div>
+      );
+    } else if (this.state.viewPatient) {
+      return (
+        <div className="width-fix connect-dialog">
+          <h4>Are you sure you want to connect to this Patient?</h4>
+          <p>{this.state.viewPatient.first_name+" "+this.state.viewPatient.last_name}</p>
+          <button className="btn btn-login" onClick={this.createDoctorPatient}>Connect</button>
         </div>
       );
     }

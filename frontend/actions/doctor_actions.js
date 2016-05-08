@@ -106,6 +106,21 @@ var DoctorActions = {
 			actionType: DoctorConstants.VIEW_PATIENT,
 			patient: patient
 		});
+	},
+
+	createDoctorPatient: function (data) {
+		DoctorApiUtil.createDoctorPatient({
+			url: "/api/patient_doctors",
+			type: "post",
+			data: { patient_doctor: data, ttype: "Doctor" },
+			success: function (doctor) {
+				AuthActions.closePatientDoctorForm();
+				AppDispatcher.dispatch({
+					actionType: DoctorConstants.DOCTOR_UPDATED,
+					doctor: doctor
+				});
+			}
+		});
 	}
 };
 
