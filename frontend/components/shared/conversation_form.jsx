@@ -35,10 +35,24 @@ var ConversationForm = React.createClass({
   componentDidMount: function() {
     this.conversationListener =
       ConversationStore.addListener(this._updateStatus);
+    this.patientListener = PatientStore.addListener(this._updatePatient);
   },
 
   componentWillUnmount: function() {
     this.conversationListener.remove();
+    this.patientListener.remove();
+  },
+
+  _updatePatient: function() {
+    if (this.props.doctor) {
+      this.setState({
+        doctor: PatientStore.currentPatient().doctor,
+        recipient_id: PatientStore.currentPatient().doctor.id
+      });
+      this.refs.subjectField.value =
+        PatientStore.currentPatient().doctor.first_name + " " +
+        PatientStore.currentPatient().doctor.last_name;
+    }
   },
 
   _updateStatus: function() {
