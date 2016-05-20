@@ -286,7 +286,7 @@ var LogEditForm = React.createClass({
         <div className="log-form">
           <h3 className="log-form-header">Edit This Log</h3>
           <button className="btn btn-default close-button"
-            onClick={this.closeModal}>
+            onClick={this.cancelLog}>
             <span className="glyphicon glyphicon-remove"></span>
           </button>
           {this.errors()}
