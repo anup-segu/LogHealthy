@@ -22,9 +22,7 @@ var Sidebar = React.createClass({
 
   componentWillUnmount: function() {
     this.dashboardListener.remove();
-    if (this.resize) {
-      this.resize.remove();
-    }
+    window.removeEventListener("resize", this._updateButtonText);
   },
 
   _updateSidebar: function() {
