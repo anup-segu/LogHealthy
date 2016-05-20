@@ -112,6 +112,7 @@ $color-4: #eeeeee; //light-gray
   position: relative;
   width: 90%;
   min-width: 165px;
+  margin-top: 2px;
   margin-bottom: 15px;
   background-color: #1B2432;
   border: 2px solid #ffffff;
@@ -124,6 +125,8 @@ $color-4: #eeeeee; //light-gray
   background-color: #1B2432;
   border: 4px solid #ffffff;
   color: #ffffff;
+  margin-top: 0px;
+  margin-bottom: 13px;
 }
 
 .sidebar-link {
