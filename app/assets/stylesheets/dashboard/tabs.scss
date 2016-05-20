@@ -8,18 +8,15 @@ $color-4: #eeeeee; //light-gray
 $color-5: #333333; //dark-gray for fonts
 
 .tab-content {
+  display: inline-block;
   width: 100%;
   padding-top: 15px;
-  height: 100%;
-  max-height: 500px;
-  overflow: auto;
 }
 
 .tab-view {
   margin: 15px;
   margin-left: 28%;
   padding: 15px;
-  height: 130%;
   width: 60%;
   max-width: 900px;
   background-color: #ffffff;
