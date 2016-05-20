@@ -47,10 +47,6 @@ var PatientActions = {
 		});
 	},
 
-	guestLogin: function(){
-		PatientActions.login({patientname: "guest", password: "password"});
-	},
-
 	receiveCurrentPatient: function(patient){
 		AppDispatcher.dispatch({
 			actionType: AuthConstants.LOGIN,

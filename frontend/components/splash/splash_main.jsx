@@ -17,14 +17,14 @@ var SplashBody = React.createClass({
     this.patientListener = PatientStore.addListener(this._checkLogin);
     this.doctorListener = DoctorStore.addListener(this._checkLogin);
 
-    PatientActions.fetchCurrentPatient();
-    DoctorActions.fetchCurrentDoctor();
+    // PatientActions.fetchCurrentPatient();
+    // DoctorActions.fetchCurrentDoctor();
   },
 
   _checkLogin: function() {
     var patient = PatientStore.currentPatient();
     var doctor = DoctorStore.currentDoctor();
-    
+
     if (patient) {
       this.setState({ render: false });
     } else if (doctor) {

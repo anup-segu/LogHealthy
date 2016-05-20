@@ -19,8 +19,8 @@ var AuthActions = require('../../actions/auth_actions.js');
 module.exports = React.createClass({
   getInitialState: function() {
     var username = "";
-    PatientActions.fetchCurrentPatient();
-    DoctorActions.fetchCurrentDoctor();
+    // PatientActions.fetchCurrentPatient();
+    // DoctorActions.fetchCurrentDoctor();
 
     if (PatientStore.currentPatient()) {
       username = PatientStore.currentPatient().first_name;
@@ -36,7 +36,7 @@ module.exports = React.createClass({
     this.doctorListener = DoctorStore.addListener(this._receiveUser);
     this.dashboardListener = DashboardStore.addListener(this._updateOptions);
     PatientActions.fetchCurrentPatient();
-    DoctorActions.fetchCurrentDoctor();
+    // DoctorActions.fetchCurrentDoctor();
   },
 
   _updateOptions: function() {
