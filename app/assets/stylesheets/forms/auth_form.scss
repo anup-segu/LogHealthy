@@ -103,3 +103,25 @@ input.form-control:focus {
   padding: 5px;
   margin-bottom: 5px;
 }
+
+.auth-form-header {
+  display: inline-block;
+}
+
+.close-button {
+  display: inline-block;
+  float: right;
+  border: 0;
+  margin-top: 15px;
+  padding-right: 0;
+}
+
+.close-button:hover {
+  color: $color-3;
+  background-color: #FFFFFF;
+}
+
+.close-button:focus {
+  background-color: #FFFFFF;
+  outline: 0;
+}

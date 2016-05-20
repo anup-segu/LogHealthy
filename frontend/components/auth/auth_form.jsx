@@ -285,7 +285,11 @@ var LogInForm = React.createClass({
         onRequestClose={this.closeModal}
         style={style}>
         <div id="login-form" className="container splash-form">
-          <h3>{title}</h3>
+          <h3 className="auth-form-header">{title}</h3>
+          <button className="btn btn-default close-button"
+            onClick={this.closeModal}>
+            <span className="glyphicon glyphicon-remove"></span>
+          </button>
           {this.errors()}
           {this.form()}
         </div>
