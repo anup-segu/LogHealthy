@@ -16,9 +16,6 @@ var SplashBody = React.createClass({
   componentDidMount: function() {
     this.patientListener = PatientStore.addListener(this._checkLogin);
     this.doctorListener = DoctorStore.addListener(this._checkLogin);
-
-    // PatientActions.fetchCurrentPatient();
-    // DoctorActions.fetchCurrentDoctor();
   },
 
   _checkLogin: function() {

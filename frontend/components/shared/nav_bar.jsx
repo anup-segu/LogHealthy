@@ -3,7 +3,6 @@ var hashHistory = require('react-router').hashHistory;
 var Modal = require("react-modal");
 var Fade = require('react-bootstrap/lib/Fade');
 var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
-var OverlayTrigger = require('react-bootstrap/lib/OverlayTrigger');
 var Popover = require('react-bootstrap/lib/Popover');
 
 var PatientStore = require('../../stores/patient_store.js');
@@ -19,8 +18,6 @@ var AuthActions = require('../../actions/auth_actions.js');
 module.exports = React.createClass({
   getInitialState: function() {
     var username = "";
-    // PatientActions.fetchCurrentPatient();
-    // DoctorActions.fetchCurrentDoctor();
 
     if (PatientStore.currentPatient()) {
       username = PatientStore.currentPatient().first_name;
@@ -36,7 +33,6 @@ module.exports = React.createClass({
     this.doctorListener = DoctorStore.addListener(this._receiveUser);
     this.dashboardListener = DashboardStore.addListener(this._updateOptions);
     PatientActions.fetchCurrentPatient();
-    // DoctorActions.fetchCurrentDoctor();
   },
 
   _updateOptions: function() {
