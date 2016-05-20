@@ -266,9 +266,7 @@ var LogForm = React.createClass({
             onChange={this.handleComment}></textarea>
           <p className="help-block">Feel free to detail your meal or any notable symptoms.</p>
         </div>
-
         <button className="btn btn-submit-log">Record Log</button>
-        
       </form>
     );
   },

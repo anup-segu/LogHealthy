@@ -272,8 +272,7 @@ var LogEditForm = React.createClass({
         </div>
 
         <button className="btn btn-submit-log">Update Log</button>
-        <br/>
-        <a className="cancel-link" onClick={this.cancelLog}>Go Back To Logs</a>
+
       </form>
     );
   },
@@ -286,6 +285,10 @@ var LogEditForm = React.createClass({
         style={style}>
         <div className="log-form">
           <h3 className="log-form-header">Edit This Log</h3>
+          <button className="btn btn-default close-button"
+            onClick={this.closeModal}>
+            <span className="glyphicon glyphicon-remove"></span>
+          </button>
           {this.errors()}
           {this.form()}
         </div>
