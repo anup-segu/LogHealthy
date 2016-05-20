@@ -268,8 +268,7 @@ var LogForm = React.createClass({
         </div>
 
         <button className="btn btn-submit-log">Record Log</button>
-        <br/>
-        <a className="cancel-link" onClick={this.cancelLog}>Go Back To Logs</a>
+        
       </form>
     );
   },
