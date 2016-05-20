@@ -213,10 +213,6 @@ var LogInForm = React.createClass({
             <a
               href="#"
               onClick={this.signInForm}>Sign in to existing account</a>
-            <br/>
-            <a
-              href="#"
-              onClick={this.closeModal}>Go Back</a>
           </div>
         </form>
       );
@@ -254,8 +250,6 @@ var LogInForm = React.createClass({
           <div className="row login-alt-options">
             <a href="#"
               onClick={this.signUpForm}>Create a new account</a>
-            <a href="#"
-              onClick={this.closeModal}>Go Back</a>
           </div>
         </form>
       );

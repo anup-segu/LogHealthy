@@ -282,6 +282,10 @@ var LogForm = React.createClass({
           style={style}>
           <div className="log-form">
             <h3 className="log-form-header">Create A New Log</h3>
+            <button className="btn btn-default close-button"
+              onClick={this.closeModal}>
+              <span className="glyphicon glyphicon-remove"></span>
+            </button>
             {this.errors()}
             {this.form()}
           </div>
