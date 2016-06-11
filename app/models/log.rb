@@ -6,6 +6,9 @@ class Log < ActiveRecord::Base
   validates :patient_id,
     uniqueness: { scope: [:meal_type, :date], message: ["Log already exists for this meal"] }
 
-
   belongs_to :patient
+
+  has_one :long_term_treatment,
+    through: :patient,
+    source: :long_term_treatment
 end

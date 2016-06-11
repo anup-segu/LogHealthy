@@ -4,4 +4,6 @@ class PatientDoctor < ActiveRecord::Base
 
   belongs_to :patient
   belongs_to :doctor
+
+  has_one :long_term_treatment
 end

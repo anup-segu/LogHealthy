@@ -5,6 +5,7 @@ class Api::LogsController < ApplicationController
     @log.date = Date.today
 
     if @log.save
+      @log.long_term_treatment.update_treatment if @log.long_term_treatment
       @patient = @log.patient
       render "api/patients/show"
     else
@@ -17,6 +18,7 @@ class Api::LogsController < ApplicationController
     @log = Log.find(params[:log][:id])
 
     if @log.update_attributes(log_params)
+      @log.long_term_treatment.update_treatment if @log.long_term_treatment
       @patient = @log.patient
       render "api/patients/show"
     else

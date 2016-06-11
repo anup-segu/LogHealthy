@@ -1,0 +1,11 @@
+json.extract!(
+  @long_term_treatment,
+  :id,
+  :patient_doctor_id,
+  :base_glucose,
+  :base_dosage,
+  :current_dosage,
+  :titration,
+  :interval,
+  :drug_name
+)

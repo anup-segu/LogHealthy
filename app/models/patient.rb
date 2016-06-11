@@ -18,6 +18,10 @@ class Patient < ActiveRecord::Base
 
   has_one :patient_doctor
 
+  has_one :long_term_treatment,
+    through: :patient_doctor,
+    source: :long_term_treatment
+
   has_one :doctor,
     through: :patient_doctor,
     source: :doctor

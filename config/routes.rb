@@ -10,5 +10,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy, :show]
     resources :logs, only: [:create, :destroy, :update]
     resources :conversations, only: [:create, :index]
+    resources :long_term_treatments, only: [:create, :update, :destroy]
   end
 end
